@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js'></script>
+    <script>
+       document.write('<h1>MQTT Data Page</h1>'+Date()+' <br>');
+       setTimeout(function(){
+         location.reload();
+       },1000);
+   </script>
+  </head>
+  <body>
+    <h2>{{getdata}} degrees C</h2>
+    <h2>{{yetdata}}</h2>
+    <form action="/motoron/" method="POST">
+      {% csrf_token %}
+      <button name="activate" type="submit" value="1">Activate</button>
+      <button name="deactivate" type="submit" value="0">Deactivate</button>
+    </form>
+  </body>
+</html>

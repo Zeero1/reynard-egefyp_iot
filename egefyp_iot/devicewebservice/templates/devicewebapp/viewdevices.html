@@ -1,0 +1,96 @@
+<!--<!DOCTYPE html>!-->
+{% extends 'devicewebapp/base.html' %}
+{% load static %}
+{% block body_block %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>IOT APP</title>
+    <link rel="stylesheet" href="{% static 'css/basestyle.css' %}">
+    <!--
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js'></script>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+          var socket = io.connect('http://192.168.1.2:5000');
+          socket.on('Web_BBBW1Event', function(RxData) {
+	           $('bbbw1').text(RxData.data);
+	        });
+        });
+    </script>
+    -->
+    <script>
+       document.write('<h1>Devices Page</h1>'+Date()+' <br>');
+       setTimeout(function(){
+         location.reload(1);
+       },5000);
+   </script>
+  </head>
+  <body>
+    <br>
+    <br>
+    <table border="1" style="border-collapse: collapse; border: 2px solid black;">
+      <tr>
+      <thead>
+        <th>Devices</th>
+        <th>Devices Log</th>
+      </thead>
+      </tr>
+      <tr>
+          <td>
+            {% if viewdevicesdata %}
+            <div class="grid-container">
+              {% for dev in viewdevicesdata %}
+                {% if dev.name|slice:":3" == "iot" %}
+                  <div class="grid-item">{{dev.name}} | {{dev.datetime}} <img src="{% static 'Photon.jpg' %}" alt="image not found" class="center"></div>
+                {% else %}
+                  <div class="grid-item">{{dev.name}} | {{dev.datetime}} <a href="/messageview"><img src="{% static 'm5stickCplus.jpg' %}" alt="image not found" class="center"></a></div>
+                {% endif %}
+                <!-- <div class="grid-item"> {{dev.name}} </div> -->
+              {% endfor %}
+            </div>
+            {% else %}
+            	<p> No Data to Display </p>
+            {% endif %}
+          </td>
+          <td>
+          <div style="height:550px;overflow:auto;">
+            {% if viewdeviceconndata %}
+            <table id="table2" border="1">
+              <tr>
+              <thead>
+                <th>DeviceName</th>
+                <th>Date </th>
+                <th>Status</th>
+              </thead>
+              </tr>
+              {% for devconn in viewdeviceconndata %}
+                <tr>
+                  <td>{{devconn.name}}</td>
+                  <td>{{devconn.datetime}}</td>
+                  <td>{{devconn.status}}</td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+            {% else %}
+            	<p> No Data to Display </p>
+            {% endif %}
+          </td>
+      </tr>
+    </table>
+    <br>
+    <!--
+    <h1>Welcome Home</h1>
+    <h2>Click on the hyperlink to <a href="/viewdevices">view devices</a> to fill out the form</h2>
+  -->
+  </body>
+</html>
+{% endblock %}
+<!-- <div style="border: 2px solid blue">
+<ol>
+  <li>item 1</li>
+  <li>item 2</li>
+  <li>item 3</li>
+</ol>
+</div> -->

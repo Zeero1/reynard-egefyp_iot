@@ -1,0 +1,21 @@
+{% extends 'devicewebapp/base.html' %}
+{% block body_block %}
+<h1>Nmap Scan</h1>
+{% for host, status, mac in hosts_list %}
+<br>
+<table>
+<tr>
+    <td><strong>Host:</strong> {{ host }}</td>
+</tr>
+<tr>
+    <td><strong>Status:</strong> {{ status.upper }}</td>
+</tr>
+<tr>
+    <td><strong>MAC Address:</strong> {{ mac }}</td>
+</tr>
+</table>
+<br>
+        
+{% endfor %}
+{{ signal_list }}
+{% endblock %}
