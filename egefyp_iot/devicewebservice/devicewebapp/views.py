@@ -89,7 +89,7 @@ def command_view(request):
         context = {
             'error_message': f"Error executing command: {str(e)}",
         }
-    return render(request,'devicewebapp/macaddresses.html',context={'hosts_list':hosts_list, 'signal_list':signal_list})
+    return render(request,'devicewebapp/macaddresses.html',context={'hosts_list':hosts_list, 'output_signal':output_signal})
     
 # Create your views here.
 def index(request):
