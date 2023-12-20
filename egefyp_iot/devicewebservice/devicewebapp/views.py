@@ -53,8 +53,8 @@ def command_view(request):
         hosts_list = [(host, status, mac) for host, status, mac in output]
 
 
-        output_signal = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
-        
+        output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
+        output_signal = output_signal_cmd.stdout
         # Sample Output from "iw dev wlan1 station dump"
         # output_signal = """Station 3c:9c:0f:61:3b:1d (on wlan1)
         # signal:         -37 dBm
@@ -89,7 +89,7 @@ def command_view(request):
         context = {
             'error_message': f"Error executing command: {str(e)}",
         }
-    return render(request,'devicewebapp/macaddresses.html',context={'hosts_list':hosts_list, 'output_signal':output_signal})
+    return render(request,'devicewebapp/macaddresses.html',context={'hosts_list':hosts_list, 'signal_list':signal_list})
     
 # Create your views here.
 def index(request):
