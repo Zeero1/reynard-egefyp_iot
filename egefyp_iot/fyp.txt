@@ -1,0 +1,87 @@
+
+Connecting to PuTTy
+192.168.23.1
+user- pi
+pwd - egefyplabs
+
+
+Activating Virtual Env
+c:\users\REYNARD\fyp-env\Scripts\activate 
+
+cd devicewebservice
+python manage.py runserver
+
+
+NAT
+
+how to identify for direct connection or indirect
+
+
+network routing
+understand how devices are connected
+network penetration testing tools
+
+internet address
+physical(MAC) address
+ip address
+
+Commands on PuTTy:
+arp
+ip neigh show dev wlan1 
+
+packages:
+nmap
+ 
+ use command to see signal strength if device is indirectly connected to the access point, u cannot see the signal strength
+
+
+
+nmap -sn 192.168.23.0/24
+output:
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-12-15 17:13 Malay Peninsula Standard Time
+Nmap scan report for fypgw-S03.byteacs.com (192.168.23.1)
+Host is up (0.043s latency).
+MAC Address: 34:C9:F0:90:41:FD (LM Technologies)
+Nmap scan report for esp32-8CB604.byteacs.com (192.168.23.141)
+Host is up.
+MAC Address: 94:B9:7E:8C:B6:04 (Espressif)
+Nmap scan report for LAPTOP-1KKIANDS.byteacs.com (192.168.23.162)
+Host is up.
+Nmap done: 256 IP addresses (3 hosts up) scanned in 50.63 seconds
+
+
+
+{'nmap':
+ {'command_line': 'nmap -oX - -sn 192.168.23.0/24', 'scaninfo': {}, 'scanstats': {'timestr': 'Mon Dec 18 10:23:40 2023', 'elapsed': '28.03', 'uphosts': '3', 'downhosts': '253', 'totalhosts': '256'}},
+  'scan': {'192.168.23.1': {
+    'hostnames': [{'name': 'fypgw-S03.byteacs.com', 'type': 'PTR'}], 'addresses': {'ipv4': '192.168.23.1', 'mac': '34:C9:F0:90:41:FD'}, 'vendor': {'34:C9:F0:90:41:FD': 'LM Technologies'}, 'status': {'state': 'up', 'reason': 'arp-response'}}, 
+  '192.168.23.141': {
+    'hostnames': [{'name': 'esp32-8CB604.byteacs.com', 'type': 'PTR'}], 'addresses': {'ipv4': '192.168.23.141', 'mac': '94:B9:7E:8C:B6:04'}, 'vendor': {'94:B9:7E:8C:B6:04': 'Espressif'}, 'status': {'state': 'up', 'reason': 'arp-response'}}, 
+  '192.168.23.162': {
+    'hostnames': [{'name': 'LAPTOP-1KKIANDS.byteacs.com', 'type': 'PTR'}], 'addresses': {'ipv4': '192.168.23.162'}, 'vendor': {}, 'status': {'state': 'up', 'reason': 'localhost-response'}}}}
+
+  # Sample Output from "iw dev wlan1 station dump"
+output_signal = """Station 3c:9c:0f:61:3b:1d (on wlan1)
+signal:         -37 dBm
+Station 9c:9c:0d:11:3b:1d (on wlan1)
+signal:         -40 dBm"""
+
+# Split the lines into a list
+lines = output_signal.splitlines()
+
+
+nospc_lines = []
+
+# Remove all whitespaces and add into a list
+for x in lines:
+    y = "".join(x.split())
+    nospc_lines.append(y)
+
+for x in nospc_lines:
+    if "Station" in x:
+        x1 =x.replace("Station", '')
+        y = x1[0:17]
+        print(y)
+    elif "signal" in x:
+        t2 = x.replace("signal:", '')
+        print(t2)
