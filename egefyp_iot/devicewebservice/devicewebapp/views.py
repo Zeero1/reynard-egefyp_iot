@@ -32,6 +32,7 @@ from django.views.decorators.csrf import csrf_exempt
 #from django.contrib import messages
 import nmap
 import subprocess
+import re
 
 def command_view(request):
     try:
