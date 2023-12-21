@@ -35,25 +35,35 @@ import subprocess
 
 def command_view(request):
     try:
-        nm = nmap.PortScanner()
+
+        command = "sudo nmap -sP 192.168.23.0/24"
+        result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, text=True)
+
+        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S+)?', re.DOTALL)
+        matches = pattern.findall(result.stdout)
+
+        # Create a list of tuples containing host, status, and MAC address
+        output = [(ip, status, mac) for ip, status, mac in matches]
+        print(output)
+        hosts_list = [(host, status, mac) for host, status, mac in output]
+
+        # nm = nmap.PortScanner()
 
         # Perform a ping scan on the specified IP range
         # nm.scan(hosts='192.168.23.0/24', arguments='-n -sP -PE -PA21,23,80,3389')
-        nm.scan(hosts='192.168.23.0/24', arguments='-sn')
-        # nm.scan(hosts='192.168.86.0/24', arguments='-n -sP -PE -PA21,23,80,3389')
+        # nm.scan(hosts='192.168.23.0/24', arguments='-sn')
 
         # Create a list of tuples containing host, status, and MAC address
-        output = [
-            (
-                nm[x]['addresses']['ipv4'], # ip address
-                nm[x]['status']['state'], # Status: up or down
-                nm[x]['addresses'].get('mac', None), # mac address
-            )
-            for x in nm.all_hosts()
-        ]
-        print(output)
-        hosts_list = [(host, status, mac) for host, status, mac in output]
-        # hosts_list = [(host, status) for host, status in output]
+        # output = [
+        #     (
+        #         nm[x]['addresses']['ipv4'], # ip address
+        #         nm[x]['status']['state'], # Status: up or down
+        #         nm[x]['addresses'].get('mac', None), # mac address
+        #     )
+        #     for x in nm.all_hosts()
+        # ]
+        # print(output)
+        # hosts_list = [(host, status, mac) for host, status, mac in output]
 
 
         output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
