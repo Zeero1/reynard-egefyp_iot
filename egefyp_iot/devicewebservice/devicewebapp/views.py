@@ -47,12 +47,12 @@ def command_view(request):
             (
                 nm[x]['addresses']['ipv4'], # ip address
                 nm[x]['status']['state'], # Status: up or down
-                # nm[x]['addresses'].get('mac', None), # mac address
+                nm[x]['addresses'].get('mac', None), # mac address
             )
             for x in nm.all_hosts()
         ]
-        # hosts_list = [(host, status, mac) for host, status, mac in output]
-        hosts_list = [(host, status) for host, status in output]
+        hosts_list = [(host, status, mac) for host, status, mac in output]
+        # hosts_list = [(host, status) for host, status in output]
 
 
         output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
