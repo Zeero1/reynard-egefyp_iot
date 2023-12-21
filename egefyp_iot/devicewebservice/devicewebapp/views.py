@@ -37,7 +37,7 @@ import re
 def command_view(request):
     try:
 
-        command = "sudo nmap -sP 192.168.23.0/24"
+        command = "sudo nmap -sn 192.168.23.0/24"
         result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, text=True)
         print(result)
         pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S+)?', re.DOTALL)
