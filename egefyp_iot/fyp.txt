@@ -36,7 +36,7 @@ nmap
 
 
 
-nmap -sn 192.168.23.0/24
+nmap -sn 192.168.23.0/24 Ctrl V to see progress of scan
 output:
 Starting Nmap 7.94 ( https://nmap.org ) at 2023-12-15 17:13 Malay Peninsula Standard Time
 Nmap scan report for fypgw-S03.byteacs.com (192.168.23.1)
