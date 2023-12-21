@@ -95,7 +95,7 @@ def command_view(request):
                 # print(mac_address)
             elif "signal" in nospc_lines[i]:
                 signal = nospc_lines[i].replace("signal:", '')
-                signal_list.append((mac_address, signal))
+                signal_list.append((mac_address.upper() , signal))
                 # print(signal)  # signal in dBm
 
         print(signal_list)
