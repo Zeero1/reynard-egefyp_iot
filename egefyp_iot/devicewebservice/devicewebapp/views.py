@@ -39,7 +39,7 @@ def command_view(request):
 
         # Perform a ping scan on the specified IP range
         # nm.scan(hosts='192.168.23.0/24', arguments='-n -sP -PE -PA21,23,80,3389')
-        nm.scan(hosts='192.168.23.0/24', arguments='-sP -e ether')
+        nm.scan(hosts='192.168.23.0/24', arguments='-sn')
         # nm.scan(hosts='192.168.86.0/24', arguments='-n -sP -PE -PA21,23,80,3389')
 
         # Create a list of tuples containing host, status, and MAC address
@@ -51,6 +51,7 @@ def command_view(request):
             )
             for x in nm.all_hosts()
         ]
+        print(output)
         hosts_list = [(host, status, mac) for host, status, mac in output]
         # hosts_list = [(host, status) for host, status in output]
 
