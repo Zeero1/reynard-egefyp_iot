@@ -67,12 +67,11 @@ def command_view(request):
         pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?', re.DOTALL)
         matches = pattern.findall(result.stdout)
 
-        hosts_list = []
+        # hosts_list = []
         hosts_list = [(hostname, status, mac) for hostname, status, mac in matches]
         print(hosts_list)
 
         # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?(?:MAC Address: (\S*))?', re.DOTALL)
-        
         # matches = pattern.findall(result.stdout)
 
         # ?: ... ) is a non-capturing group, and the ? at the end makes the entire group optional. 
