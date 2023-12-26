@@ -44,9 +44,10 @@ def command_view(request):
         matches = pattern.findall(result.stdout)
 
         # Create a list of tuples containing host, status, and MAC address
-        output = [(ip, status, mac) for ip, status, mac in matches]
-        print(output)
-        hosts_list = [(host, status, mac) for host, status, mac in output]
+        # output = [(ip, status, mac) for ip, status, mac in matches]
+        # print(output)
+        hosts_list = [(host, status, mac) for host, status, mac in matches]
+        print(hosts_list)
 
         # nm = nmap.PortScanner()
 
