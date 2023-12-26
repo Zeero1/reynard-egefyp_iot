@@ -44,10 +44,10 @@ def command_view(request):
         matches = pattern.findall(result.stdout)
 
         # Create a list of tuples containing host, status, and MAC address
-        # output = [(ip, status, mac) for ip, status, mac in matches]
-        # print(output)
-        hosts_list = [(host, status, mac) for host, status, mac in matches]
-        print(hosts_list)
+        output = [(ip, status, mac) for ip, status, mac in matches]
+        print(output)
+        hosts_list = [(host, status, mac) for host, status, mac in output]
+        # print(hosts_list)
 
         # nm = nmap.PortScanner()
 
@@ -106,7 +106,6 @@ def command_view(request):
             'error_message': f"Error executing command: {str(e)}",
         }
     return render(request,'devicewebapp/macaddresses.html',context={'hosts_list':hosts_list, 'signal_list':signal_list})
-    # return render(request,'devicewebapp/macaddresses.html',context={'hosts_list':hosts_list})
 # Create your views here.
 def index(request):
     return render(request,'devicewebapp/index.html')
