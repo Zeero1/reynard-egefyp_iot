@@ -14,9 +14,17 @@
 <tr>
     <td><strong>MAC Address:</strong> {{ mac }}</td>
 </tr>
+<tr>    
+    <td><strong>Signal Strength:</strong>
+        {% for i in range(len(signal_list)) %}
+        {% if signal_list[i][i] == mac %}
+        {{signal_list[i][i+1]}}
+        {% endif %}
+    </td>
+</tr>
 </table>
 <br>
-        
+
 {% endfor %}
 {{ signal_list }}
 {% endblock %}
