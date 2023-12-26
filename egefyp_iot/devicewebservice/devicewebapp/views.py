@@ -40,14 +40,19 @@ def command_view(request):
         command = "sudo nmap -sn 192.168.23.0/24"
         result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, text=True)
         print(result)
-        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S+)?', re.DOTALL)
+
+        # Use re package to extract substrings from the result
+        pattern = re.compile(r'Nmap scan report for (\S*).*?Host is (\S*).*?MAC Address: (\S*)?', re.DOTALL)
         matches = pattern.findall(result.stdout)
+        # \S+ Matches any non-whitespace character, one or more times ,+ requires at least one occurrence
+
+
 
         # Create a list of tuples containing host, status, and MAC address
-        output = [(ip, status, mac) for ip, status, mac in matches]
-        print(output)
-        hosts_list = [(host, status, mac) for host, status, mac in output]
-        # print(hosts_list)
+        # output = [(ip, status, mac) for ip, status, mac in matches]
+        # print(output)
+        hosts_list = [(host, status, mac) for host, status, mac in matches]
+        print(hosts_list)
 
         # nm = nmap.PortScanner()
 
