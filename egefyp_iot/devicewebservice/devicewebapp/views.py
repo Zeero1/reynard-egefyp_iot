@@ -51,9 +51,13 @@ def command_view(request):
         # Host is up.\n
         # Nmap done: 256 IP addresses (2 hosts up) scanned in 13.69 seconds\n'
 
+        # hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
+        # mac_pattern = re.compile(r'MAC Address: (\S+)')
+        # status_pattern = re.compile(r'Host is (\S+)')
+
         hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
+        status_pattern = re.compile(r'Host is up(?: \((\S+) latency\))?\.')
         mac_pattern = re.compile(r'MAC Address: (\S+)')
-        status_pattern = re.compile(r'Host is (\S+)')
         
         hostname_matches = hostname_pattern.findall(result.stdout)
         status_matches = status_pattern.findall(result.stdout)
