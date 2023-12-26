@@ -63,19 +63,21 @@ def command_view(request):
         status_matches = status_pattern.findall(result.stdout)
         mac_matches = mac_pattern.findall(result.stdout)
 
+        print(hostname_matches)
+        print(status_matches)
+        print(mac_matches)
 
-        hosts_list = []
+        # hosts_list = []
 
-        for hostname in hostname_matches:
-            # Find the corresponding status
-            status = next((status for status in status_matches if hostname in status), 'None')
+        # for hostname in hostname_matches:
+        #     # Find the corresponding status
+        #     status = next((status for status in status_matches if hostname in status), 'None')
             
-            # Find the corresponding MAC address
-            mac = next((mac for mac in mac_matches if hostname in mac), 'None')
+        #     # Find the corresponding MAC address
+        #     mac = next((mac for mac in mac_matches if hostname in mac), 'None')
             
-            hosts_list.append((hostname, status, mac))
+        #     hosts_list.append((hostname, status, mac))
 
-        print(hosts_list)
         
         
 
