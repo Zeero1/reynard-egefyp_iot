@@ -42,9 +42,45 @@ def command_view(request):
         print(result)
 
         # Use re package to extract substrings from the result
+
+        # 'Starting Nmap 7.70 ( https://nmap.org ) at 2023-12-26 09:44 UTC\n
+        # Nmap scan report for esp32-8CB604.byteacs.com (192.168.23.141)\n
+        # Host is up (0.018s latency).\n
+        # MAC Address: 94:B9:7E:8C:B6:04 (Espressif)\n
+        # Nmap scan report for fypgw-S03 (192.168.23.1)\n
+        # Host is up.\n
+        # Nmap done: 256 IP addresses (2 hosts up) scanned in 13.69 seconds\n'
+
+        hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
+        hostname_matches = hostname_pattern.findall(result.stdout)
+
+        status_pattern = re.compile(r'Host is (\S+)')
+        status_matches = status_pattern.findall(result.stdout)
+
+        mac_pattern = re.compile(r'MAC Address: (\S+)')
+        mac_matches = mac_pattern.findall(result.stdout)
+
+
+        hosts_list = []
+
+        for hostname in hostname_matches:
+            # Find the corresponding status
+            status = next((status for status in status_matches if hostname in status), 'None')
+            
+            # Find the corresponding MAC address
+            mac = next((mac for mac in mac_matches if hostname in mac), 'None')
+            
+            hosts_list.append((hostname, status, mac))
+
+        print(hosts_list)
+        
+        
+
+
         # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?(?:MAC Address: (\S*))?', re.DOTALL)
-        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?(?:MAC Address: (\S+).*?)?', re.DOTALL)
-        matches = pattern.findall(result.stdout)
+        
+        # matches = pattern.findall(result.stdout)
+
         # ?: ... ) is a non-capturing group, and the ? at the end makes the entire group optional. 
         # \S+ Matches any non-whitespace character, one or more times ,+ requires at least one occurrence
         # \S* Matches any non-whitespace character, zero or more times
@@ -52,11 +88,8 @@ def command_view(request):
         # " * " :to consume as much of the pattern as possible.
 
         # Create a list of tuples containing host, status, and MAC address
-        # output = [(ip, status, mac) for ip, status, mac in matches]
-        # print(output)
-        hosts_list = [(hostname, status, mac if mac else 'None') for hostname, status, mac in matches]
         # hosts_list = [(hostname, status, mac if mac else 'None') for hostname, status, mac in matches]
-        print(hosts_list)
+        # print(hosts_list)
 
         # nm = nmap.PortScanner()
 
