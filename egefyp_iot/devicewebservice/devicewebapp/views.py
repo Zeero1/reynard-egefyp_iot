@@ -41,7 +41,7 @@ def command_view(request):
         result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, text=True)
         print(result)
 
-        # Use re package to extract substrings from the result
+    # Use re package to extract substrings from the result
 
         # 'Starting Nmap 7.70 ( https://nmap.org ) at 2023-12-26 09:44 UTC\n
         # Nmap scan report for esp32-8CB604.byteacs.com (192.168.23.141)\n
@@ -52,21 +52,24 @@ def command_view(request):
         # Nmap done: 256 IP addresses (2 hosts up) scanned in 13.69 seconds\n'
 
         # hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
+        # status_pattern = re.compile(r'Host is (\S+){2}')
         # mac_pattern = re.compile(r'MAC Address: (\S+)')
-        # status_pattern = re.compile(r'Host is (\S+)')
-
-        hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
-        status_pattern = re.compile(r'Host is (\S+)')
-        mac_pattern = re.compile(r'MAC Address: (\S+)')
         
-        hostname_matches = hostname_pattern.findall(result.stdout)
-        status_matches = status_pattern.findall(result.stdout)
-        mac_matches = mac_pattern.findall(result.stdout)
+        # hostname_matches = hostname_pattern.findall(result.stdout)
+        # status_matches = status_pattern.findall(result.stdout)
+        # mac_matches = mac_pattern.findall(result.stdout)
 
-        print(hostname_matches)
-        print(status_matches)
-        print(mac_matches)
+        # print(hostname_matches)
+        # print(status_matches)
+        # print(mac_matches)
 
+        combined_pattern = re.compile(r'Nmap scan report for (\S+)|Host is (\S+){2}|MAC Address: (\S+)')
+        matches = combined_pattern.findall(result.stdout)
+
+        hosts_list = [(hostname, status, mac) for hostname, status, mac in matches]
+        print(hosts_list)
+
+        
 
         
         
