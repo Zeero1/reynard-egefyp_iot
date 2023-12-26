@@ -56,7 +56,7 @@ def command_view(request):
         # status_pattern = re.compile(r'Host is (\S+)')
 
         hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
-        status_pattern = re.compile(r'Host is up(?: \((\S+) latency\))?\.')
+        status_pattern = re.compile(r'Host is (\S+)')
         mac_pattern = re.compile(r'MAC Address: (\S+)')
         
         hostname_matches = hostname_pattern.findall(result.stdout)
@@ -67,16 +67,6 @@ def command_view(request):
         print(status_matches)
         print(mac_matches)
 
-        # hosts_list = []
-
-        # for hostname in hostname_matches:
-        #     # Find the corresponding status
-        #     status = next((status for status in status_matches if hostname in status), 'None')
-            
-        #     # Find the corresponding MAC address
-        #     mac = next((mac for mac in mac_matches if hostname in mac), 'None')
-            
-        #     hosts_list.append((hostname, status, mac))
 
         
         
