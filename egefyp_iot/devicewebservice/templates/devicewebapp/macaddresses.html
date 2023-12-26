@@ -17,9 +17,10 @@
 <tr>    
     <td><strong>Signal Strength:</strong>
         {% for i in range(len(signal_list)) %}
-        {% if signal_list[i][i] == mac %}
-        {{signal_list[i][i+1]}}
-        {% endif %}
+            {% if signal_list[i][0] == mac %}
+                {{signal_list[i][1]}}
+            {% endif %}
+        {% endfor %}
     </td>
 </tr>
 </table>
