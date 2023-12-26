@@ -43,7 +43,7 @@ def command_view(request):
 
         # Use re package to extract substrings from the result
         # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?(?:MAC Address: (\S*))?', re.DOTALL)
-        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?(?:MAC Address: (\S*))?', re.DOTALL)
+        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?(?:MAC Address: (\S*).*?)?', re.DOTALL)
         matches = pattern.findall(result.stdout)
         # ?: ... ) is a non-capturing group, and the ? at the end makes the entire group optional. 
         # \S+ Matches any non-whitespace character, one or more times ,+ requires at least one occurrence
