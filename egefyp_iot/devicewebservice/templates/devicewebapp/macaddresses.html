@@ -1,32 +1,31 @@
 {% extends 'devicewebapp/base.html' %}
+{% load static %}
 {% block body_block %}
 <h1>Nmap Scan</h1>
+
  <!-- for host, status in hosts_list  -->
-{% for hostname, status, mac in hosts_list %}
+
 <br>
 <table>
 <tr>
-    <td><strong>Host:</strong> {{ hostname }}</td>
+    <td><strong>Host:</strong> </td>
 </tr>
 <tr>
-    <td><strong>Status:</strong> {{ status.upper }}</td>
+    <td><strong>Status:</strong> </td>
 </tr>
 <tr>
-    <td><strong>MAC Address:</strong> {{ mac }}</td>
+    <td><strong>MAC Address:</strong> </td>
 </tr>
 <tr>    
     <td><strong>Signal Strength:</strong>
-        {% for signal in signal_list %}
-            {% if signal.0 == mac %}
-                {{ signal.1 }}
-            {% endif %}
-        {% endfor %}
+        
+        -42dBm
+        <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="5%">
     </td>
 </tr>
 </table>
 <br>
 
-{% endfor %}
 {{ hosts_list}}
 {{ signal_list }}
 {% endblock %}
