@@ -23,15 +23,15 @@
             {% if signal.0 == mac %}
             <!-- >-30dBm : 4bars / >-67 dBm: -->
                 {{ signal.1 }}
-                {% if signal.1 > -30 %}
+                {% if signal.2 > -30 %}
                     <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="5%">
-                {% elif signal.1 > -67 %}
+                {% elif signal.2 > -67 %}
                     <img src="{% static 'wifi_3bar.png' %}" alt="image not found" class="center" width="5%">
-                {% elif signal.1 > -70 %}
+                {% elif signal.2 > -70 %}
                     <img src="{% static 'wifi_2bar.png' %}" alt="image not found" class="center" width="5%">
-                {% elif signal.1 > -80 %}
+                {% elif signal.2 > -80 %}
                     <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="5%">
-                {% elif signal.1 > -90 %}
+                {% elif signal.2 > -90 %}
                     <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="5%">
                 {% endif %}
             {% endif %}
