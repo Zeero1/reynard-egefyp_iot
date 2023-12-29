@@ -131,8 +131,9 @@ def command_view(request):
                 # print(mac_address)
             elif "signal" in nospc_lines[i]:
                 signal = nospc_lines[i].replace("signal:", '')
-                signal_list.append((mac_address.upper() , signal))
-                # print(signal)  # signal in dBm
+                signal_cut = signal.replace(" dBm", '')
+                signal_list.append((mac_address.upper() , signal , signal_cut))
+                
 
         print(signal_list)
         # [('3c:9c:0f:61:3b:1d', '-37dBm'), ('9c:9c:0d:11:3b:1d', '-40dBm')]
