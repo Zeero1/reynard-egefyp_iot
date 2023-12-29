@@ -34,7 +34,7 @@ nmap
  
  use command to see signal strength if device is indirectly connected to the access point, u cannot see the signal strength
 
-
+<img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="5%">
 
 nmap -sn 192.168.23.0/24 Ctrl V to see progress of scan
 output:
