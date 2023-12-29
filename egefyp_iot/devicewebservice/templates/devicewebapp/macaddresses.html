@@ -33,6 +33,7 @@
                     <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="5%">
                 {% elif signal.1 > -90 %}
                     <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="5%">
+                {% endif %}
             {% endif %}
         {% endfor %}    
     </td>
