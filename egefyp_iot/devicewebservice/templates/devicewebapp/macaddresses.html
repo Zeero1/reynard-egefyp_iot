@@ -22,7 +22,7 @@
         {% for signal in signal_list %}
             {% if signal.0 == mac %}
             <!-- >-30dBm : 4bars / >-67 dBm: -->
-                {{ signal_cut }}
+                {{ signal.1 }}
             {% endif %}
         {% endfor %}    
     </td>
