@@ -23,7 +23,6 @@
             {% if signal.0 == mac %}
             <!-- >-30dBm : 4bars / >-67 dBm: -->
                 {{ signal.1 }}
-                {{ signal.2 }}
                 {% if signal.2 > -30 %}
                     <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="5%">
                 {% elif signal.2 > -67 %}
