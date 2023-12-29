@@ -8,7 +8,7 @@ gdata1=0.0
 gdata2="Normal"
 
 # Set this variable to True to enable MQTT connection, or False to run without MQTT
-enable_mqtt = False
+enable_mqtt = True
 
 
 def on_connect(client, userdata, flags, rc):
