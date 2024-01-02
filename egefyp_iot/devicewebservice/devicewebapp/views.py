@@ -64,11 +64,11 @@ def command_view(request):
         # print(mac_matches)
 
         # combined_pattern = re.compile(r'Nmap scan report for (\S+)|Host is (\S+){2}|MAC Address: (\S+)')
-        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?', re.DOTALL)
+        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?((\S+) hosts up).*?', re.DOTALL)
         matches = pattern.findall(result.stdout)
 
         # hosts_list = []
-        hosts_list = [(hostname, status, mac) for hostname, status, mac in matches]
+        hosts_list = [(hostname, status, mac, numdevices) for hostname, status, mac, numdevices in matches]
         print(hosts_list)
 
         # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?(?:MAC Address: (\S*))?', re.DOTALL)
