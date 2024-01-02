@@ -65,7 +65,7 @@ def command_view(request):
 
 
         # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?', re.DOTALL)
-        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?.*?(\d+) hosts up', re.DOTALL)
+        pattern = re.compile(r'Nmap scan report for (\S+?)\.byteacs\.com.*?Host is (\S+).*?MAC Address: (\S*)?.*?(\d+) hosts up', re.DOTALL)
         matches = pattern.findall(result.stdout)
 
         # hosts_list = []
