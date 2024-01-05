@@ -15,47 +15,51 @@
 </head>
 
 {% block body_block %}
-<h1>Nmap Scan</h1>
+<body>
+    <h1>Nmap Scan</h1>
 
- <!-- for host, status in hosts_list  -->
-{% for hostname, status, mac, numdevices in hosts_list %}
-<br>
-<table>
-<tr>
-    <td><strong>Host:</strong> {{ hostname }}</td>
-</tr>
-<tr>
-    <td><strong>Status:</strong> {{ status.upper }}</td>
-</tr>
-<tr>
-    <td><strong>MAC Address:</strong> {{ mac }}</td>
-</tr>
-<tr>    
-    <td><strong>Signal Strength:</strong>
-        
-        {% for signal in signal_list %}
-            {% if signal.0 == mac %}
-            <!-- >-30dBm : 4bars / >-67 dBm: -->
-                {{ signal.1 }}
-                {% if signal.2 > -30 %}
-                    <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="5%">
-                {% elif signal.2 > -67 %}
-                    <img src="{% static 'wifi_3bar.png' %}" alt="image not found" class="center" width="5%">
-                {% elif signal.2 > -70 %}
-                    <img src="{% static 'wifi_2bar.png' %}" alt="image not found" class="center" width="5%">
-                {% elif signal.2 > -80 %}
-                    <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="5%">
-                {% elif signal.2 > -90 %}
-                    <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="5%">
+    <!-- for host, status in hosts_list  -->
+    {% for hostname, status, mac, numdevices in hosts_list %}
+    <br>
+    <table>
+    <tr>
+        <td><strong>Host:</strong> {{ hostname }}</td>
+    </tr>
+    <tr>
+        <td><strong>Status:</strong> {{ status.upper }}</td>
+    </tr>
+    <tr>
+        <td><strong>MAC Address:</strong> {{ mac }}</td>
+    </tr>
+    <tr>    
+        <td><strong>Signal Strength:</strong>
+            
+            {% for signal in signal_list %}
+                {% if signal.0 == mac %}
+                <!-- >-30dBm : 4bars / >-67 dBm: -->
+                    {{ signal.1 }}
+                    {% if signal.2 > -30 %}
+                        <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="5%">
+                    {% elif signal.2 > -67 %}
+                        <img src="{% static 'wifi_3bar.png' %}" alt="image not found" class="center" width="5%">
+                    {% elif signal.2 > -70 %}
+                        <img src="{% static 'wifi_2bar.png' %}" alt="image not found" class="center" width="5%">
+                    {% elif signal.2 > -80 %}
+                        <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="5%">
+                    {% elif signal.2 > -90 %}
+                        <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="5%">
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        {% endfor %}    
-    </td>
-</tr>
-</table>
-<br>
-
+            {% endfor %}    
+        </td>
+    </tr>
+    </table>
+    <br>
 {% endfor %}
 {{ hosts_list}}
 {{ signal_list }}
+</body>
 {% endblock %}
+
+
+<html lang="en" dir="ltr">
