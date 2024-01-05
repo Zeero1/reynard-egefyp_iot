@@ -1,5 +1,12 @@
 {% extends 'devicewebapp/base.html' %}
 {% load static %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js'></script>
+    <script>
+       document.write('<h1>MQTT Data Page</h1>'+Date()+' <br>');
+       setTimeout(function(){
+         location.reload();
+       },1000);
+   </script>
 {% block body_block %}
 <h1>Nmap Scan</h1>
 
