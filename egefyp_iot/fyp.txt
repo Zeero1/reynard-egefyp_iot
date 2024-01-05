@@ -1,4 +1,4 @@
-
+{% extends 'devicewebapp/base.html' %}
 Connecting to PuTTy
 192.168.23.1
 user- pi
