@@ -34,6 +34,7 @@ import nmap
 import subprocess
 import re
 
+
 def command_view(request):
     try:
 
@@ -143,7 +144,7 @@ def command_view(request):
             'error_message': f"Error executing command: {str(e)}",
         }
     return render(request,'devicewebapp/macaddresses.html',context={'hosts_list':hosts_list, 'signal_list':signal_list})
-    # return render(request,'devicewebapp/macaddresses.html',context={})
+
 # Create your views here.
 def index(request):
     return render(request,'devicewebapp/index.html')
