@@ -1,14 +1,19 @@
 {% extends 'devicewebapp/base.html' %}
 {% load static %}
+
+<html lang="en" dir="ltr">
 <head>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js'></script>
-<script>
-       document.write('<h1>MQTT Data Page</h1>'+Date()+' <br>');
-       setTimeout(function(){
-         location.reload();
-       },1000);
-</script>
+  <meta charset="utf-8">
+  <title></title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js'></script>
+    <script>
+        document.write('<h1>MQTT Data Page</h1>'+Date()+' <br>');
+        setTimeout(function(){
+            location.reload();
+        },1000);
+    </script>
 </head>
+
 {% block body_block %}
 <h1>Nmap Scan</h1>
 
