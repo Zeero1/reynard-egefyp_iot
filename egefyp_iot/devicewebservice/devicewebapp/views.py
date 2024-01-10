@@ -37,70 +37,7 @@ import re
 
 def command_view(request):
     try:
-
-    #     command = "sudo nmap -sn -T3 192.168.23.0/24"
-    #     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, text=True)
-    #     print(result)
-
-    # # Use re package to extract substrings from the result
-
-    #     # 'Starting Nmap 7.70 ( https://nmap.org ) at 2023-12-26 09:44 UTC\n
-    #     # Nmap scan report for esp32-8CB604.byteacs.com (192.168.23.141)\n
-    #     # Host is up (0.018s latency).\n
-    #     # MAC Address: 94:B9:7E:8C:B6:04 (Espressif)\n
-    #     # Nmap scan report for fypgw-S03 (192.168.23.1)\n
-    #     # Host is up.\n
-    #     # Nmap done: 256 IP addresses (2 hosts up) scanned in 13.69 seconds\n'
-
-    #     # hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
-    #     # status_pattern = re.compile(r'Host is (\S+){2}')
-    #     # mac_pattern = re.compile(r'MAC Address: (\S+)')
-        
-    #     # hostname_matches = hostname_pattern.findall(result.stdout)
-    #     # status_matches = status_pattern.findall(result.stdout)
-    #     # mac_matches = mac_pattern.findall(result.stdout)
-
-    #     # print(hostname_matches)
-    #     # print(status_matches)
-    #     # print(mac_matches)
-
-
-    #     # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?', re.DOTALL)
-    #     pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?.*?(\d+) hosts up', re.DOTALL)
-    #     matches = pattern.findall(result.stdout)
-
-    #     hosts_list = [(hostname.replace(".byteacs.com", ''), status, mac, numdevices) for hostname, status, mac, numdevices in matches]
-    #     print(hosts_list)
-
-    #     # ?: ... ) is a non-capturing group, and the ? at the end makes the entire group optional. 
-    #     # \S+ Matches any non-whitespace character, one or more times ,+ requires at least one occurrence
-    #     # \S* Matches any non-whitespace character, zero or more times
-    #     # In " .*? "
-    #     # " * " :to consume as much of the pattern as possible.
-
-    #     # Create a list of tuples containing host, status, and MAC address
-    #     # hosts_list = [(hostname, status, mac if mac else 'None') for hostname, status, mac in matches]
-    #     # print(hosts_list)
-
-    #     # nm = nmap.PortScanner()
-
-    #     # Perform a ping scan on the specified IP range
-    #     # nm.scan(hosts='192.168.23.0/24', arguments='-n -sP -PE -PA21,23,80,3389')
-    #     # nm.scan(hosts='192.168.23.0/24', arguments='-sn')
-
-    #     # Create a list of tuples containing host, status, and MAC address
-    #     # output = [
-    #     #     (
-    #     #         nm[x]['addresses']['ipv4'], # ip address
-    #     #         nm[x]['status']['state'], # Status: up or down
-    #     #         nm[x]['addresses'].get('mac', None), # mac address
-    #     #     )
-    #     #     for x in nm.all_hosts()
-    #     # ]
-    #     # print(output)
-    #     # hosts_list = [(host, status, mac) for host, status, mac in output]
-
-
+        # Command to get signal strength
         output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
         output_signal = output_signal_cmd.stdout
 
@@ -119,7 +56,6 @@ def command_view(request):
         for x in signal_lines:
             y = "".join(x.split())
             nospc_lines_signal.append(y)
-
 
         signal_list = []
         for i in range(len(nospc_lines_signal)):
@@ -146,13 +82,14 @@ def command_view(request):
         for signal in signal_list:
             for arp_line in arp_lines:
                 if signal[0] in arp_line:
-                    connected_devices.append(arp_line)
-
+                    # connected_devices.append(arp_line)
+                    # 'LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1'
+                    pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
+                    matches = pattern.findall(arp_line)
+                    connected_devices = [(hostname, ip_address, mac) for hostname, ip_address, mac in matches]
+                    print(connected_devices)
         print(connected_devices)
-        # for x in arp_lines:
-        #     y = "".join(x.split())
-        #     nospc_lines_arp.append(y)
-        # print(nospc_lines_arp)
+
 
         
         # ? (192.168.1.111) at <incomplete> on wlan1
