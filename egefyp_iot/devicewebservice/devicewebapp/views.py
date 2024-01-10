@@ -138,13 +138,15 @@ def command_view(request):
 
         arp_scan = subprocess.run(["arp", "-a"], capture_output=True, text=True, check=True)
         arp_scan_signal = arp_scan.stdout
-
+        
         arp_lines = arp_scan_signal.splitlines()
         nospc_lines_arp = []
 
         for x in arp_lines:
             y = "".join(x.split())
             nospc_lines_arp.append(y)
+        
+        print(nospc_lines_arp)
 
         connected_devices = []
         for i in range(len(nospc_lines_arp)):
