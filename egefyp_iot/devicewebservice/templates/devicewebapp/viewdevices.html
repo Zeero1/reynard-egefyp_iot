@@ -39,7 +39,7 @@
       <tr>
           <td>
             {% if viewdevicesdata %}
-            <div class="grid-container" style="border: 3px solid black; padding: 20px ;">
+            <div class="grid-container">
               {% for dev in viewdevicesdata %}
                 {% if dev.name|slice:":3" == "iot" %}
                   <div class="grid-item">{{dev.name}} | {{dev.datetime}} <img src="{% static 'Photon.jpg' %}" alt="image not found" class="center"></div>

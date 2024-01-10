@@ -17,8 +17,8 @@
 {% block body_block %}
 <body>
     <h1>Nmap Scan</h1>
-
     <!-- for host, status in hosts_list  -->
+<div style="border: 3px black solid; padding: 20px;">
     {% for hostname, status, mac, numdevices in hosts_list %}
     <br>
     <table>
@@ -55,6 +55,7 @@
     </tr>
     </table>
     <br>
+</div>
 {% endfor %}
 {{ hosts_list}}
 {{ signal_list }}
