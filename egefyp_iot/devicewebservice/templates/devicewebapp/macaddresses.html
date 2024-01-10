@@ -18,7 +18,7 @@
     <h1>Nmap Scan</h1>
     <!-- for host, status in hosts_list  -->
 <div style="border: 3px black solid; padding: 20px;">
-    { for hostname, ip_address, mac in connected_devices } -->
+    {% for hostname, ip_address, mac in connected_devices %}
     <br>
     <table>
     <tr>
@@ -54,7 +54,7 @@
     </table>
     <br>
 </div>
-{ endfor }
+{% endfor %}
 {{ signal_list }}
 {{ connected_devices }}
 </body>
