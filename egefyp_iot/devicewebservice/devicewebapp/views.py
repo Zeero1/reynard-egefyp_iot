@@ -140,14 +140,13 @@ def command_view(request):
         arp_scan_signal = arp_scan.stdout
         
         arp_lines = arp_scan_signal.splitlines()
-        # print(arp_lines)
         nospc_lines_arp = []
 
         connected_devices = []
-        for i in range(len(arp_lines)):
-            if signal[0] in arp_lines[i]:
-                # print(arp_lines[i])
-                connected_devices.append(arp_lines[i])
+        for signal in signal_list:
+            for arp_line in arp_lines:
+                if signal[0] in arp_line:
+                    connected_devices.append(arp_line)
 
         print(connected_devices)
         # for x in arp_lines:
