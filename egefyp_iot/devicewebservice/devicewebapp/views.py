@@ -87,7 +87,7 @@ def command_view(request):
                     pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
                     matches = pattern.findall(arp_line)
                     connected_devices = [(hostname, ip_address, mac) for hostname, ip_address, mac in matches]
-                    print(connected_devices)
+                    # print(connected_devices)
         print(connected_devices)
         
         # ? (192.168.1.111) at <incomplete> on wlan1
