@@ -142,19 +142,17 @@ def command_view(request):
         arp_lines = arp_scan_signal.splitlines()
         nospc_lines_arp = []
 
-        for x in arp_lines:
-            y = "".join(x.split())
-            nospc_lines_arp.append(y)
-        
-        print(nospc_lines_arp)
-
         connected_devices = []
-        for i in range(len(nospc_lines_arp)):
-            if signal_list[i][0] in nospc_lines_arp[i]:
-                connected_devices.append(nospc_lines_arp[i])
-
+        for i in range(len(arp_lines)):
+            if signal_list[i][0] in arp_lines[i]:
+                connected_devices.append(arp_lines[i])
         print(connected_devices)
+        # for x in arp_lines:
+        #     y = "".join(x.split())
+        #     nospc_lines_arp.append(y)
+        # print(nospc_lines_arp)
 
+        
         # ? (192.168.1.111) at <incomplete> on wlan1
         # ? (192.168.1.1) at 00:31:92:33:1c:30 [ether] on wlan0
         # ? (192.168.1.1) at <incomplete> on wlan1
