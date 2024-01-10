@@ -18,7 +18,7 @@
     <h2>There are {{ connected_devices|length }} devices connected to this network through this device.</h2>
     <!-- for host, status in hosts_list  -->
 <div style="border: 3px black solid; padding: 10px; border-radius: 20px; width: 300px;">
-    {% for hostname, ip_address, mac in connected_devices %}
+    {% for hostname, mac, ip_address in connected_devices %}
     <br>
     <table>
     <tr>
