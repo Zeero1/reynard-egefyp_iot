@@ -145,7 +145,7 @@ def command_view(request):
 
         connected_devices = []
         for i in range(len(arp_lines)):
-            if signal_list[i][0] in arp_lines[i]:
+            if signal[0] in arp_lines[i]:
                 connected_devices.append(arp_lines[i])
 
         print(connected_devices)
