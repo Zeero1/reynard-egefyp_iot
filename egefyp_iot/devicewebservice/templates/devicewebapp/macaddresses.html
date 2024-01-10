@@ -37,15 +37,15 @@
                 {% if signal.0 == mac %}
                     {{ signal.1 }}
                     {% if signal.2 > -30 %}
-                        <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="10px">
+                        <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="20px">
                     {% elif signal.2 > -67 %}
-                        <img src="{% static 'wifi_3bar.png' %}" alt="image not found" class="center" width="10px">
+                        <img src="{% static 'wifi_3bar.png' %}" alt="image not found" class="center" width="20px">
                     {% elif signal.2 > -70 %}
-                        <img src="{% static 'wifi_2bar.png' %}" alt="image not found" class="center" width="10px">
+                        <img src="{% static 'wifi_2bar.png' %}" alt="image not found" class="center" width="20px">
                     {% elif signal.2 > -80 %}
-                        <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="3%">
+                        <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="20px">
                     {% elif signal.2 > -90 %}
-                        <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="10px">
+                        <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="20px">
                     {% endif %}
                 {% endif %}
             {% endfor %}    
