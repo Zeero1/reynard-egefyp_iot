@@ -76,9 +76,8 @@ def command_view(request):
         arp_scan_signal = arp_scan.stdout
         
         arp_lines = arp_scan_signal.splitlines()
-        nospc_lines_arp = []
+        
 
-        connected_device = []
         connected_devices = []
         for signal in signal_list:
             for arp_line in arp_lines:
@@ -87,8 +86,7 @@ def command_view(request):
                     # 'LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1'
                     pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
                     matches = pattern.findall(arp_line)
-                    connected_device = [(hostname, ip_address, mac) for hostname, ip_address, mac in matches]
-                    connected_devices.append(connected_device)
+                    connected_devices.extend = [(hostname, ip_address, mac) for hostname, ip_address, mac in matches]
                     # print(connected_devices)
         print(connected_devices)
         
