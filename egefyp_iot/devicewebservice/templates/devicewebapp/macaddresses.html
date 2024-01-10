@@ -17,7 +17,7 @@
 <body>
     <h1>Nmap Scan</h1>
     <!-- for host, status in hosts_list  -->
-<div style="border: 3px black solid; padding: 20px;">
+<div style="border: 3px black solid; padding: 20px; border-radius: 3px;">
     {% for hostname, ip_address, mac in connected_devices %}
     <br>
     <table>
@@ -37,15 +37,15 @@
                 {% if signal.0 == mac %}
                     {{ signal.1 }}
                     {% if signal.2 > -30 %}
-                        <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="5%">
+                        <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="3%">
                     {% elif signal.2 > -67 %}
-                        <img src="{% static 'wifi_3bar.png' %}" alt="image not found" class="center" width="5%">
+                        <img src="{% static 'wifi_3bar.png' %}" alt="image not found" class="center" width="3%">
                     {% elif signal.2 > -70 %}
-                        <img src="{% static 'wifi_2bar.png' %}" alt="image not found" class="center" width="5%">
+                        <img src="{% static 'wifi_2bar.png' %}" alt="image not found" class="center" width="3%">
                     {% elif signal.2 > -80 %}
-                        <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="5%">
+                        <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="3%">
                     {% elif signal.2 > -90 %}
-                        <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="5%">
+                        <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="3%">
                     {% endif %}
                 {% endif %}
             {% endfor %}    
