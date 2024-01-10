@@ -38,7 +38,7 @@ import re
 def command_view(request):
     try:
 
-        command = "sudo nmap -sn 192.168.23.0/24"
+        command = "sudo nmap -sn -T3 192.168.23.0/24"
         result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, text=True)
         print(result)
 
