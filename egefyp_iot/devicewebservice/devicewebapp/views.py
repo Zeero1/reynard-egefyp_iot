@@ -38,71 +38,67 @@ import re
 def command_view(request):
     try:
 
-        command = "sudo nmap -sn -T3 192.168.23.0/24"
-        result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, text=True)
-        print(result)
+    #     command = "sudo nmap -sn -T3 192.168.23.0/24"
+    #     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, text=True)
+    #     print(result)
 
-    # Use re package to extract substrings from the result
+    # # Use re package to extract substrings from the result
 
-        # 'Starting Nmap 7.70 ( https://nmap.org ) at 2023-12-26 09:44 UTC\n
-        # Nmap scan report for esp32-8CB604.byteacs.com (192.168.23.141)\n
-        # Host is up (0.018s latency).\n
-        # MAC Address: 94:B9:7E:8C:B6:04 (Espressif)\n
-        # Nmap scan report for fypgw-S03 (192.168.23.1)\n
-        # Host is up.\n
-        # Nmap done: 256 IP addresses (2 hosts up) scanned in 13.69 seconds\n'
+    #     # 'Starting Nmap 7.70 ( https://nmap.org ) at 2023-12-26 09:44 UTC\n
+    #     # Nmap scan report for esp32-8CB604.byteacs.com (192.168.23.141)\n
+    #     # Host is up (0.018s latency).\n
+    #     # MAC Address: 94:B9:7E:8C:B6:04 (Espressif)\n
+    #     # Nmap scan report for fypgw-S03 (192.168.23.1)\n
+    #     # Host is up.\n
+    #     # Nmap done: 256 IP addresses (2 hosts up) scanned in 13.69 seconds\n'
 
-        # hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
-        # status_pattern = re.compile(r'Host is (\S+){2}')
-        # mac_pattern = re.compile(r'MAC Address: (\S+)')
+    #     # hostname_pattern = re.compile(r'Nmap scan report for (\S+)')
+    #     # status_pattern = re.compile(r'Host is (\S+){2}')
+    #     # mac_pattern = re.compile(r'MAC Address: (\S+)')
         
-        # hostname_matches = hostname_pattern.findall(result.stdout)
-        # status_matches = status_pattern.findall(result.stdout)
-        # mac_matches = mac_pattern.findall(result.stdout)
+    #     # hostname_matches = hostname_pattern.findall(result.stdout)
+    #     # status_matches = status_pattern.findall(result.stdout)
+    #     # mac_matches = mac_pattern.findall(result.stdout)
 
-        # print(hostname_matches)
-        # print(status_matches)
-        # print(mac_matches)
+    #     # print(hostname_matches)
+    #     # print(status_matches)
+    #     # print(mac_matches)
 
 
-        # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?', re.DOTALL)
-        pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?.*?(\d+) hosts up', re.DOTALL)
-        matches = pattern.findall(result.stdout)
+    #     # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?', re.DOTALL)
+    #     pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?MAC Address: (\S*)?.*?(\d+) hosts up', re.DOTALL)
+    #     matches = pattern.findall(result.stdout)
 
-        # hosts_list = []
-        hosts_list = [(hostname.replace(".byteacs.com", ''), status, mac, numdevices) for hostname, status, mac, numdevices in matches]
-        print(hosts_list)
+    #     hosts_list = [(hostname.replace(".byteacs.com", ''), status, mac, numdevices) for hostname, status, mac, numdevices in matches]
+    #     print(hosts_list)
 
-        # pattern = re.compile(r'Nmap scan report for (\S+).*?Host is (\S+).*?(?:MAC Address: (\S*))?', re.DOTALL)
-        # matches = pattern.findall(result.stdout)
+    #     # ?: ... ) is a non-capturing group, and the ? at the end makes the entire group optional. 
+    #     # \S+ Matches any non-whitespace character, one or more times ,+ requires at least one occurrence
+    #     # \S* Matches any non-whitespace character, zero or more times
+    #     # In " .*? "
+    #     # " * " :to consume as much of the pattern as possible.
 
-        # ?: ... ) is a non-capturing group, and the ? at the end makes the entire group optional. 
-        # \S+ Matches any non-whitespace character, one or more times ,+ requires at least one occurrence
-        # \S* Matches any non-whitespace character, zero or more times
-        # In " .*? "
-        # " * " :to consume as much of the pattern as possible.
+    #     # Create a list of tuples containing host, status, and MAC address
+    #     # hosts_list = [(hostname, status, mac if mac else 'None') for hostname, status, mac in matches]
+    #     # print(hosts_list)
 
-        # Create a list of tuples containing host, status, and MAC address
-        # hosts_list = [(hostname, status, mac if mac else 'None') for hostname, status, mac in matches]
-        # print(hosts_list)
+    #     # nm = nmap.PortScanner()
 
-        # nm = nmap.PortScanner()
+    #     # Perform a ping scan on the specified IP range
+    #     # nm.scan(hosts='192.168.23.0/24', arguments='-n -sP -PE -PA21,23,80,3389')
+    #     # nm.scan(hosts='192.168.23.0/24', arguments='-sn')
 
-        # Perform a ping scan on the specified IP range
-        # nm.scan(hosts='192.168.23.0/24', arguments='-n -sP -PE -PA21,23,80,3389')
-        # nm.scan(hosts='192.168.23.0/24', arguments='-sn')
-
-        # Create a list of tuples containing host, status, and MAC address
-        # output = [
-        #     (
-        #         nm[x]['addresses']['ipv4'], # ip address
-        #         nm[x]['status']['state'], # Status: up or down
-        #         nm[x]['addresses'].get('mac', None), # mac address
-        #     )
-        #     for x in nm.all_hosts()
-        # ]
-        # print(output)
-        # hosts_list = [(host, status, mac) for host, status, mac in output]
+    #     # Create a list of tuples containing host, status, and MAC address
+    #     # output = [
+    #     #     (
+    #     #         nm[x]['addresses']['ipv4'], # ip address
+    #     #         nm[x]['status']['state'], # Status: up or down
+    #     #         nm[x]['addresses'].get('mac', None), # mac address
+    #     #     )
+    #     #     for x in nm.all_hosts()
+    #     # ]
+    #     # print(output)
+    #     # hosts_list = [(host, status, mac) for host, status, mac in output]
 
 
         output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
@@ -115,30 +111,60 @@ def command_view(request):
         # signal:         -40 dBm"""
 
         # Split the lines into a list
-        lines = output_signal.splitlines()
+        signal_lines = output_signal.splitlines()
 
-        nospc_lines = []
+        nospc_lines_signal = []
 
         # Remove all whitespaces and add into a list
-        for x in lines:
+        for x in signal_lines:
             y = "".join(x.split())
-            nospc_lines.append(y)
+            nospc_lines_signal.append(y)
 
 
         signal_list = []
-        for i in range(len(nospc_lines)):
-            if "Station" in nospc_lines[i]:
-                x1 = nospc_lines[i].replace("Station", '')  # Removing the "Station" chars
+        for i in range(len(nospc_lines_signal)):
+            if "Station" in nospc_lines_signal[i]:
+                x1 = nospc_lines_signal[i].replace("Station", '')  # Removing the "Station" chars
                 mac_address = x1[0:17]  # mac address
                 # print(mac_address)
-            elif "signal" in nospc_lines[i]:
-                signal = nospc_lines[i].replace("signal:", '')
+            elif "signal" in nospc_lines_signal[i]:
+                signal = nospc_lines_signal[i].replace("signal:", '')
                 signal_cut = int(signal.replace("dBm", ''))
-                signal_list.append((mac_address.upper() , signal , signal_cut))
+                signal_list.append((mac_address , signal , signal_cut))
                 
 
         print(signal_list)
         # [('3c:9c:0f:61:3b:1d', '-37dBm'), ('9c:9c:0d:11:3b:1d', '-40dBm')]
+
+        arp_scan = subprocess.run(["arp", "-a"], capture_output=True, text=True, check=True)
+        arp_scan_signal = arp_scan.stdout
+
+        arp_lines = arp_scan_signal.splitlines()
+        nospc_lines_arp = []
+
+        for x in arp_lines:
+            y = "".join(x.split())
+            nospc_lines_arp.append(y)
+
+        connected_devices = []
+        for i in range(len(nospc_lines_arp)):
+            if signal_list[i][0] in nospc_lines_arp[i]:
+                connected_devices.append(nospc_lines_arp[i])
+
+        print(connected_devices)
+
+        # ? (192.168.1.111) at <incomplete> on wlan1
+        # ? (192.168.1.1) at 00:31:92:33:1c:30 [ether] on wlan0
+        # ? (192.168.1.1) at <incomplete> on wlan1
+        # ? (192.168.1.190) at <incomplete> on wlan0
+        # ? (192.168.188.1) at <incomplete> on wlan1
+        # LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1
+        # one.one.one.one (1.1.1.1) at <incomplete> on wlan1
+        # ? (10.100.2.1) at <incomplete> on wlan1
+        # ? (192.168.1.112) at <incomplete> on wlan0
+        # esp32-8CB604.byteacs.com (192.168.23.141) at 94:b9:7e:8c:b6:04 [ether] on wlan1
+
+
     except Exception as e:
         context = {
             'error_message': f"Error executing command: {str(e)}",
