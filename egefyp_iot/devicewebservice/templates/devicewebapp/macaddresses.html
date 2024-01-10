@@ -17,18 +17,19 @@
 <body>
     <h2>There are {{ connected_devices|length }} devices connected to this network through this device.</h2>
     <!-- for host, status in hosts_list  -->
-<div style="border: 3px black solid; padding: 10px; border-radius: 20px; width: 300px;">
-    {% for hostname, mac, ip_address in connected_devices %}
+<div>
+    {% for hostname, ip_address, mac in connected_devices %}
+    <!-- name of variable must be in order of the index of data in the list,eg. hostname = connected_devices[0] -->
     <br>
-    <table>
+    <table style="border: 3px black solid; padding: 10px; border-radius: 20px; width: 300px;">
     <tr>
         <td><strong>Host:</strong> {{ hostname }}</td>
     </tr>
     <tr>
-        <td><strong>IP Address:</strong> {{ mac }}</td>
+        <td><strong>IP Address:</strong> {{ ip_address }}</td>
     </tr>
     <tr>
-        <td><strong>MAC Address:</strong> {{ ip_address }}</td>
+        <td><strong>MAC Address:</strong> {{ mac }}</td>
     </tr>
     <tr>    
         <td><strong>Signal Strength:</strong>
