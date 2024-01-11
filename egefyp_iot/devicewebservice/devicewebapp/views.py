@@ -72,25 +72,7 @@ def command_view(request):
         print(signal_list)
         # [('3c:9c:0f:61:3b:1d', '-37dBm'), ('9c:9c:0d:11:3b:1d', '-40dBm')]
 
-        arp_scan = subprocess.run(["arp", "-a"], capture_output=True, text=True, check=True)
-        arp_scan_signal = arp_scan.stdout
-        
-        arp_lines = arp_scan_signal.splitlines()
-        
-
-        connected_devices = []
-        for signal in signal_list:
-            for arp_line in arp_lines:
-                if signal[0] in arp_line:
-                    # connected_devices.append(arp_line)
-                    # 'LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1'
-                    pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
-                    matches = pattern.findall(arp_line)
-                    # connected_devices.extend = [(hostname, ip_address, mac) for hostname, ip_address, mac in matches]
-                    connected_devices.extend(matches)
-                    print(connected_devices)
-        
-        
+        # Sample output from "arp -a"
         # ? (192.168.1.111) at <incomplete> on wlan1
         # ? (192.168.1.1) at 00:31:92:33:1c:30 [ether] on wlan0
         # ? (192.168.1.1) at <incomplete> on wlan1
@@ -102,12 +84,25 @@ def command_view(request):
         # ? (192.168.1.112) at <incomplete> on wlan0
         # esp32-8CB604.byteacs.com (192.168.23.141) at 94:b9:7e:8c:b6:04 [ether] on wlan1
 
+        arp_scan = subprocess.run(["arp", "-a"], capture_output=True, text=True, check=True)
+        arp_scan_signal = arp_scan.stdout
+
+        arp_lines = arp_scan_signal.splitlines()
+        
+        connected_devices = []
+        for signal in signal_list:
+            for arp_line in arp_lines:
+                if signal[0] in arp_line:
+                    # 'LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1'
+                    pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
+                    matches = pattern.findall(arp_line)
+                    connected_devices.extend(matches)
+                    print(connected_devices)
 
     except Exception as e:
         context = {
             'error_message': f"Error executing command: {str(e)}",
         }
-    # return render(request,'devicewebapp/macaddresses.html',context={'hosts_list':hosts_list, 'signal_list':signal_list})
     return render(request,'devicewebapp/macaddresses.html',context={'connected_devices':connected_devices, 'signal_list':signal_list})
 
 # Create your views here.
