@@ -30,7 +30,7 @@ from django.urls import reverse
 
 from django.views.decorators.csrf import csrf_exempt
 #from django.contrib import messages
-import nmap
+# import nmap
 import subprocess
 import re
 
@@ -103,6 +103,7 @@ def command_view(request):
         context = {
             'error_message': f"Error executing command: {str(e)}",
         }
+    # return render(request,'devicewebapp/macaddresses.html',context={})
     return render(request,'devicewebapp/macaddresses.html',context={'connected_devices':connected_devices, 'signal_list':signal_list})
 
 # Create your views here.
@@ -129,9 +130,9 @@ def viewdevices(request):
     devdata = {'viewdevicesdata': viewdevices, 'viewdeviceconndata':viewdeviceconns}
     return render(request,'devicewebapp/viewdevices.html',context=devdata)
 
-#uncomment to enable token authentication
-#@api_view()
-#@permission_classes([IsAuthenticated])
+# uncomment to enable token authentication
+@api_view()
+@permission_classes([IsAuthenticated])
 def devices(request,param1):
 
     dev_name = param1
@@ -159,7 +160,7 @@ def devices(request,param1):
         dev_name = "{} device has been recorded!!".format(dev_name)
 
     #'user': str(request.user)
-    #'auth': str(request.auth)
+    # 'auth': str(request.auth)
     #print('\'user\':{}\n\'auth\':{}\n'.format(str(request.user), str(request.auth)))
     return render(request, 'devicewebapp/devices.html', context={'data': dev_name})
     #return render(request, 'devicewebapp/devices.html', context={'data': iotdev, 'datalog': iotdevlog, 'msg_display': res_dev_name})
@@ -256,7 +257,7 @@ def register(request):
     return render(request,'devicewebapp/registration.html',{'user_form':user_form,'profile_form':profile_form,'registered':registered})
 
 
-"""
+# Authenticate (was commnented)
 @api_view()
 @permission_classes([IsAuthenticated,])
 def hello(request):
@@ -268,7 +269,7 @@ def hello(request):
     }
     return Response(content,template_name='devicewebapp/hello.html')
     #return HttpResponse(request,'devicewebapp/hello.html',{content})
-"""
+# 
 
 #uncomment user_loggedin function
 

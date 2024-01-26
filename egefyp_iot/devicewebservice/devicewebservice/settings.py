@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'channels',
     'devicewebapp',
+    
     #'socketio',
     #'django-socketio',
     #'django_mqtt',
@@ -87,8 +90,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'devicewebservice.wsgi.application'
+# WSGI_APPLICATION = 'devicewebservice.wsgi.application'
 
+ASGI_APPLICATION = 'devicewebservice.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -100,7 +104,14 @@ DATABASES = {
     }
 }
 
-
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             'hosts': [('127.0.0.1',6379)]
+#         }
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
