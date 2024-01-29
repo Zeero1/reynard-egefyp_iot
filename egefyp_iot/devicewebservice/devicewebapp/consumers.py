@@ -4,11 +4,14 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from random import randint
 # from time import sleep  
 from asyncio import sleep
+from .views  import signal_list
+
 
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
-
+        
         for i in range(1000):
-            await self.send(json.dumps({'value': randint(0, 100)}))
+            await self.send(json.dumps([signal_list,{'value': randint(0, 100)}]))
             await sleep(1)
+
