@@ -34,6 +34,7 @@ from django.views.decorators.csrf import csrf_exempt
 import subprocess
 import re
 
+signal_list = []
 
 def command_view(request):
     try:
@@ -57,8 +58,8 @@ def command_view(request):
             y = "".join(x.split())
             nospc_lines_signal.append(y)
 
+        # signal_list = []
         global signal_list
-        signal_list = []
         for i in range(len(nospc_lines_signal)):
             if "Station" in nospc_lines_signal[i]:
                 x1 = nospc_lines_signal[i].replace("Station", '')  # Removing the "Station" chars
