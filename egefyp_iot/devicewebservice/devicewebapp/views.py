@@ -57,6 +57,7 @@ def command_view(request):
             y = "".join(x.split())
             nospc_lines_signal.append(y)
 
+        global signal_list
         signal_list = []
         for i in range(len(nospc_lines_signal)):
             if "Station" in nospc_lines_signal[i]:
