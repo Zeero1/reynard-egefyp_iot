@@ -69,7 +69,7 @@
             newGraphxLabel.push(timeString);*/
             myLiveChart.update();
             // Change the value of the text to randint
-            document.querySelector('#app').innerText = djangoData.value;
+            document.querySelector('#app').innerText = signal_list.value;
         }
         var myLiveChart = new Chart(ctx, {type: 'line', data: startingData, options: {
             animation: {duration: 15},
