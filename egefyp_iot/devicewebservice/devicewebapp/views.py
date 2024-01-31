@@ -101,10 +101,10 @@ def command_view(request):
 #             for arp_line in arp_lines:
 #                 if signal[0] in arp_line:
 #                     # 'LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1'
-                    pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
-                    matches = pattern.findall(arp_line)
-                    connected_devices.extend(matches)
-                    print(connected_devices)
+                    # pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
+                    # matches = pattern.findall(arp_line)
+                    # connected_devices.extend(matches)
+                    # print(connected_devices)
 
 #     except Exception as e:
 #         context = {

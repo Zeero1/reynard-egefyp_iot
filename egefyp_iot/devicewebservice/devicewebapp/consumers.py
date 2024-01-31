@@ -9,8 +9,6 @@ from .views  import *
 
 
 class GraphConsumer(AsyncWebsocketConsumer):
-    
-
     async def connect(self):
         self.group_name = "notification"
         # Join to group
@@ -24,7 +22,6 @@ class GraphConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_discard(self.group_name,
                                                self.channel_name)
         
-    
     # Receive message from websocket 
     async def receive(self, text_data):
         try:
@@ -47,7 +44,6 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 y = "".join(x.split())
                 nospc_lines_signal.append(y)
 
-            
             global signal_list
             
             for i in range(len(nospc_lines_signal)):
