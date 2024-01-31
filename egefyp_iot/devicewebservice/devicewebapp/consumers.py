@@ -10,17 +10,18 @@ from .views  import *
 
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.group_name = "notification"
+        # self.group_name = "notification"
         # Join to group
-        await self.channel_layer.group_add(self.group_name, self.channel_name)
+        # await self.channel_layer.group_add(self.group_name, self.channel_name)
         # Called on connection.
         # To accept the connection call:
         await self.accept()
 
     async def disconnect(self):
+        pass
         # Leave group 
-        await self.channel_layer.group_discard(self.group_name,
-                                               self.channel_name)
+        # await self.channel_layer.group_discard(self.group_name,
+        #                                        self.channel_name)
         
     # Receive message from websocket 
     async def receive(self, text_data):
