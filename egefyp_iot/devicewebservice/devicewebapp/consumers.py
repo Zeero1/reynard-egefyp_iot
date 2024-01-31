@@ -4,7 +4,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from random import randint
 # from time import sleep  
 from asyncio import sleep
-from .views  import connected_devices, signal_list
+from .views  import connected_devices, signal_list, command_view
 
 
 class GraphConsumer(AsyncWebsocketConsumer):
