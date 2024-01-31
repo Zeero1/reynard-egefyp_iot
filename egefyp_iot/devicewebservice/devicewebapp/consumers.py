@@ -4,7 +4,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from random import randint
 # from time import sleep  
 from asyncio import sleep
-from .views  import connected_devices, signal_list, command_view
+from .views  import * 
 
 
 class GraphConsumer(AsyncWebsocketConsumer):
@@ -14,7 +14,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
         for i in range(1000):
             # await self.send(json.dumps({'value': randint(0, 100)}))
             command_view
-            await self.send(json.dumps(signal_list, connected_devices))
+            await self.send(json.dumps(signal_list))
             print(str(signal_list))
             await sleep(1)
 
