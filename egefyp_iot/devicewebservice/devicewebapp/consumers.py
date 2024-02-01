@@ -11,7 +11,14 @@ class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
         
-        # for i in range(1000):
+        for i in range(1000):
+            output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
+            output_signal = output_signal_cmd.stdout
+
+            # Send the output to the connected client
+            await self.send(text_data=json.dumps({
+                'output_signal': output_signal
+            }))
             # value = randint(0,100)
             # await self.send(json.dumps(value))
             # print(value)
@@ -19,20 +26,19 @@ class GraphConsumer(AsyncWebsocketConsumer):
         #     # await self.send(json.dumps(signal_list))
         #     await sleep(1)
 
-    async def disconnect(self):
-        pass
+    # async def disconnect(self):
+    #     pass
 
-    async def receive(self, text_data):
-            # Run the subprocess command
-        output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
-        output_signal = output_signal_cmd.stdout
+    # async def receive(self, text_data):
+    #         # Run the subprocess command
+    #     output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
+    #     output_signal = output_signal_cmd.stdout
 
-        # Send the output to the connected client
-        await self.send(text_data=json.dumps({
-            'output_signal': output_signal
-        }))
+    #     # Send the output to the connected client
+    #     await self.send(text_data=json.dumps({
+    #         'output_signal': output_signal
+    #     }))
 
-        print(output_signal)
 
 # class GraphConsumer(AsyncWebsocketConsumer):
 #     async def connect(self):
