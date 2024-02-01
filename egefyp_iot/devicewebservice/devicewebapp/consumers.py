@@ -25,7 +25,10 @@ class GraphConsumer(AsyncWebsocketConsumer):
         
     # Receive message from websocket 
     async def receive(self, text_data):
-            print("hello")
+            
+            signal_list = "hello"
+            await self.send(json.dumps(signal_list))
+            print(str(signal_list))
         # try:
         #     # Command to get signal strength
         #     output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
