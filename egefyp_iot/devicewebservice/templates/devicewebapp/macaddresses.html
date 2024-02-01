@@ -57,18 +57,18 @@
         );
         
         socket.onmessage = function(e){
-            const data = JSON.parse(e.data);
+            //const data = JSON.parse(e.data);
 
             // Access the data properties (connected_devices and signal_list)
-            const connectedDevices = data.connected_devices;
-            const signalList = data.signal_list;
+            //const connectedDevices = data.connected_devices;
+            //const signalList = data.signal_list;
 
             // Use the data as needed
-            console.log('Connected Devices:', connectedDevices);
-            console.log('Signal List:', signalList);
+            //console.log('Connected Devices:', connectedDevices);
+            //console.log('Signal List:', signalList);
             
-            //var djangoData = JSON.parse(e.data);
-            //console.log(djangoData);
+            var djangoData = JSON.parse(e.data);
+            console.log(djangoData);
             //var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
             //newGraphData.shift(); // remove the first item from array
             //newGraphData.push(djangoData['value']); // add the new value to the end
