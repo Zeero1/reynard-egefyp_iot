@@ -11,20 +11,20 @@ class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
         
-        # for i in range(1000):
+        for i in range(1000):
             # value = randint(0,100)
             # await self.send(json.dumps(value))
             # print(value)
-        #     # await self.send(json.dumps({'value': randint(0, 100)}))
+            await self.send(json.dumps({'value': randint(0, 100)}))
         #     # await self.send(json.dumps(signal_list))
         #     await sleep(1)
 
     async def disconnect(self):
         pass
 
-    async def receive(self, text_data):
+    # async def receive(self, text_data):
         # text_data_json = json.loads(text_data)
-        await self.send(text_data=json.dumps({"message": "Hi this is text"}))
+        # await self.send(text_data=json.dumps({"message": "Hi this is text"}))
         # Run the subprocess command
         # output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
         # output_signal = output_signal_cmd.stdout
