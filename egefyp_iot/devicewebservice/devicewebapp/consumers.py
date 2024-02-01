@@ -12,6 +12,8 @@ class GraphConsumer(AsyncWebsocketConsumer):
         await self.accept()
         
         for i in range(1000):
+            signal_list.clear()
+            connected_devices.clear()
             # Command to get signal strength
             output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
             output_signal = output_signal_cmd.stdout
