@@ -66,9 +66,10 @@
             // Use the data as needed
             console.log('Connected Devices:', connectedDevices);
             console.log('Signal List:', signalList);
-            
-            var djangoData = JSON.parse(e.data);
-            console.log(djangoData);
+            document.querySelector('#app').innerText = signal_list;
+            document.querySelector('#hostname').innerText = signal_list[0];
+            //var djangoData = JSON.parse(e.data);
+            //console.log(djangoData);
             //var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
             //newGraphData.shift(); // remove the first item from array
             //newGraphData.push(djangoData['value']); // add the new value to the end
@@ -110,7 +111,7 @@
     <br>
     <table style="border: 3px black solid; padding: 10px; border-radius: 20px; width: 300px;">
     <tr>
-        <td><strong>Host:</strong> {{ hostname }}</td>
+        <td id="hostname"><strong>Host:</strong></td>
     </tr>
     <tr>
         <td><strong>IP Address:</strong> {{ ip_address }}</td>
