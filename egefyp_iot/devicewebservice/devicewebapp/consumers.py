@@ -69,7 +69,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                         matches = pattern.findall(arp_line)
                         connected_devices.extend(matches)
                         print(connected_devices)
-            await self.send(json.dumps(signal_list))
+            await self.send(json.dumps(signal_list, connected_devices))
             del signal_list [ : ]
             del connected_devices [ : ]
             await sleep(1)
