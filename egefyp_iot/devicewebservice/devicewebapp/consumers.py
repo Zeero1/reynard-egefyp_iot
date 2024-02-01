@@ -14,11 +14,13 @@ class GraphConsumer(AsyncWebsocketConsumer):
         for i in range(1000):
             output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
             output_signal = output_signal_cmd.stdout
-
+            print(output_signal)
             # Send the output to the connected client
             await self.send(text_data=json.dumps({
                 'output_signal': output_signal
             }))
+            await sleep(1)
+            
             # value = randint(0,100)
             # await self.send(json.dumps(value))
             # print(value)
