@@ -75,6 +75,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                         matches = pattern.findall(arp_line)
                         connected_devices.extend(matches)
                         print(connected_devices)
+            await sleep(1)
 
 
     async def disconnect(self):
