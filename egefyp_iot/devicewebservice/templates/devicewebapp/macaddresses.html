@@ -76,7 +76,7 @@
             newGraphData.push(signalList[0][2]); // add the new value to the end
             myLiveChart.update();
 
-            
+
             document.querySelector('#hostname').innerText = connectedDevices[0][0];
             //var djangoData = JSON.parse(e.data);
             //console.log(djangoData);
@@ -101,7 +101,7 @@
                     }
                 }],
                 yAxes: [{
-                    ticks: {min:0, max:100},
+                    ticks: {min:0, max:-100},
                     scaleLabel: {
                         display: true,
                         labelString: 'Signal Strength (%)'
