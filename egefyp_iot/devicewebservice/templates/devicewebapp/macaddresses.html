@@ -66,20 +66,28 @@
             // Use the data as needed
             console.log('Connected Devices:', connectedDevices);
             console.log('Signal List:', signalList);
+
+            //Shows the signal strength
             document.querySelector('#app').innerText = signalList[0][2];
+            
+            //Displaying the signal strength onto the Chart
+            var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
+            newGraphData.shift(); // remove the first item from array
+            newGraphData.push(signalList[0][2]); // add the new value to the end
+            myLiveChart.update();
+
+            
             document.querySelector('#hostname').innerText = connectedDevices[0][0];
             //var djangoData = JSON.parse(e.data);
             //console.log(djangoData);
-            //var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
-            //newGraphData.shift(); // remove the first item from array
-            //newGraphData.push(djangoData['value']); // add the new value to the end
+            
 
             /*var currentTime = new Date(); // Get the current time
             var timeString = currentTime.toLocaleTimeString(); // Format the time as a string
             newGraphxLabel = myLiveChart.data.labels;
             newGraphxLabel.shift(); // Remove the oldest entry in the x-axis (time)
             newGraphxLabel.push(timeString);*/
-            myLiveChart.update();
+            
             // Change the value of the text to randint
             //document.querySelector('#app').innerText = signal_list;
         }
