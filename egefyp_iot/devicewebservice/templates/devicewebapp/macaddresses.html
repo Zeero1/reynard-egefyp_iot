@@ -66,7 +66,7 @@
             // Use the data as needed
             console.log('Connected Devices:', connectedDevices);
             console.log('Signal List:', signalList);
-            document.querySelector('#app').innerText = signalList;
+            document.querySelector('#app').innerText = signalList[1];
             document.querySelector('#hostname').innerText = signalList[0];
             //var djangoData = JSON.parse(e.data);
             //console.log(djangoData);
@@ -106,7 +106,7 @@
     <!-- for host, status in hosts_list  -->
     
 <div>
-    {% for hostname, ip_address, mac in connected_devices %}
+    <!--- for hostname, ip_address, mac in connected_devices -->
     <!-- name of variable must be in order of the index of data in the list,eg. hostname = connected_devices[0] -->
     <br>
     <table style="border: 3px black solid; padding: 10px; border-radius: 20px; width: 300px;">
@@ -114,10 +114,10 @@
         <td id="hostname"><strong>Host:</strong></td>
     </tr>
     <tr>
-        <td><strong>IP Address:</strong> {{ ip_address }}</td>
+        <td id="ip_address"><strong>IP Address:</strong></td>
     </tr>
     <tr>
-        <td><strong>MAC Address:</strong> {{ mac }}</td>
+        <td id="mac"><strong>MAC Address:</strong></td>
     </tr>
     <tr>    
         <td><strong>Signal Strength:</strong>
