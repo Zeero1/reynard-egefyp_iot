@@ -73,7 +73,12 @@
             //Displaying the signal strength onto the Chart
             var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
             newGraphData.shift(); // remove the first item from array
-            newGraphData.push(signalList[0][2]); // add the new value to the end
+
+            dBm = signalList[0][2];
+            dbm_num = int(dbm)
+            quality = 2 * (dbm_num + 100)
+
+            newGraphData.push(quality); // add the new value to the end
             myLiveChart.update();
 
 
@@ -101,7 +106,7 @@
                     }
                 }],
                 yAxes: [{
-                    ticks: {min:0, max:-100},
+                    ticks: {min:0, max:100},
                     scaleLabel: {
                         display: true,
                         labelString: 'Signal Strength (%)'
