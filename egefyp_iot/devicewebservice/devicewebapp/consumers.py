@@ -25,6 +25,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
             # Split the lines into a list
             signal_lines = output_signal.splitlines()
 
+            signal_list = []
             nospc_lines_signal = []
 
             # Remove all whitespaces and add into a list
@@ -32,8 +33,6 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 y = "".join(x.split())
                 nospc_lines_signal.append(y)
 
-            
-            global signal_list
             
             for i in range(len(nospc_lines_signal)):
                 if "Station" in nospc_lines_signal[i]:

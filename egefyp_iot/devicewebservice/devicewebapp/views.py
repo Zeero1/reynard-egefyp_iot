@@ -35,7 +35,7 @@ import subprocess
 import re
 
 
-signal_list = []
+
 
 def command_view(request):
     return render(request,'devicewebapp/macaddresses.html',context={})
