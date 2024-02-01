@@ -7,28 +7,37 @@ from random import randint
 from asyncio import sleep
 from .views  import * 
 
-
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        # self.group_name = "notification"
-        # Join to group
-        # await self.channel_layer.group_add(self.group_name, self.channel_name)
-        # Called on connection.
-        # To accept the connection call:
         await self.accept()
+        
+        for i in range(1000):
+            value = randint(0,100)
+            await self.send(json.dumps(value))
+            print(value)
+            # await self.send(json.dumps({'value': randint(0, 100)}))
+            # await self.send(json.dumps(signal_list))
+            
+            await sleep(1)
 
-    async def disconnect(self):
-        pass
-        # Leave group 
-        # await self.channel_layer.group_discard(self.group_name,
-        #                                        self.channel_name)
+
+# class GraphConsumer(AsyncWebsocketConsumer):
+#     async def connect(self):
+#         # self.group_name = "notification"
+#         # Join to group
+#         # await self.channel_layer.group_add(self.group_name, self.channel_name)
+#         # Called on connection.
+#         # To accept the connection call:
+#         await self.accept()
+
+#     async def disconnect(self):
+#         pass
+#         # Leave group 
+#         # await self.channel_layer.group_discard(self.group_name,
+#         #                                        self.channel_name)
         
     # Receive message from websocket 
-    async def receive(self, text_data):
-            
-            signal_list = "hello"
-            await self.send(json.dumps(signal_list))
-            print(str(signal_list))
+    # async def receive(self, text_data):
         # try:
         #     # Command to get signal strength
         #     output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
