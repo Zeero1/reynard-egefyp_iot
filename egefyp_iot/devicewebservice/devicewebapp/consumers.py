@@ -108,7 +108,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
         #         'error_message': f"Error executing command: {str(e)}",
         #     }
             # Handle the error or send an error message back to the WebSocket client
-            await self.send(text_data=json.dumps({'error': str(e)}))
+            # await self.send(text_data=json.dumps({'error': str(e)}))
         
     # async def disconnect(self, close_code):
         # Called when the socket closes
