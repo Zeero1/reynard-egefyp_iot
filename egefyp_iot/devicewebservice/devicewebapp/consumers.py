@@ -11,15 +11,21 @@ class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
         
-        for i in range(1000):
-            value = randint(0,100)
-            await self.send(json.dumps(value))
-            print(value)
-            # await self.send(json.dumps({'value': randint(0, 100)}))
-            # await self.send(json.dumps(signal_list))
-            
-            await sleep(1)
+        # for i in range(1000):
+            # value = randint(0,100)
+            # await self.send(json.dumps(value))
+            # print(value)
+        #     # await self.send(json.dumps({'value': randint(0, 100)}))
+        #     # await self.send(json.dumps(signal_list))
+        #     await sleep(1)
 
+    async def disconnect(self):
+        pass
+
+    async def receive(self, text_data):
+        value = randint(0,100)
+        await self.send(json.dumps(value))
+        print(value)
 
 # class GraphConsumer(AsyncWebsocketConsumer):
 #     async def connect(self):
@@ -30,8 +36,8 @@ class GraphConsumer(AsyncWebsocketConsumer):
 #         # To accept the connection call:
 #         await self.accept()
 
-#     async def disconnect(self):
-#         pass
+    # async def disconnect(self):
+    #     pass
 #         # Leave group 
 #         # await self.channel_layer.group_discard(self.group_name,
 #         #                                        self.channel_name)
@@ -40,8 +46,8 @@ class GraphConsumer(AsyncWebsocketConsumer):
     # async def receive(self, text_data):
         # try:
         #     # Command to get signal strength
-        #     output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
-        #     output_signal = output_signal_cmd.stdout
+            # output_signal_cmd = subprocess.run(["iw", "dev", "wlan1", "station", "dump"], capture_output=True, text=True, check=True)
+            # output_signal = output_signal_cmd.stdout
         #     # Sample Output from "iw dev wlan1 station dump"
         #     # output_signal = """Station 3c:9c:0f:61:3b:1d (on wlan1)
         #     # signal:         -37 dBm
