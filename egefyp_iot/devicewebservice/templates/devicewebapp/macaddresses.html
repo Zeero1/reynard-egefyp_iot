@@ -66,8 +66,8 @@
             // Use the data as needed
             console.log('Connected Devices:', connectedDevices);
             console.log('Signal List:', signalList);
-            document.querySelector('#app').innerText = signalList.toString();
-            document.querySelector('#hostname').innerText = signalList.toString();
+            document.querySelector('#app').innerText = signalList[0];
+            document.querySelector('#hostname').innerText = signalList[0];
             //var djangoData = JSON.parse(e.data);
             //console.log(djangoData);
             //var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
