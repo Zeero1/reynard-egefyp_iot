@@ -63,7 +63,12 @@
             const connectedDevices = data.connected_devices;
             const signalList = data.signal_list;
 
-            connectedDevices.forEach(([hostname, ip_address, mac_address], index) => {
+            for (var i = 0; i < connectedDevices.length; i++) {
+
+                hostname = connectedDevices[i][0];
+                ip_address = connectedDevices[i][1];
+                mac_address = connectedDevices[i][2];
+                
                 // Host: LAPTOP-1KKIANDS
                 document.querySelector('#hostname').innerText = hostname;
                 // IP Address: 
@@ -71,8 +76,7 @@
 
                 // MAC Address:  5C:CF:7F:3E:9A:84
                 document.querySelector('#mac_address').innerText = mac_address.toUpperCase();
-
-            });
+            }
 
             // Signal Strength: 
             document.querySelector('#signalstrength').innerText = signalList[0][1];
