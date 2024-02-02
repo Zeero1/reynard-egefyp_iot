@@ -63,7 +63,7 @@
             const connectedDevices = data.connected_devices;
             const signalList = data.signal_list;
 
-            for (const [hostname, ip_address, mac_address] of connectedDevices.entries()) {
+            connectedDevices.forEach(([hostname, ip_address, mac_address], index) => {
                 // Host: LAPTOP-1KKIANDS
                 document.querySelector('#hostname').innerText = hostname;
                 // IP Address: 
