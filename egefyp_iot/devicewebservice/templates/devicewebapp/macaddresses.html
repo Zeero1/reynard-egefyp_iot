@@ -63,17 +63,23 @@
             const connectedDevices = data.connected_devices;
             const signalList = data.signal_list;
 
-            var tableContainer = document.getElementById("table_devices");
-            tableContainer.appendChild(createTable());
+            
+            for (var y = 0; y < connectedDevices.length; i++){ // Number of table created
+                var tableContainer = document.getElementById("table_devices");
+                tableContainer.appendChild(createTable());
+            }
+            
             function createTable(){
                 var table = document.createElement("table"); //makes a table element for the page
-                for (var i = 0; i < connectedDevices.length; i++) {
                 
+                for (var i = 0; i < connectedDevices.length; i++) { // create rows
+                    
+
                     hostname = connectedDevices[i][0];
                     ip_address = connectedDevices[i][1];
                     mac_address = connectedDevices[i][2];
                     
-                    var row = table.insertRow(i);
+                    var row = table.insertRow(3);
                     row.insertCell(0).innerHTML = hostname; // Host: LAPTOP-1KKIANDS
                     row.insertCell(1).innerHTML = ip_address; // IP Address: 192.168.23.162
                     row.insertCell(2).innerHTML = mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
