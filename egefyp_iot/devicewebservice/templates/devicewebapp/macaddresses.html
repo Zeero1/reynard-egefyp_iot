@@ -78,13 +78,13 @@
                     row.insertCell(1).innerHTML = ip_address; // IP Address: 192.168.23.162
                     row.insertCell(2).innerHTML = mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
     
-                    for (var x = 0; x < signalList.length; x++){
+                    /*for (var x = 0; x < signalList.length; x++){
                       if (signalList[x][0] == mac_address){
                         // Signal Strength: 
                         document.querySelector('#signalstrength').innerText = signalList[x][1];
                       };
                         
-                    };
+                    };*/
                 };
                 document.body.append(table);
             }
