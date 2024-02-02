@@ -78,9 +78,10 @@
                 document.querySelector('#mac_address').innerText = mac_address.toUpperCase();
 
                 for (var x = 0; x < signalList.length; x++){
-                  if (signalList[x][0] == mac_address):
+                  if (signalList[x][0] == mac_address){
                     // Signal Strength: 
                     document.querySelector('#signalstrength').innerText = signalList[x][1];
+                  };
                     
                 };
             };
