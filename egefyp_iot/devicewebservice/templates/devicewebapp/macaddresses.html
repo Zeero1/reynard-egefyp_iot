@@ -76,27 +76,23 @@
 
                 // MAC Address:  5C:CF:7F:3E:9A:84
                 document.querySelector('#mac_address').innerText = mac_address.toUpperCase();
+
+                for (var x = 0; x < signalList.length; x++){
+                  if (signalList[x][0] == mac_address):
+                    // Signal Strength: 
+                    document.querySelector('#signalstrength').innerText = signalList[x][1];
+                    
+                };
             };
 
-            // Signal Strength: 
-            document.querySelector('#signalstrength').innerText = signalList[0][1];
+
 
             // Use the data as needed
             console.log('Connected Devices:', connectedDevices);
             console.log('Signal List:', signalList);
 
             //Shows the signal strength
-            //document.querySelector('#app').innerText = signalList[0][2];
-
-                        // IP Address: 
-            //document.querySelector('#ip_address').innerText = connectedDevices[0][1];
-
-            // MAC Address:  5C:CF:7F:3E:9A:84
-            //document.querySelector('#mac_address').innerText = connectedDevices[0][2].toUpperCase();
-
-            // Signal Strength: 
-            document.querySelector('#signalstrength').innerText = signalList[0][1];
-
+            document.querySelector('#app').innerText = signalList[0][2];
             
             //Displaying the signal strength onto the Chart
             var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
@@ -107,8 +103,6 @@
 
             newGraphData.push(quality); // add the new value to the end
             myLiveChart.update();
-
-
 
 
             //var djangoData = JSON.parse(e.data);
