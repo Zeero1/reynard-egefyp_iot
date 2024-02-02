@@ -63,12 +63,38 @@
             const connectedDevices = data.connected_devices;
             const signalList = data.signal_list;
 
+            for (const [hostname, ip_address, mac_address] of connectedDevices.entries()) {
+                // Host: LAPTOP-1KKIANDS
+                document.querySelector('#hostname').innerText = hostname;
+                // IP Address: 
+                document.querySelector('#ip_address').innerText = ip_address;
+
+                // MAC Address:  5C:CF:7F:3E:9A:84
+                document.querySelector('#mac_address').innerText = mac_address.toUpperCase();
+
+
+
+              }
+
+            // Signal Strength: 
+            document.querySelector('#signalstrength').innerText = signalList[0][1];
+
             // Use the data as needed
             console.log('Connected Devices:', connectedDevices);
             console.log('Signal List:', signalList);
 
             //Shows the signal strength
             document.querySelector('#app').innerText = signalList[0][2];
+
+                        // IP Address: 
+            document.querySelector('#ip_address').innerText = connectedDevices[0][1];
+
+            // MAC Address:  5C:CF:7F:3E:9A:84
+            document.querySelector('#mac_address').innerText = connectedDevices[0][2].toUpperCase();
+
+            // Signal Strength: 
+            document.querySelector('#signalstrength').innerText = signalList[0][1];
+
             
             //Displaying the signal strength onto the Chart
             var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
@@ -80,17 +106,8 @@
             newGraphData.push(quality); // add the new value to the end
             myLiveChart.update();
 
-            // Host: LAPTOP-1KKIANDS
-            document.querySelector('#hostname').innerText = connectedDevices[0][0];
 
-            // IP Address: 
-            document.querySelector('#ip_address').innerText = connectedDevices[0][1];
 
-            // MAC Address:  5C:CF:7F:3E:9A:84
-            document.querySelector('#mac_address').innerText = connectedDevices[0][2].toUpperCase();
-
-            // Signal Strength: 
-            document.querySelector('#signalstrength').innerText = signalList[0][1];
 
             //var djangoData = JSON.parse(e.data);
             //console.log(djangoData);
@@ -142,9 +159,9 @@
         <td><strong>MAC Address: </strong><span id="mac_address"></span></td>
     </tr>
     <tr>    
-        <td><strong>Signal Strength:</strong><span id="signalstrength"></span>
+        <td><strong>Signal Strength: </strong><span id="signalstrength"></span>
             
-            {% for signal in signal_list %}
+            {% comment %} {% for signal in signal_list %}
                 {% if signal.0 == mac %}
                     {{ signal.1 }}
                     {% if signal.2 > -30 %}
@@ -159,7 +176,7 @@
                         <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="20px">
                     {% endif %}
                 {% endif %}
-            {% endfor %}    
+            {% endfor %}     {% endcomment %}
         </td>
     </tr>
     </table>
