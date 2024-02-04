@@ -64,9 +64,9 @@
             const signalList = data.signal_list;
 
             
-            for (var y = 0; y < connectedDevices.length; i++){ // Number of table created
+            for (var y = 0; y < connectedDevices.length; y++){ // Number of table created
                 var tableContainer = document.getElementById("table_devices");
-                tableContainer.appendChild(createTable(connectedDevices[i]));
+                tableContainer.appendChild(createTable(connectedDevices[y]));
             }
             
             function createTable(device){
