@@ -60,10 +60,11 @@
             const data = JSON.parse(e.data);
 
             // Access the data properties (connected_devices and signal_list)
-            const connectedDevices = data.connected_devices;
+            const realtime_data = data.connected_devices;
             const signalList = data.signal_list;
+            var connectedDevices  = [];
+            connectedDevices.push(realtime_data);
 
-            
             for (var y = 0; y < connectedDevices.length; y++){ // Number of table created
                 var tableContainer = document.getElementById("table_devices");
                 tableContainer.appendChild(createTable());
@@ -73,7 +74,6 @@
                 var table = document.createElement("table"); //makes a table element for the page
                 table.style.border = "1px solid black"; //adds a border to the table
                 table.style.borderCollapse = "collapse"; //makes the borders between cells collapse
-                table.style.padding = "15px";
                 table.style.margin = "15px";
                 for (var i = 0; i < connectedDevices.length; i++) { // create rows
                     
