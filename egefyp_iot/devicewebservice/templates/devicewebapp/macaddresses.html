@@ -89,7 +89,12 @@
                     ip_address = connectedDevices[i][1];
                     mac_address = connectedDevices[i][2];
                     if (all_ip_addresses.includes(ip_address)){ //if all_ip 
+                        console.log('truexff');
+                        all_ip_addresses.push(ip_address);
                         
+                        
+                    }
+                    else{
                         var row1 = table.insertRow(0);
                         row1.insertCell(0).innerHTML = '<strong>Host:</strong> ' +  hostname; // Host: LAPTOP-1KKIANDS
 
@@ -106,11 +111,6 @@
                         };
                             
                         };*/
-                        
-                    }
-                    else{
-                        console.log('truexff');
-                        all_ip_addresses.push(ip_address);
                     }
                     
                 };
