@@ -40,7 +40,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                     signal_list.append((mac_address , signal , signal_cut))
             
 
-            # print(signal_list)
+            print(signal_list)
             # [('3c:9c:0f:61:3b:1d', '-37dBm'), ('9c:9c:0d:11:3b:1d', '-40dBm')]
 
             # Sample output from "arp -a"
@@ -68,7 +68,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                         pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
                         matches = pattern.findall(arp_line)
                         connected_devices.extend(matches)
-                        # print(connected_devices)
+                        print(connected_devices)
             
             data_to_send = {'signal_list': signal_list, 'connected_devices': connected_devices}
             await self.send(json.dumps(data_to_send))
