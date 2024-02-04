@@ -66,24 +66,28 @@
             
             for (var y = 0; y < connectedDevices.length; i++){ // Number of table created
                 var tableContainer = document.getElementById("table_devices");
-                tableContainer.appendChild(createTable());
+                tableContainer.appendChild(createTable(connectedDevices[i]));
             }
             
-            function createTable(){
+            function createTable(device){
                 var table = document.createElement("table"); //makes a table element for the page
                 table.style.border = "1px solid black"; //adds a border to the table
                 table.style.borderCollapse = "collapse"; //makes the borders between cells collapse
                 for (var i = 0; i < connectedDevices.length; i++) { // create rows
                     
 
-                    hostname = connectedDevices[i][0];
-                    ip_address = connectedDevices[i][1];
-                    mac_address = connectedDevices[i][2];
+                    hostname = device[0];
+                    ip_address = device[1];
+                    mac_address = device[2];
                     
-                    var row = table.insertRow(i);
-                    row.insertCell(0).innerHTML = hostname; // Host: LAPTOP-1KKIANDS
-                    row.insertCell(1).innerHTML = ip_address; // IP Address: 192.168.23.162
-                    row.insertCell(2).innerHTML = mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
+                    var row1 = table.insertRow(0);
+                    row1.insertCell(0).innerHTML = '<strong>Host:</strong> ' +  hostname; // Host: LAPTOP-1KKIANDS
+
+                    var row2 = table.insertRow(1);
+                    row2.insertCell(0).innerHTML = '<strong>IP Address:</strong> ' + ip_address; // IP Address: 192.168.23.162
+
+                    var row3 = table.insertRow(2);
+                    row3.insertCell(0).innerHTML = '<strong>MAC Address:</strong> ' + mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
     
                     /*for (var x = 0; x < signalList.length; x++){
                       if (signalList[x][0] == mac_address){
