@@ -73,9 +73,9 @@
                 var table = document.createElement("table"); //makes a table element for the page
                 table.style.border = "1px solid black"; //adds a border to the table
                 table.style.borderCollapse = "collapse"; //makes the borders between cells collapse
+                table.style.padding = "15px";
                 for (var i = 0; i < connectedDevices.length; i++) { // create rows
                     
-
                     hostname = device[0];
                     ip_address = device[1];
                     mac_address = device[2];
