@@ -68,7 +68,7 @@
                     registeredDevices.push(connectedDevices[i]);
                 }
             }
-            console.log(registeredDevices)
+            //console.log(registeredDevices)
             all_ip_addresses = [];
 
             var tableContainer = document.getElementById("table_devices");
@@ -108,12 +108,15 @@
                         };
                             
                         };*/
+
                     }
                     
                 };
                 //document.body.append(table);
 
                 all_ip_addresses.push(ip_address);
+                console.log(ip_address);
+                console.log(all_ip_addresses);
                 return table;
                 }
                 
