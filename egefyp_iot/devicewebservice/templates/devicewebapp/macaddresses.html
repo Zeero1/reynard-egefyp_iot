@@ -78,20 +78,17 @@
             
             function createTable(){
                 
-                if (all_ip_addresses.includes(ip_address)){ // 
-                    //do nothing
-                }
-                else{
-                    var table = document.createElement("table"); //makes a table element for the page
-                    table.style.border = "1px solid black"; //adds a border to the table
-                    table.style.borderCollapse = "collapse"; //makes the borders between cells collapse
-                    table.style.margin = "15px";
-                    for (var i = 0; i < connectedDevices.length; i++) { // create rows
-                        
-                        hostname = connectedDevices[i][0];
-                        ip_address = connectedDevices[i][1];
-                        mac_address = connectedDevices[i][2];
-                        
+                
+                var table = document.createElement("table"); //makes a table element for the page
+                table.style.border = "1px solid black"; //adds a border to the table
+                table.style.borderCollapse = "collapse"; //makes the borders between cells collapse
+                table.style.margin = "15px";
+                for (var i = 0; i < connectedDevices.length; i++) { // create rows
+                    
+                    hostname = connectedDevices[i][0];
+                    ip_address = connectedDevices[i][1];
+                    mac_address = connectedDevices[i][2];
+                    if (!all_ip_addresses.includes(ip_address)){
                         var row1 = table.insertRow(0);
                         row1.insertCell(0).innerHTML = '<strong>Host:</strong> ' +  hostname; // Host: LAPTOP-1KKIANDS
 
@@ -108,14 +105,16 @@
                         };
                             
                         };*/
-                    };
-                    //document.body.append(table);
-
-                    all_ip_addresses.push(ip_address);
-                    return table;
                     }
+                    
+                };
+                //document.body.append(table);
+
+                all_ip_addresses.push(ip_address);
+                return table;
+                }
                 
-            }
+            
             
 
 
