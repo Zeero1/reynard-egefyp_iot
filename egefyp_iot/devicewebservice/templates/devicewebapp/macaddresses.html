@@ -88,7 +88,7 @@
                     hostname = connectedDevices[i][0];
                     ip_address = connectedDevices[i][1];
                     mac_address = connectedDevices[i][2];
-                    if (all_ip_addresses.includes(ip_address)){
+                    if (!all_ip_addresses.includes(ip_address)){
                         console.log('truexff');
                     }
                     else{
@@ -100,7 +100,7 @@
 
                         var row3 = table.insertRow(2);
                         row3.insertCell(0).innerHTML = '<strong>MAC Address:</strong> ' + mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
-                        console.log('hello')
+                        console.log('hello');
                         /*for (var x = 0; x < signalList.length; x++){
                         if (signalList[x][0] == mac_address){
                             // Signal Strength: 
@@ -117,7 +117,7 @@
                 all_ip_addresses.push(ip_address);
                 console.log(ip_address);
                 console.log(all_ip_addresses);
-                console.log(all_ip_addresses.includes(ip_address));
+                console.log(!all_ip_addresses.includes(ip_address));
                 return table;
                 }
                 
