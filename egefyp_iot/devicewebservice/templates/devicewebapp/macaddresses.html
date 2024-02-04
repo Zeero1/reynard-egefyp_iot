@@ -88,7 +88,7 @@
                     hostname = connectedDevices[i][0];
                     ip_address = connectedDevices[i][1];
                     mac_address = connectedDevices[i][2];
-                    if (!all_ip_addresses.includes(ip_address)){
+                    if (all_ip_addresses.includes(ip_address)){ //if all_ip 
                         console.log('truexff');
                     }
                     else{
@@ -108,16 +108,16 @@
                         };
                             
                         };*/
-
+                        all_ip_addresses.push(ip_address);
                     }
                     
                 };
                 //document.body.append(table);
 
-                all_ip_addresses.push(ip_address);
+
                 console.log(ip_address);
                 console.log(all_ip_addresses);
-                console.log(!all_ip_addresses.includes(ip_address));
+                console.log(all_ip_addresses.includes(ip_address));
                 return table;
                 }
                 
