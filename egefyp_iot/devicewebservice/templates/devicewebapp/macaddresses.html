@@ -89,7 +89,7 @@
                     ip_address = connectedDevices[i][1];
                     mac_address = connectedDevices[i][2];
                     if (all_ip_addresses.includes(ip_address)){
-
+                        console.log('true');
                     }
                     else{
                         var row1 = table.insertRow(0);
@@ -117,6 +117,7 @@
                 all_ip_addresses.push(ip_address);
                 console.log(ip_address);
                 console.log(all_ip_addresses);
+                console.log(all_ip_addresses.includes(ip_address));
                 return table;
                 }
                 
