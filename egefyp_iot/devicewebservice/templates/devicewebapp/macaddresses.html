@@ -62,12 +62,13 @@
             // Access the data properties (connected_devices and signal_list)
             const connectedDevices = data.connected_devices;
             const signalList = data.signal_list;
-            /*registeredDevices = [];
+            registeredDevices = [];
             for (let i in connectedDevices) {
                 if (!registeredDevices.includes(connectedDevices[i])){
                     registeredDevices.push(connectedDevices[i]);
                 }
-            }*/
+            }
+            console.log(registeredDevices)
 
             var tableContainer = document.getElementById("table_devices");
             for (var y = 0; y < connectedDevices.length; y++){ // Number of table created
@@ -110,8 +111,8 @@
 
 
             // Use the data as needed
-            console.log('Connected Devices:', connectedDevices);
-            console.log('Signal List:', signalList);
+            //console.log('Connected Devices:', connectedDevices);
+            //console.log('Signal List:', signalList);
 
             //Shows the signal strength
             document.querySelector('#app').innerText = signalList[0][2];
