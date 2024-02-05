@@ -113,7 +113,8 @@
 
 
             for (let i in registeredDevices) {
-                if (!registeredDevices.includes(connectedDevices)){
+                if (!registeredDevices.includes(connectedDevices[i])){
+                    console.log(connectedDevices[i]);
                     registeredDevices.push(connectedDevices);
                     console.log(registeredDevices.length);
                     console.log(registeredDevices);
