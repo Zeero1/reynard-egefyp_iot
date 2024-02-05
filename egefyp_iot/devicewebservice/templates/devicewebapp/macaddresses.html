@@ -90,7 +90,7 @@
                 }
             }
 
-            if (!ipExists) {
+            if (ipExists) {
                 console.log("All IPs are unique, create table");
                 tableContainer.appendChild(createTable());
             }
