@@ -69,12 +69,12 @@
                 }
             }
             //console.log(registeredDevices)
-            all_ip_addresses = [];
+            
 
-            var tableContainer = document.getElementById("table_devices");
-            for (var y = 0; y < connectedDevices.length; y++){ // Number of table created
-                tableContainer.appendChild(createTable());
-            }
+            //var tableContainer = document.getElementById("table_devices");
+            //for (var y = 0; y < connectedDevices.length; y++){ // Number of table created
+                
+            //}
 
             for (let i in registeredDevices) {
                 if (!registeredDevices.includes(connectedDevices[i])){
@@ -82,7 +82,19 @@
                 }
                 else{
                     console.log("IP does not exist, create table")
-       
+                    tableContainer.appendChild(createTable());
+                    
+                }
+            }
+            
+            function createTable(){
+                
+                var table = document.createElement("table"); //makes a table element for the page
+                table.style.border = "1px solid black"; //adds a border to the table
+                table.style.borderCollapse = "collapse"; //makes the borders between cells collapse
+                table.style.margin = "15px";
+                for (var i = 0; i < connectedDevices.length; i++) {
+
                     hostname = connectedDevices[i][0];
                     ip_address = connectedDevices[i][1];
                     mac_address = connectedDevices[i][2];
@@ -95,19 +107,8 @@
 
                     var row3 = table.insertRow(2);
                     row3.insertCell(0).innerHTML = '<strong>MAC Address:</strong> ' + mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
-                    all_ip_addresses.push(ip_address)
-                }
-            }
-            
-            function createTable(){
-                
-                var table = document.createElement("table"); //makes a table element for the page
-                table.style.border = "1px solid black"; //adds a border to the table
-                table.style.borderCollapse = "collapse"; //makes the borders between cells collapse
-                table.style.margin = "15px";
-
-                console.log(all_ip_addresses.includes(ip_address));
-                    
+                    registeredDevices.push(connectedDevices[i]);
+                };
                 /*for (var i = 0; i < connectedDevices.length; i++) { // create rows
                     
                     hostname = connectedDevices[i][0];
