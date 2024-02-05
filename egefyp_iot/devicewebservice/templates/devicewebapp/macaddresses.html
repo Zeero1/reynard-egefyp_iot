@@ -26,6 +26,11 @@
     </div>
     <!-- script src="{% static "main.js" %}"></!-->
     <script>
+
+        //Initialize all variables at the top
+        registeredDevices = [];
+        let ipExists = false;
+
         var canvas = document.getElementById('myChart'),
             ctx = canvas.getContext('2d'),
             startingData = {
@@ -62,7 +67,7 @@
             // Access the data properties (connected_devices and signal_list)
             const connectedDevices = data.connected_devices;
             const signalList = data.signal_list;
-            registeredDevices = [];
+            
             for (let i in connectedDevices) {
                 if (!registeredDevices.includes(connectedDevices[i])){
                     registeredDevices.push(connectedDevices[i]);
@@ -76,7 +81,7 @@
                 
             //}
 
-            let ipExists = false;
+            
 
 
             for (let i in registeredDevices) {
