@@ -73,10 +73,10 @@ class GraphConsumer(AsyncWebsocketConsumer):
             data_to_send = {'signal_list': signal_list, 'connected_devices': connected_devices}
             await self.send(json.dumps(data_to_send))
 
-            del signal_list [ : ]
-            del connected_devices [ : ]
+            signal_list.clear()
+            connected_devices.clear()
             
-            await sleep(1)
+            await asyncio.sleep(1)
 
 
     async def disconnect(self):
