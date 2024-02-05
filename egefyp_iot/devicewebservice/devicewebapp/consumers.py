@@ -1,10 +1,9 @@
 import json
-from channels.generic.websocket import AsyncWebsocketConsumer
 import subprocess
 import re
 import asyncio
 import traceback
-
+from channels.generic.websocket import AsyncWebsocketConsumer  
 from .views import *
 
 class GraphConsumer(AsyncWebsocketConsumer):
@@ -12,9 +11,11 @@ class GraphConsumer(AsyncWebsocketConsumer):
         await self.accept()
 
         while True:
+            
             try:
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info)
+                print(connected_devices)
 
                 message_data = {
                     'signal_list': signal_info,
