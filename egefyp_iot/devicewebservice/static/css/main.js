@@ -47,8 +47,26 @@ socket.onmessage = function(e){
     for (let i in connectedDevices) {
         if (!registeredDevices.includes(connectedDevices[i])){
             registeredDevices.push(connectedDevices[i]);
+            console.log(registeredDevices)
         }
     }
+
+    buildTable(registeredDevices)
+    
+    function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td>${data[i][0]}</td>
+							<td>${data[i][1]}</td>
+							<td>${data[i][2]}</td>
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
     //console.log(registeredDevices)
 
     /*function createTable(){
@@ -117,22 +135,7 @@ socket.onmessage = function(e){
     }*/
     
     
-    buildTable(registeredDevices)
-    
-    function buildTable(data){
-		var table = document.getElementById('myTable')
 
-		for (var i = 0; i < data.length; i++){
-			var row = `<tr>
-							<td>${data[i][0]}</td>
-							<td>${data[i][1]}</td>
-							<td>${data[i][2]}</td>
-					  </tr>`
-			table.innerHTML += row
-
-
-		}
-	}
     
 
 
