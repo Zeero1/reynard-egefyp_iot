@@ -115,7 +115,7 @@
             for (let i in registeredDevices) {
                 if (!registeredDevices.includes(connectedDevices[i])){
                     registeredDevices.push(connectedDevices[i]);
-                    console.log(registeredDevices);
+                    console.log(registeredDevices.length);
                 }
                 else{
                     // Set the flag to true if IP exists
