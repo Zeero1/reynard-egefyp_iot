@@ -125,7 +125,8 @@
 
             if (ipExists) {
                 console.log("All IPs are unique, create table");
-                if (tableContainer.childNodes.length === !registeredDevices.length) {
+                if (tableContainer.childNodes.length === 0) { 
+//ensures that the table is created only once, even if multiple messages are received with the same connected devices.
                     tableContainer.appendChild(createTable());
                 }
                 
