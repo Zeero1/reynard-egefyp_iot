@@ -125,7 +125,7 @@
 
             if (ipExists) {
                 console.log("All IPs are unique, create table");
-                if (tableContainer.childNodes.length === 0) {
+                if (tableContainer.childNodes.length === registeredDevices.length) {
                     tableContainer.appendChild(createTable());
                 }
                 
