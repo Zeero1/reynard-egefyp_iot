@@ -53,6 +53,7 @@
                 var row3 = table.insertRow(2);
                 row3.insertCell(0).innerHTML = '<strong>MAC Address:</strong> ' + mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
                 registeredDevices.push(connectedDevices[i]);
+                return table;
             };
         }
         var canvas = document.getElementById('myChart'),
@@ -161,11 +162,11 @@
                 //document.body.append(table);
 
 
-                console.log(ip_address);
+                //console.log(ip_address);
                 //console.log(all_ip_addresses);
                 //console.log(all_ip_addresses.includes(ip_address));
-                return table;
-                }
+                //return table;
+                //}
                 
             
             
