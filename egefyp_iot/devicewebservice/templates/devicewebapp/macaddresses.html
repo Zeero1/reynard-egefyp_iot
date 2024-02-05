@@ -76,15 +76,23 @@
                 
             //}
 
+            let ipExists = false;
+
+
             for (let i in registeredDevices) {
                 if (!registeredDevices.includes(connectedDevices[i])){
                     registeredDevices.push(connectedDevices[i]);
                 }
                 else{
-                    console.log("IP does not exist, create table")
-                    tableContainer.appendChild(createTable());
+                    // Set the flag to true if IP exists
+                    ipExists = true;
                     
                 }
+            }
+
+            if (!ipExists) {
+                console.log("All IPs are unique, create table");
+                tableContainer.appendChild(createTable());
             }
             
             function createTable(){
