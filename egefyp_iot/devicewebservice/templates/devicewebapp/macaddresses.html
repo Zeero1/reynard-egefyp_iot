@@ -89,7 +89,7 @@
                     return table;
                 };
             }
-            
+
             var data = JSON.parse(e.data);
 
             // Access the data properties (connected_devices and signal_list)
@@ -125,7 +125,10 @@
 
             if (ipExists) {
                 console.log("All IPs are unique, create table");
-                tableContainer.appendChild(createTable());
+                if (tableContainer.childNodes.length === 0) {
+                    tableContainer.appendChild(createTable());
+                }
+                
             }
             
             
