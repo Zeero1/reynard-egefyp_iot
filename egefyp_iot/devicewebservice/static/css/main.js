@@ -44,11 +44,13 @@ socket.onmessage = function(e){
     var connectedDevices = data.connected_devices;
     var signalList = data.signal_list;
 
-    if (!registeredDevices.some(device => device.every((value, index) => value === connectedDevices[index]))) {
-        registeredDevices.push(connectedDevices);
+    for (let i in connectedDevices) {
+        if (!registeredDevices.includes(connectedDevices[i])){
+            registeredDevices.push(connectedDevices[i]);
+            console.log(registeredDevices + "hello")
+        }
     }
-    console.log(registeredDevices);
-
+    
     buildTable(registeredDevices)
      
     function buildTable(data){
@@ -56,9 +58,9 @@ socket.onmessage = function(e){
 
 		for (var i = 0; i < data.length; i++){
 			var row = `<tr>
-							<td>${data[0]}</td>
-							<td>${data[1]}</td>
-							<td>${data[2]}</td>
+							<td>${data[i][0]}</td>
+							<td>${data[i][1]}</td>
+							<td>${data[i][2]}</td>
 					  </tr>`
 			table.innerHTML += row
 
