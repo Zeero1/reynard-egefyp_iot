@@ -3,7 +3,7 @@
 //Initialize all variables at the top
 registeredDevices = [];
 let ipExists = false;
-console.log("Hello");
+console.log("Starting Webservice");
 
 
 
@@ -38,8 +38,20 @@ const socket = new WebSocket(
 );
 
 socket.onmessage = function(e){
+    var data = JSON.parse(e.data);
 
-    function createTable(){
+    // Access the data properties (connected_devices and signal_list)
+    var connectedDevices = data.connected_devices;
+    var signalList = data.signal_list;
+
+    for (let i in connectedDevices) {
+        if (!registeredDevices.includes(connectedDevices[i])){
+            registeredDevices.push(connectedDevices[i]);
+        }
+    }
+    //console.log(registeredDevices)
+
+    /*function createTable(){
         
         var table = document.createElement("table"); //makes a table element for the page
         table.style.border = "1px solid black"; //adds a border to the table
@@ -61,21 +73,16 @@ socket.onmessage = function(e){
             row3.insertCell(0).innerHTML = '<strong>MAC Address:</strong> ' + mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
             registeredDevices.push(connectedDevices[i]);
             return table;
+            for (var x = 0; x < signalList.length; x++){
+                if (signalList[x][0] == mac_address){
+                    // Signal Strength: 
+                    document.querySelector('#signalstrength').innerText = signalList[x][1];
+                };
         };
     }
 
-    var data = JSON.parse(e.data);
-
-    // Access the data properties (connected_devices and signal_list)
-    var connectedDevices = data.connected_devices;
-    var signalList = data.signal_list;
     
-    for (let i in connectedDevices) {
-        if (!registeredDevices.includes(connectedDevices[i])){
-            registeredDevices.push(connectedDevices[i]);
-        }
-    }
-    //console.log(registeredDevices)
+    
     
 
     var tableContainer = document.getElementById("table_devices");
@@ -107,56 +114,26 @@ socket.onmessage = function(e){
             tableContainer.appendChild(createTable());
             ipExists = false;
         }
-    }
+    }*/
     
     
-        /*for (var i = 0; i < connectedDevices.length; i++) { // create rows
-            
-            hostname = connectedDevices[i][0];
-            ip_address = connectedDevices[i][1];
-            mac_address = connectedDevices[i][2];
-
-            var row1 = table.insertRow(0);
-            row1.insertCell(0).innerHTML = '<strong>Host:</strong> ' +  hostname; // Host: LAPTOP-1KKIANDS
-
-            var row2 = table.insertRow(1);
-            row2.insertCell(0).innerHTML = '<strong>IP Address:</strong> ' + ip_address; // IP Address: 192.168.23.162
-
-            var row3 = table.insertRow(2);
-            row3.insertCell(0).innerHTML = '<strong>MAC Address:</strong> ' + mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
-
-                /*for (var x = 0; x < signalList.length; x++){
-                if (signalList[x][0] == mac_address){
-                    // Signal Strength: 
-                    document.querySelector('#signalstrength').innerText = signalList[x][1];
-                };
-                    
-                };*/
-            /*if (all_ip_addresses.includes(ip_address)){ //if all_ip 
-                //console.log('truexff');
-                //all_ip_addresses.push(ip_address);
-                
-                
-            }
-            else{
-                
-            }
-            
-        };*/
-        //document.body.append(table);
-
-
-        //console.log(ip_address);
-        //console.log(all_ip_addresses);
-        //console.log(all_ip_addresses.includes(ip_address));
-        //return table;
-        //}
-        
+    buildTable(registeredDevices)
     
+    function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td>${data[i][0]}</td>
+							<td>${data[i][1]}</td>
+							<td>${data[i][2]}</td>
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
     
-
-
-
 
 
     // Use the data as needed
