@@ -4,8 +4,6 @@
 registeredDevices = [];
 let ipExists = false;
 
-
-
 var canvas = document.getElementById('myChart'),
     ctx = canvas.getContext('2d'),
     startingData = {
@@ -94,8 +92,7 @@ socket.onmessage = function(e){
         }
         else{
             // Set the flag to true if IP exists
-            ipExists = true;
-            
+            ipExists = true;       
         }
     }
 
@@ -104,6 +101,7 @@ socket.onmessage = function(e){
         if (tableContainer.childNodes.length === 0) { 
 //ensures that the table is created only once, even if multiple messages are received with the same connected devices.
             tableContainer.appendChild(createTable());
+            ipExists = false;
         }
     }
     
