@@ -104,6 +104,7 @@ socket.onmessage = function(e){
         if (tableContainer.childNodes.length === 0) { 
 //ensures that the table is created only once, even if multiple messages are received with the same connected devices.
             tableContainer.appendChild(createTable());
+            ipExists = false;
         }
     }
     
