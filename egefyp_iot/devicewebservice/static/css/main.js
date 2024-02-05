@@ -47,12 +47,12 @@ socket.onmessage = function(e){
     for (let i in connectedDevices) {
         if (!registeredDevices.includes(connectedDevices[i])){
             registeredDevices.push(connectedDevices[i]);
-            console.log(registeredDevices + "hello")
+            console.log(registeredDevices)
         }
     }
-    
+
     buildTable(registeredDevices)
-     
+    
     function buildTable(data){
 		var table = document.getElementById('myTable')
 
