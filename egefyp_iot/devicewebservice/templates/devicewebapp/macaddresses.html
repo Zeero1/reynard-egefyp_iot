@@ -115,6 +115,7 @@
             for (let i in registeredDevices) {
                 if (!registeredDevices.includes(connectedDevices[i])){
                     registeredDevices.push(connectedDevices[i]);
+                    console.log(registeredDevices);
                 }
                 else{
                     // Set the flag to true if IP exists
@@ -129,7 +130,6 @@
 //ensures that the table is created only once, even if multiple messages are received with the same connected devices.
                     tableContainer.appendChild(createTable());
                 }
-                
             }
             
             
