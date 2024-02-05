@@ -45,11 +45,13 @@ socket.onmessage = function(e){
     var signalList = data.signal_list;
 
     for (let i in connectedDevices) {
-        if (!registeredDevices.includes(connectedDevices[i])){
-            registeredDevices.push(connectedDevices[i]);
-            console.log(registeredDevices)
+        const deviceToAdd = [connectedDevices[i]];
+      
+        if (!registeredDevices.some(device => device[0] === deviceToAdd[0])) {
+          registeredDevices.push(deviceToAdd);
+          console.log(registeredDevices);
         }
-    }
+      }
 
     buildTable(registeredDevices)
     
