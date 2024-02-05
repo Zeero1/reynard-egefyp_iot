@@ -3,6 +3,7 @@
 //Initialize all variables at the top
 registeredDevices = [];
 let ipExists = false;
+console.log("Hello");
 
 
 
