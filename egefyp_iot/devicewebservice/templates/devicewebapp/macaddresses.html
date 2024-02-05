@@ -31,8 +31,7 @@
         registeredDevices = [];
         let ipExists = false;
         // Access the data properties (connected_devices and signal_list)
-        const connectedDevices = data.connected_devices;
-        const signalList = data.signal_list;
+
 
         function createTable(){
                 
@@ -88,9 +87,10 @@
         );
         
         socket.onmessage = function(e){
-            const data = JSON.parse(e.data);
+            var data = JSON.parse(e.data);
 
-            
+            var connectedDevices = data.connected_devices;
+            var signalList = data.signal_list;
             
             for (let i in connectedDevices) {
                 if (!registeredDevices.includes(connectedDevices[i])){
