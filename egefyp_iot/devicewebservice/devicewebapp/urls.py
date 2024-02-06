@@ -1,6 +1,6 @@
 from django.urls import path
 from devicewebapp import views
-from rest_framework.authtoken import views
+# from rest_framework.authtoken import views 
 
 #TEMPLATE URLS
 app_name = 'devicewebapp'
@@ -13,6 +13,6 @@ urlpatterns=[
     path('hello/',views.hello, name='hello'),
 ]
 
-urlpatterns += [
-    path('api-token-auth/', views.obtain_auth_token)
-]
+# urlpatterns += [
+#     path('api-token-auth/', views.obtain_auth_token)
+# ]
