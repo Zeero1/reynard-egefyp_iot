@@ -93,8 +93,8 @@ def devices(request,param1):
         y = devconncol.insert_one(iotdevlog)
         dev_name = "{} device has been recorded!!".format(dev_name)
 
-    'user': str(request.user)
-    'auth': str(request.auth)
+    # 'user': str(request.user)
+    # 'auth': str(request.auth)
     print('\'user\':{}\n\'auth\':{}\n'.format(str(request.user), str(request.auth)))
     # return render(request, 'devicewebapp/devices.html', context={'data': dev_name})
     return render(request, 'devicewebapp/devices.html', context={'data': iotdev, 'datalog': iotdevlog, 'msg_display': res_dev_name})
