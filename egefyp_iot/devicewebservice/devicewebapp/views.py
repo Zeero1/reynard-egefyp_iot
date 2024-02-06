@@ -249,7 +249,7 @@ def user_login(request):
             print("They used username: {} and password: {}".format(username,password))
 
             messages.success(request, ('Invalid login details supplied.'))
-            return redirect('login')
+            return redirect('user_login')
             # return HttpResponse("Invalid login details supplied.")
 
     else:
