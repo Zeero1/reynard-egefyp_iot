@@ -173,7 +173,7 @@ def devices(request,param1):
     #return render(request, 'devicewebapp/devices.html', context={'data': iotdev, 'datalog': iotdevlog, 'msg_display': res_dev_name})
 
 #Postview function Not used for EG284S
-#@csrf_exempt
+@csrf_exempt
 def postview(request):
     if request.method == 'POST':
         usrname = request.POST.get('username')
