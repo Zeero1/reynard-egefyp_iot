@@ -250,7 +250,7 @@ def user_login(request):
 
             messages.success(request, ('Invalid login details supplied.'))
             # return render(request, 'devicewebapp/login.html', {})
-            return redirect('devicewebapp/login.html')
+            return redirect('')
             # return HttpResponse("Invalid login details supplied.")
 
     else:
