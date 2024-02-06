@@ -17,6 +17,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>
           </div>
+          {% endfor%}
+        {% endif %}
         <ul class="nav navbar-nav">
           <li><a class="navbar-brand" href="{% url 'index' %}">IOT_APP</a></li>
           <li><a class="navbar-brand" href="{% url 'admin:index' %}">Admin</a></li>
