@@ -20,7 +20,7 @@ class UserProfileInfo(models.Model):
     user_site = models.URLField(blank=True)
 
     # If you've already created some users, you can generate tokens for all existing users like this:
-    for user in User.objects.all():
-        Token.objects.get_or_create(user=user)
+    # for user in User.objects.all():
+    #     Token.objects.get_or_create(user=user)
     def __str__(self):
         return self.user.username
