@@ -34,6 +34,7 @@ from django.views.decorators.csrf import csrf_exempt
 import subprocess
 import re
 
+from django.contrib import messages
 
 
 
@@ -246,7 +247,10 @@ def user_login(request):
         else:
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(username,password))
-            return HttpResponse("Invalid login details supplied.")
+
+            messages.success(request, ('Invalid login details supplied.'))
+            return redirect('login')
+            # return HttpResponse("Invalid login details supplied.")
 
     else:
         #Nothing has been provided for username or password.
