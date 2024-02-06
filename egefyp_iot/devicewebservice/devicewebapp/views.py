@@ -294,7 +294,7 @@ def user_logout(request):
 
 #uncomment user_login function
 
-#@csrf_exempt
+@csrf_exempt
 def user_login(request):
     if request.method == 'POST':
         # First get the username and password supplied
