@@ -247,10 +247,6 @@ def user_login(request):
         else:
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(username,password))
-
-            messages.success(request, ('Invalid login details supplied.'))
-            # return render(request, 'devicewebapp/login.html', {})
-            # return redirect('/')
             return HttpResponse("Invalid login details supplied.")
 
     else:
