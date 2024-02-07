@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from rest_framework.authtoken.models import Token 
+# from rest_framework.authtoken.models import Token 
 
 # Create your models here.
 """
@@ -24,3 +24,10 @@ class UserProfileInfo(models.Model):
     #     Token.objects.get_or_create(user=user)
     def __str__(self):
         return self.user.username
+
+class Device(models.Model):
+    hostnm = models.CharField(max_length=100)
+    ipaddr = models.CharField(max_length=30)
+    macaddr = models.CharField(max_length=30)
+    signalstr = models.CharField(max_length=10)
+

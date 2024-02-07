@@ -6,6 +6,8 @@ import traceback
 from channels.generic.websocket import AsyncWebsocketConsumer  
 from .views import *
 
+from devicewebapp.models import Device
+
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
@@ -37,6 +39,9 @@ class GraphConsumer(AsyncWebsocketConsumer):
             text=True,
             check=True
         )
+        # Station 3c:9c:0f:61:3b:1d (on wlan1)
+        # signal:         -24 dBm
+
 
         signal_lines = output_signal_cmd.stdout.splitlines()
         signal_list = []
@@ -58,6 +63,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
             text=True,
             check=True
         )
+        # LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1
 
         connected_devices = []
 
@@ -68,6 +74,15 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 matches = pattern.findall(line)
                 if matches and matches[0][2] == signal[0]:
                     connected_devices.append(matches[0])
+                    
+
+                    # Create and save Device object
+                    hostnm = matches[0][0]
+                    ipaddr = matches[0][1]
+                    macaddr = matches[0][2]
+                    signalstr = signal[1]
+                    device = Device.objects.create(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr, signalstr=signalstr)
+                    
 
         return connected_devices
 

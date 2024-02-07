@@ -41,7 +41,7 @@ socket.onmessage = function(e){
     // Access the data properties (connected_devices and signal_list)
     var connectedDevices = data.connected_devices;
     var signalList = data.signal_list;
-
+    
     for (let i in connectedDevices) {
         if (!registeredDevices.includes(connectedDevices[i])){
             registeredDevices.push(connectedDevices[i]);
