@@ -72,17 +72,19 @@ class GraphConsumer(AsyncWebsocketConsumer):
         for signal in signal_info:
             for line in arp_scan_output.stdout.splitlines():
                 matches = pattern.findall(line)
+
+                # Compare mac address
                 if matches and matches[0][2] == signal[0]:
                     connected_devices.append(matches[0])
                     
 
                     # Create and save Device object
-                    # hostnm = matches[0][0]
-                    # ipaddr = matches[0][1]
-                    # macaddr = matches[0][2]
-                    # signalstr = signal[1]
-                    # device = Device.objects.create(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr, signalstr=signalstr)
-                    # print(Device.objects.all().values() + "hello")
+                    hostnm = matches[0][0]
+                    ipaddr = matches[0][1]
+                    macaddr = matches[0][2]
+                    signalstr = signal[1]
+                    device = Device.objects.create(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr, signalstr=signalstr)
+                    print(Device.objects.all().values() + "hello")
 
         return connected_devices
 
