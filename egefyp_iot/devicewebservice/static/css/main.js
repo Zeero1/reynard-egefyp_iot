@@ -142,7 +142,7 @@ socket.onmessage = function(e){
 
     //Shows the signal strength
     //hello pls work
-    // document.querySelector('#app').innerText = signalList[0][2];
+    document.querySelector('#app').innerText = signalList[0][2];
     
     //Displaying the signal strength onto the Chart
     var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
