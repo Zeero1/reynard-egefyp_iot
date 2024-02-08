@@ -83,8 +83,10 @@ class GraphConsumer(AsyncWebsocketConsumer):
                     ipaddr = matches[0][1]
                     macaddr = matches[0][2]
                     signalstr = signal[1]
-                    print(hostnm, ipaddr, macaddr, signalstr)
-                    d = Device.objects.create(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr, signalstr=signalstr)
+                    print(Device.objects.all())
+
+                    # print(hostnm, ipaddr, macaddr, signalstr)
+                    # d = Device.objects.create(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr, signalstr=signalstr)
                     # d.save()
                     # print(list(Device.objects.all().values()) + ["hello"])
 
