@@ -61,13 +61,17 @@ socket.onmessage = function(e){
 							<td>${data[i][2]}</td>
 					  </tr>`
 			table.innerHTML += row
-
-
+            for (var x = 0; x < signalList.length; x++){
+                if (signalList[x][0] == data[i][2]){
+                    // Signal Strength: 
+                    document.querySelector('#signalstrength').innerText = signalList[x][1];
+                };
+            };
 		}
+        
 	}
-    //console.log(registeredDevices)
 
-    /*function createTable(){
+    function createTable(){
         
         var table = document.createElement("table"); //makes a table element for the page
         table.style.border = "1px solid black"; //adds a border to the table
@@ -89,12 +93,7 @@ socket.onmessage = function(e){
             row3.insertCell(0).innerHTML = '<strong>MAC Address:</strong> ' + mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
             registeredDevices.push(connectedDevices[i]);
             return table;
-            for (var x = 0; x < signalList.length; x++){
-                if (signalList[x][0] == mac_address){
-                    // Signal Strength: 
-                    document.querySelector('#signalstrength').innerText = signalList[x][1];
-                };
-        };
+            
     }
 
     
@@ -129,7 +128,7 @@ socket.onmessage = function(e){
             tableContainer.appendChild(createTable());
             ipExists = false;
         }
-    }*/
+    }
     
     
 
