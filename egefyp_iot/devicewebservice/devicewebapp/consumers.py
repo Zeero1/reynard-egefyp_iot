@@ -83,9 +83,10 @@ class GraphConsumer(AsyncWebsocketConsumer):
                     ipaddr = matches[0][1]
                     macaddr = matches[0][2]
                     signalstr = signal[1]
-                    d = Device(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr, signalstr=signalstr)
-                    d.save()
-                    print(list(Device.objects.all().values()) + ["hello"])
+                    print(hostnm, ipaddr, macaddr, signalstr)
+                    # d = Device(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr, signalstr=signalstr)
+                    # d.save()
+                    # print(list(Device.objects.all().values()) + ["hello"])
 
         return connected_devices
 
