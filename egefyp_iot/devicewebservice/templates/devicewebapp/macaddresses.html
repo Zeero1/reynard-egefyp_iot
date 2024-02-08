@@ -27,8 +27,7 @@
 
 {% block body_block %}
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="{% static 'css/main.js' %}"></script>
+    
     <div class='container'>
         <div class='row'>
             <div class="col-10 mx-auto mt-5">
@@ -101,7 +100,9 @@
 <!-- endfor -->
 {{ signal_list }}
 {{ connected_devices }}
-</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="{% static 'css/main.js' %}"></script>
+    </body>
 {% endblock %}
 
 
