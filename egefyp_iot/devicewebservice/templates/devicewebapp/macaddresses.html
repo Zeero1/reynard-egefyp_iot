@@ -34,19 +34,20 @@
     <!-- for hostname, ip_address, mac in connected_devices -->
     <!-- name of variable must be in order of the index of data in the list,eg. hostname = connected_devices[0] -->
     <br>
-    <table class="table table-striped">
-        <tr  class="bg-info">
-            <th>Host</th>
-            <th>IP Address</th>
-            <th>MAC Address</th>
-            <th>Signal Strength</th>
-        </tr>
-    
-        <tbody id="myTable">
-            
-        </tbody>
-    </table>
-    
+    <div style="width=300px, height="auto", float: right">
+        <table class="table table-striped">
+            <tr  class="bg-info">
+                <th>Host</th>
+                <th>IP Address</th>
+                <th>MAC Address</th>
+                <th>Signal Strength</th>
+            </tr>
+        
+            <tbody id="myTable">
+                
+            </tbody>
+        </table>
+    </div>
     {% comment %} <table style="border: 3px black solid; padding: 10px; border-radius: 20px; width: 300px;">
     <tr>
         <td><strong>Host: </strong><span id="hostname"></span></td>
