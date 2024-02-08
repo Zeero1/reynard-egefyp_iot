@@ -151,7 +151,7 @@ socket.onmessage = function(e){
     // dBm = signalList[0][2];
     // let quality = 2 * (dBm + 100);
 
-    newGraphData.push(quality); // add the new value to the end
+    // newGraphData.push(quality); // add the new value to the end
     myLiveChart.update();
 
 
