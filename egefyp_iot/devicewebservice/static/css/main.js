@@ -71,7 +71,7 @@ socket.onmessage = function(e){
         
 	}
 
-    function createTable(){
+    /*function createTable(){
         
         var table = document.createElement("table"); //makes a table element for the page
         table.style.border = "1px solid black"; //adds a border to the table
@@ -94,13 +94,13 @@ socket.onmessage = function(e){
             registeredDevices.push(connectedDevices[i]);
             return table;
             
-    }
+    }*/
 
     
     
     
 
-    var tableContainer = document.getElementById("table_devices");
+    //var tableContainer = document.getElementById("table_devices");
     //for (var y = 0; y < connectedDevices.length; y++){ // Number of table created
         
     //}
@@ -108,7 +108,7 @@ socket.onmessage = function(e){
     
 
 
-    for (let i in registeredDevices) {
+    /*for (let i in registeredDevices) {
         if (!registeredDevices.includes(connectedDevices[i])){
             console.log(connectedDevices[i]);
             registeredDevices.push(connectedDevices[i]);
@@ -128,7 +128,7 @@ socket.onmessage = function(e){
             tableContainer.appendChild(createTable());
             ipExists = false;
         }
-    }
+    }*/
     
     
 
@@ -140,17 +140,16 @@ socket.onmessage = function(e){
     //console.log('Signal List:', signalList);
 
     //Shows the signal strength
-    //hello pls work
-    // document.querySelector('#app').innerText = signalList[0][2];
+    document.querySelector('#app').innerText = signalList[0][2];
     
     //Displaying the signal strength onto the Chart
     var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
     newGraphData.shift(); // remove the first item from array
 
-    // dBm = signalList[0][2];
-    // let quality = 2 * (dBm + 100);
+    dBm = signalList[0][2];
+    let quality = 2 * (dBm + 100);
 
-    // newGraphData.push(quality); // add the new value to the end
+    newGraphData.push(quality); // add the new value to the end
     myLiveChart.update();
 
 
