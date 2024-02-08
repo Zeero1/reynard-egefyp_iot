@@ -141,7 +141,7 @@ socket.onmessage = function(e){
     //console.log('Signal List:', signalList);
 
     //Shows the signal strength
-    //hello
+    //hello pls work
     // document.querySelector('#app').innerText = signalList[0][2];
     
     //Displaying the signal strength onto the Chart
