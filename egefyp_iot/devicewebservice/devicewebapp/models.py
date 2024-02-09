@@ -29,7 +29,7 @@ class Device(models.Model):
     hostnm = models.CharField(max_length=100)
     ipaddr = models.CharField(max_length=30)
     macaddr = models.CharField(max_length=30)
-    isonline = models.BooleanField()
+    isonline = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.hostnm} {self.ipaddr} {self.macaddr}"
