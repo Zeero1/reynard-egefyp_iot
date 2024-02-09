@@ -64,7 +64,17 @@ socket.onmessage = function(e){
             for (var x = 0; x < signalList.length; x++){
                 if (signalList[x][0] == data[i][2]){
                     // Signal Strength: 
-                    document.querySelector('#signalstrength').innerText = signalList[x][1];
+                    document.querySelector('#app').innerText = signalList[0][2];
+                    
+                    //Displaying the signal strength onto the Chart
+                    var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
+                    newGraphData.shift(); // remove the first item from array
+
+                    dBm = signalList[0][2];
+                    let quality = 2 * (dBm + 100);
+
+                    newGraphData.push(quality); // add the new value to the end
+                    myLiveChart.update();
                 };
             };
 		}
@@ -139,22 +149,7 @@ socket.onmessage = function(e){
     //console.log('Connected Devices:', connectedDevices);
     //console.log('Signal List:', signalList);
 
-    //Shows the signal strength
-    document.querySelector('#app').innerText = signalList[0][2];
     
-    //Displaying the signal strength onto the Chart
-    var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
-    newGraphData.shift(); // remove the first item from array
-
-    dBm = signalList[0][2];
-    let quality = 2 * (dBm + 100);
-
-    newGraphData.push(quality); // add the new value to the end
-    myLiveChart.update();
-
-
-    //var djangoData = JSON.parse(e.data);
-    //console.log(djangoData);
     
 
     /*var currentTime = new Date(); // Get the current time
