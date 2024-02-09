@@ -40,9 +40,9 @@ from devicewebapp.models import Device
 
 
 def command_view(request):
-    device_c = Device.objects.create(hostnm='192', ipaddr='ipaddr', macaddr='macaddr')
-    device_c.save()
-    return render(request,'devicewebapp/macaddresses.html',context={'device_c':device_c})
+    # device_c = Device.objects.create(hostnm='192', ipaddr='ipaddr', macaddr='macaddr')
+    # device_c.save()
+    return render(request,'devicewebapp/macaddresses.html',context={})
 
 # Create your views here.
 def index(request):
