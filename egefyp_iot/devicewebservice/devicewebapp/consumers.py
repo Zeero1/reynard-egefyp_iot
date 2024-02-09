@@ -77,7 +77,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 if matches and matches[0][2] == signal[0]:
                     connected_devices.append(matches[0])                    
                     # Create and save Device object
-                    Device.objects.create(hostnm=matches[0][0], ipaddr=matches[0][1], macaddr=matches[0][2]).save()
+                    # Device.objects.create(hostnm=matches[0][0], ipaddr=matches[0][1], macaddr=matches[0][2]).save()
 
 
 
