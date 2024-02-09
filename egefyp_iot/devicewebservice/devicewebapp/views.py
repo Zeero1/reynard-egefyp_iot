@@ -36,10 +36,13 @@ import re
 
 from django.contrib import messages
 
+from devicewebapp.models import Device
 
 
 def command_view(request):
-    return render(request,'devicewebapp/macaddresses.html',context={})
+    device_c = Device.objects.create(hostnm='192', ipaddr='ipaddr', macaddr='macaddr')
+    device_c.save()
+    return render(request,'devicewebapp/macaddresses.html',context={'device_c':device_c})
 
 # Create your views here.
 def index(request):
