@@ -98,8 +98,8 @@ class GraphConsumer(AsyncWebsocketConsumer):
         return connected_devices
 
     async def send_message(self, message_data):
-        device_c = Device.objects.create(hostnm='192.1', ipaddr='ipaddr', macaddr='macaddr')
-        device_c.save()
+        # device_c = Device.objects.create(hostnm='192.1', ipaddr='ipaddr', macaddr='macaddr')
+        # device_c.save()
         await self.send(json.dumps(message_data))
 
     async def send_error(self, error_message):
