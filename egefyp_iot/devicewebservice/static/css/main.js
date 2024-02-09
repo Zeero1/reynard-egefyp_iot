@@ -70,7 +70,7 @@ socket.onmessage = function(e){
                     var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
                     newGraphData.shift(); // remove the first item from array
 
-                    dBm = signalList[0][2];
+                    dBm = signalList[x][2];
                     let quality = 2 * (dBm + 100);
 
                     newGraphData.push(quality); // add the new value to the end
