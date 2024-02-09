@@ -156,3 +156,9 @@ for x in nospc_lines:
     iw dev wlan0 link
 
 devicecon>mac+given_token(all device got diff token) if mac n token matches,device connect, othwise if not match, device will be kicked frm network
+
+
+testadmin
+testadm1n
+
+http://192.168.23.1:8000/devices/testiot-1
