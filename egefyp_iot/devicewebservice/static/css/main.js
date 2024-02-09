@@ -42,25 +42,30 @@ socket.onmessage = function(e){
     var connectedDevices = data.connected_devices;
     var signalList = data.signal_list;
     
-    for (let i in connectedDevices) {
-        if (!registeredDevices.includes(connectedDevices[i])){
-            registeredDevices.push(connectedDevices[i]);
-            console.log(registeredDevices)
-        }
-    }
+    // for (let i in connectedDevices) {
+    //     if (!registeredDevices.includes(connectedDevices[i])){
+    //         registeredDevices.push(connectedDevices[i]);
+    //         console.log(registeredDevices)
+    //     }
+    // }
 
-    buildTable(registeredDevices)
+    buildTable(connectedDevices)
+    console.log(connectedDevices)
     
     function buildTable(data){
 		var table = document.getElementById('myTable')
 
 		for (var i = 0; i < data.length; i++){
-			var row = `<tr>
+			hostname = data[i][0];
+            ip_address = data[i][1];
+            mac_address = data[i][2];
+            
+            var row = `<tr>
 							<td>${data[i][0]}</td>
 							<td>${data[i][1]}</td>
 							<td>${data[i][2]}</td>
 					  </tr>`
-			table.innerHTML += row
+            table.innerHTML += row;
             for (var x = 0; x < signalList.length; x++){
                 if (signalList[x][0] == data[i][2]){
                     // Signal Strength: 
