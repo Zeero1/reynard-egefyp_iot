@@ -75,31 +75,15 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
                 # Compare mac address
                 if matches and matches[0][2] == signal[0]:
-                    connected_devices.append(matches[0])
-                    
-
+                    connected_devices.append(matches[0])                    
                     # Create and save Device object
-                    hostnm = matches[0][0]
-                    ipaddr = matches[0][1]
-                    macaddr = matches[0][2]
-                    signalstr = signal[1]
+                    Device.objects.create(hostnm=matches[0][0], ipaddr=matches[0][1], macaddr=matches[0][2]).save()
 
-                    
-                    # Device.objects.create(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr)
-                    
 
-                    # print(hostnm, ipaddr, macaddr, signalstr)
-
-                    # d = Device.objects.create(hostnm=hostnm, ipaddr=ipaddr, macaddr=macaddr, signalstr=signalstr)
-                    # d.save()
-                    
-                    # print(list(Device.objects.all().values()) + ["hello"])
 
         return connected_devices
 
     async def send_message(self, message_data):
-        # device_c = Device.objects.create(hostnm='192.1', ipaddr='ipaddr', macaddr='macaddr')
-        # device_c.save()
         await self.send(json.dumps(message_data))
 
     async def send_error(self, error_message):
