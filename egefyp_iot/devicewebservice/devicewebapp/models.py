@@ -31,6 +31,6 @@ class Device(models.Model):
     macaddr = models.CharField(max_length=30)
     signalstr = models.CharField(max_length=10)
 
-    # def __str__(self):
-    #     return f"{self.hostnm} {self.ipaddr} {self.macaddr} {self.signalstr}"
+    def __str__(self):
+        return f"{self.hostnm} {self.ipaddr} {self.macaddr} {self.signalstr}"
 
