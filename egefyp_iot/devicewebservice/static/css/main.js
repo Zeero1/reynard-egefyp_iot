@@ -39,6 +39,7 @@ socket.onmessage = function(e){
     var data = JSON.parse(e.data);
 
     // Access the data properties (connected_devices and signal_list)
+    
     var connectedDevices = data.connected_devices;
     var signalList = data.signal_list;
     
@@ -86,40 +87,9 @@ socket.onmessage = function(e){
         
 	}
 
-    /*function createTable(){
-        
-        var table = document.createElement("table"); //makes a table element for the page
-        table.style.border = "1px solid black"; //adds a border to the table
-        table.style.borderCollapse = "collapse"; //makes the borders between cells collapse
-        table.style.margin = "15px";
-        for (var i = 0; i < connectedDevices.length; i++) {
-
-            hostname = connectedDevices[i][0];
-            ip_address = connectedDevices[i][1];
-            mac_address = connectedDevices[i][2];
-
-            var row1 = table.insertRow(0);
-            row1.insertCell(0).innerHTML = '<strong>Host:</strong> ' +  hostname; // Host: LAPTOP-1KKIANDS
-
-            var row2 = table.insertRow(1);
-            row2.insertCell(0).innerHTML = '<strong>IP Address:</strong> ' + ip_address; // IP Address: 192.168.23.162
-
-            var row3 = table.insertRow(2);
-            row3.insertCell(0).innerHTML = '<strong>MAC Address:</strong> ' + mac_address.toUpperCase(); // MAC Address:  5C:CF:7F:3E:9A:84
-            registeredDevices.push(connectedDevices[i]);
-            return table;
-            
-    }*/
-
-    
-    
-    
-
-    //var tableContainer = document.getElementById("table_devices");
-    //for (var y = 0; y < connectedDevices.length; y++){ // Number of table created
-        
-    //}
-
+socket.onclose = function(event) {
+    console.error("WebSocket closed with code: " + event.code);
+};
     
 
 
