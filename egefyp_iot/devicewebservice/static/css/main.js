@@ -67,25 +67,10 @@ socket.onmessage = function(e){
 							<td>${data[i][2]}</td>
 					  </tr>`
             table.innerHTML += row;
-            for (var x = 0; x < signalList.length; x++){
-                if (signalList[x][0] == data[i][2]){
-                    // Signal Strength: 
-                    document.querySelector('#app').innerText = signalList[0][2];
-                    
-                    //Displaying the signal strength onto the Chart
-                    var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
-                    newGraphData.shift(); // remove the first item from array
-
-                    dBm = signalList[x][2];
-                    let quality = 2 * (dBm + 100);
-
-                    newGraphData.push(quality); // add the new value to the end
-                    myLiveChart.update();
-                };
-            };
 		}
         
 	}
+
 
 socket.onclose = function(event) {
     console.error("WebSocket closed with code: " + event.code);
