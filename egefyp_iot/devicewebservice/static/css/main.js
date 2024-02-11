@@ -51,7 +51,7 @@ socket.onmessage = function(e){
     // }
 
     buildTable(connectedDevices)
-    console.log(connectedDevices)
+    console.log('Connected Devices:' + connectedDevices)
     
     function buildTable(data){
 		var table = document.getElementById('myTable')
