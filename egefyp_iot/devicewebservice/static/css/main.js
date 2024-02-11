@@ -53,7 +53,7 @@ socket.onmessage = function(e){
     //[('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d')]
     buildTable(connectedDevices)
     signalGraph(connectedDevices)
-    console.log(connectedDevices)
+    console.log(connectedDevices.includes(signalList))
     function signalGraph(data){
         if (data.includes(signalList)){
             console.log("Duplicate")
