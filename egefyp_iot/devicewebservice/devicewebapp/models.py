@@ -11,7 +11,7 @@ from rest_framework.authtoken.models import Token
     last name)
 """
 
-# class Token
+
 class UserProfileInfo(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.CASCADE,unique=True)
