@@ -22,7 +22,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                     for hostname, ip, mac in connected_devices:
                         #adding device to Django ORD
                         create_device = sync_to_async(Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac))
-                        sync_to_async(create_device.save())
+                        await create_device.save()
                     
                 except Exception as error:
                     print("An error occurred:", type(error).__name__, "–", error)
@@ -79,7 +79,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
         return signal_list
 
-    async def get_connected_devices(self, signal_info):
+    async def get_connected_devices(self):
         arp_scan_output = subprocess.run(
             ["arp", "-a"],
             capture_output=True,
@@ -89,19 +89,13 @@ class GraphConsumer(AsyncWebsocketConsumer):
         # LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1
 
         connected_devices = []
-
         pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
 
         # for signal in signal_info:
         for line in arp_scan_output.stdout.splitlines():
             matches = pattern.findall(line)
-
-                # Compare mac address
             if matches:
                 connected_devices.append(matches[0])                    
-
-
-
         return connected_devices
 
 
