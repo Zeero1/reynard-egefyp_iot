@@ -8,6 +8,8 @@ from .views import *
 
 from devicewebapp.models import Device
 
+from asgiref.sync import sync_to_async
+
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
@@ -17,8 +19,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info)
                 try:
-                    device_c = Device.objects.create(hostnm='192', ipaddr='ipaddr', macaddr='macaddr')
-                    device_c.save()
+                    sync_to_async(Device.objects.create)
                 except Exception as error:
                     print("An error occurred:", type(error).__name__, "–", error)
 
