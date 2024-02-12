@@ -20,8 +20,8 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 connected_devices = await self.get_connected_devices(signal_info)
                 try:
                     for hostname, ip, mac in connected_devices:
-                        
-                        create_device = sync_to_async(Device.objects.create(hostnm = hostname, ipaddr = ip, macddr = mac))
+                        #adding device to Django ORD
+                        create_device = sync_to_async(Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac))
                         create_device.save()
                     
                 except Exception as error:
