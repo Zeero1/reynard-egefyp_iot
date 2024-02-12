@@ -54,10 +54,9 @@ socket.onmessage = function(e){
 
     //[('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d')]
     buildTable(connectedDevices)
-    signalGraph(connectedDevices)
-    console.log(numbers.map(element => element * 2))
+    signalGraph(signalstrDevices)
     function signalGraph(data){
-        for (let x of signalstrDevices){
+        for (let x of data){
             i = 0;
             newGraphData = myLiveChart.data.datasets[i].data;
             newGraphData.shift();
