@@ -16,8 +16,11 @@ class GraphConsumer(AsyncWebsocketConsumer):
             try:
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info)
-                device_c = Device.objects.create(hostnm='192', ipaddr='ipaddr', macaddr='macaddr')
-                device_c.save()
+                try:
+                    device_c = Device.objects.create(hostnm='192', ipaddr='ipaddr', macaddr='macaddr')
+                    device_c.save()
+                except Exception as error:
+                    print("An error occurred:", type(error).__name__, "–", error)
 
                 # Merge both lists by 
                 
