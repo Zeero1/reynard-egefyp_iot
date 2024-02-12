@@ -56,13 +56,14 @@ socket.onmessage = function(e){
     buildTable(connectedDevices)
     signalGraph(signalstrDevices)
     function signalGraph(data){
+        let i = 0;
         for (let x of data){
-            i = 0;
             newGraphData = myLiveChart.data.datasets[i].data;
             newGraphData.shift();
             dBm = -x[3];
             newGraphData.push(dBm);
             myLiveChart.update();
+            // document.querySelector('#app').innerText()
             i++;
         }
         
