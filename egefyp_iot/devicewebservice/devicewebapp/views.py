@@ -36,17 +36,18 @@ import re
 from django.contrib import messages
 
 from devicewebapp.models import Device
-from devicewebapp.consumers import * 
+from devicewebapp.consumers import connected_devices 
 import asyncio
 
 async def command_view(request):
     try:
-        # for hostname, ip, mac in connected_devices:
-        #adding device to Django ORD
-        await Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac)
-        
+        for hostname, ip, mac in connected_devices:
+            #adding device to Django ORD
+            await sync_to_async(Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac))
+            
     except Exception as error:
         print("An error occurred:", type(error).__name__, "–", error)
+
     return render(request,'devicewebapp/macaddresses.html',context={})
 
 # Create your views here.
