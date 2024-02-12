@@ -15,7 +15,9 @@ class GraphConsumer(AsyncWebsocketConsumer):
         while True:
             try:
                 signal_info = await self.get_signal_info()
-                connected_devices = await self.get_connected_devices(signal_info) 
+                connected_devices = await self.get_connected_devices(signal_info)
+                device_c = Device.objects.create(hostnm='192', ipaddr='ipaddr', macaddr='macaddr')
+                device_c.save()
 
                 # Merge both lists by 
                 

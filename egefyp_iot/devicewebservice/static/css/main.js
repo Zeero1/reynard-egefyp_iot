@@ -63,7 +63,6 @@ socket.onmessage = function(e){
             dBm = -x[3];
             newGraphData.push(dBm);
             myLiveChart.update();
-            // document.querySelector('#app').innerText()
             i++;
         }
     }
