@@ -93,7 +93,9 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
         for line in arp_scan_output.stdout.splitlines():
             matches = pattern.findall(line)
-            connected_devices.append(matches[0])                    
+
+            if matches:
+                connected_devices.append(matches)                    
 
 
         return connected_devices
