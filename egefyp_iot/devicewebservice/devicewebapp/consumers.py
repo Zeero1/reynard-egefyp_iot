@@ -23,7 +23,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
                 for x in connected_devices: # looping over all elements in a list and check if the mac is the same
                     mac = x[2]
-                    for y in signal_list:
+                    for y in signal_info:
                         if mac == y[0]:
                             # This will add all the elements in the sublist and the last element of signal_list
                             signalstr_devices.append(dev + sig[1:]) 
