@@ -91,9 +91,9 @@ class GraphConsumer(AsyncWebsocketConsumer):
         connected_devices = []
         pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
 
-            for line in arp_scan_output.stdout.splitlines():
-                matches = pattern.findall(line)
-                connected_devices.append(matches[0])                    
+        for line in arp_scan_output.stdout.splitlines():
+            matches = pattern.findall(line)
+            connected_devices.append(matches[0])                    
 
 
         return connected_devices
