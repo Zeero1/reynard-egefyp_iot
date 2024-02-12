@@ -93,12 +93,12 @@ class GraphConsumer(AsyncWebsocketConsumer):
         pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
 
         # for signal in signal_info:
-        #     for line in arp_scan_output.stdout.splitlines():
-        #         matches = pattern.findall(line)
-
-        #         # Compare mac address
-        #         if matches and matches[0][2] == signal[0]:
-        #             connected_devices.append(matches[0])                    
+        for line in arp_scan_output.stdout.splitlines():
+            matches = pattern.findall(line)
+            connected_devices.append(matches)
+                # # Compare mac address
+                # if matches and matches[0][2] == signal[0]:
+                #     connected_devices.append(matches[0])                    
 
 
         return connected_devices
