@@ -66,6 +66,7 @@ socket.onmessage = function(e){
             // document.querySelector('#app').innerText()
             i++;
         }
+    }
 
     
     function buildTable(data){
