@@ -44,58 +44,57 @@ socket.onmessage = function(e){
     var signalList = data.signal_list;
     var signalstrList = data.signalstr_devices;
     
-    console.log(signalstrList)
-    // // for (let i in connectedDevices) {
-    // //     if (!registeredDevices.includes(connectedDevices[i])){
-    // //         registeredDevices.push(connectedDevices[i]);
-    // //         console.log(registeredDevices)
-    // //     }
-    // // }
-
-    // //[('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d')]
-    // buildTable(connectedDevices)
-    // signalGraph(connectedDevices)
-    // function signalGraph(data){
-    //     document.querySelector('#app').innerText = signalList[0][1];
+    // for (let i in connectedDevices) {
+    //     if (!registeredDevices.includes(connectedDevices[i])){
+    //         registeredDevices.push(connectedDevices[i]);
+    //         console.log(registeredDevices)
+    //     }
     // }
 
+    //[('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d')]
+    buildTable(connectedDevices)
+    signalGraph(connectedDevices)
+    function signalGraph(data){
+        document.querySelector('#app').innerText = signalList[0][1];
+    }
+
     
-    // function buildTable(data){
-	// 	var table = document.getElementById('myTable')
+    function buildTable(data){
+		var table = document.getElementById('myTable')
 
-	// 	for (var i = 0; i < data.length; i++){
-	// 		hostname = data[i][0];
-    //         ip_address = data[i][1];
-    //         mac_address = data[i][2];
+		for (var i = 0; i < data.length; i++){
+			hostname = data[i][0];
+            ip_address = data[i][1];
+            mac_address = data[i][2];
             
-    //         var row = `<tr>
-	// 						<td>${data[i][0]}</td>
-	// 						<td>${data[i][1]}</td>
-	// 						<td>${data[i][2]}</td>
-	// 				  </tr>`
-    //         table.innerHTML += row;
+            var row = `<tr>
+							<td>${data[i][0]}</td>
+							<td>${data[i][1]}</td>
+							<td>${data[i][2]}</td>
+					  </tr>`
+            table.innerHTML += row;
             
 
             
-    //         // for (var x = 0; x < signalList.length; x++){
-    //         //     if (signalList[x][0] == data[i][2]){
-    //         //         // Signal Strength: 
-    //         //         document.querySelector('#app').innerText = signalList[0][2];
+            // for (var x = 0; x < signalList.length; x++){
+            //     if (signalList[x][0] == data[i][2]){
+            //         // Signal Strength: 
+            //         document.querySelector('#app').innerText = signalList[0][2];
                     
-    //         //         //Displaying the signal strength onto the Chart
-    //         //         var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
-    //         //         newGraphData.shift(); // remove the first item from array
+            //         //Displaying the signal strength onto the Chart
+            //         var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
+            //         newGraphData.shift(); // remove the first item from array
 
-    //         //         dBm = signalList[x][2];
-    //         //         let quality = 2 * (dBm + 100);
+            //         dBm = signalList[x][2];
+            //         let quality = 2 * (dBm + 100);
 
-    //         //         newGraphData.push(quality); // add the new value to the end
-    //         //         myLiveChart.update();
-    //         //     };
-    //         // };
-	// 	}
+            //         newGraphData.push(quality); // add the new value to the end
+            //         myLiveChart.update();
+            //     };
+            // };
+		}
         
-	// }
+	}
 
 socket.onclose = function(event) {
     console.error("WebSocket closed with code: " + event.code);

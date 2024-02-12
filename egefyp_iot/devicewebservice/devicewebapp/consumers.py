@@ -16,7 +16,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
             try:
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info) 
-                signalstr_devices = await self.merge_list(connected_devices, signal_info)
+                signalstr_devices = [(hostnm, ip, mac, signal) for (hostnm, ip, mac), (_, signal) in zip(devices, signal_data)]
                 print(signalstr_devices)
                 print(connected_devices)
                 print(signal_info)
@@ -85,10 +85,8 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
         return connected_devices
 
-    async def merge_list(signal_data, devices):
-        signalstr_devices = [(hostnm, ip, mac, signal) for (hostnm, ip, mac), (_, signal) in zip(devices, signal_data)]
-        return signalstr_devices
-    
+
+        
         # [('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d')]
         # Desired output [('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d', signalstr)]
         
