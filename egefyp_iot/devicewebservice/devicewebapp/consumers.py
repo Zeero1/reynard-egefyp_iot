@@ -6,17 +6,15 @@ import traceback
 from channels.generic.websocket import AsyncWebsocketConsumer  
 from .views import *
 
-from devicewebapp.models import Device
+# from devicewebapp.models import Device
 
 from asgiref.sync import sync_to_async
 
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
-        devices1 = []
         while True:
             try:
-                devices1 = ['LAP','IP','mac']
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info)
                 # try:
