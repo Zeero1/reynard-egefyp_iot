@@ -36,7 +36,7 @@ import re
 from django.contrib import messages
 
 from devicewebapp.models import Device
-from consumers import devices1
+from devicewebapp import devices1
 import asyncio
 from asgiref.sync import sync_to_async
 
