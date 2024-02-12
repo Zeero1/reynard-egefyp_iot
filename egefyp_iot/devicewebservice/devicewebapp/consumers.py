@@ -19,7 +19,8 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info)
                 try:
-                    sync_to_async(Device.objects.create)
+                    create_device = sync_to_async(Device.objects.create)
+                    create_device.save()
                 except Exception as error:
                     print("An error occurred:", type(error).__name__, "–", error)
 
