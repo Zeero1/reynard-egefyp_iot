@@ -58,6 +58,7 @@ socket.onmessage = function(e){
     function signalGraph(data){
         let i = 0;
         for (let x of data){
+            i = 0;
             newGraphData = myLiveChart.data.datasets[i].data;
             newGraphData.shift();
             dBm = -x[3];
@@ -66,14 +67,6 @@ socket.onmessage = function(e){
             // document.querySelector('#app').innerText()
             i++;
         }
-        
-        //Displaying the signal strength onto the Chart
-        // var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
-        // newGraphData.shift(); // remove the first item from array
-        // dBm = -signalstrDevices[0][3];
-        // newGraphData.push(dBm);
-        // myLiveChart.update();
-    }
 
     
     function buildTable(data){
@@ -91,24 +84,6 @@ socket.onmessage = function(e){
 					  </tr>`
             table.innerHTML += row;
             
-
-            
-            // for (var x = 0; x < signalList.length; x++){
-            //     if (signalList[x][0] == data[i][2]){
-            //         // Signal Strength: 
-            //         document.querySelector('#app').innerText = signalList[0][2];
-                    
-                    //Displaying the signal strength onto the Chart
-                    // var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
-                    // newGraphData.shift(); // remove the first item from array
-
-            //         dBm = signalList[x][2];
-            //         let quality = 2 * (dBm + 100);
-
-            //         newGraphData.push(quality); // add the new value to the end
-            //         myLiveChart.update();
-            //     };
-            // };
 		}
         
 	}
