@@ -8,7 +8,7 @@ from .views import *
 
 # from devicewebapp.models import Device
 
-from asgiref.sync import sync_to_async
+# from asgiref.sync import sync_to_async
 
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
