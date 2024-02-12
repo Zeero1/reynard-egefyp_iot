@@ -57,7 +57,7 @@ socket.onmessage = function(e){
     function signalGraph(data){
         document.querySelector('#app').innerText = signalList[0][1];
     }
-
+    
     
     function buildTable(data){
 		var table = document.getElementById('myTable')
