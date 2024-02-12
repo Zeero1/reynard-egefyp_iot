@@ -35,22 +35,22 @@ import re
 
 from django.contrib import messages
 
-from devicewebapp.models import Device
-from devicewebapp import devices1
-import asyncio
-from asgiref.sync import sync_to_async
+from devicewebapp.models import Token
+# from devicewebapp import devices1
+# import asyncio
+# from asgiref.sync import sync_to_async
 
 
 def command_view(request):
-    try:
-        for hostname, ip, mac in devices1:
-            #adding device to Django ORD
-            device = Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac)
-            device.save()
-            # sync_to_async(Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac))
+    # try:
+    #     for hostname, ip, mac in devices1:
+    #         #adding device to Django ORD
+    #         device = Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac)
+    #         device.save()
+    #         # sync_to_async(Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac))
             
-    except Exception as error:
-        print("An error occurred:", type(error).__name__, "–", error)
+    # except Exception as error:
+    #     print("An error occurred:", type(error).__name__, "–", error)
     return render(request,'devicewebapp/macaddresses.html',context={})
 
 # Create your views here.
