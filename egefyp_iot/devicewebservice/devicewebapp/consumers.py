@@ -89,16 +89,11 @@ class GraphConsumer(AsyncWebsocketConsumer):
         # LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1
 
         connected_devices = []
-
         pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
 
-        # for signal in signal_info:
-        for line in arp_scan_output.stdout.splitlines():
-            matches = pattern.findall(line)
-            connected_devices.append(matches)
-                # # Compare mac address
-                # if matches and matches[0][2] == signal[0]:
-                #     connected_devices.append(matches[0])                    
+            for line in arp_scan_output.stdout.splitlines():
+                matches = pattern.findall(line)
+                connected_devices.append(matches[0])                    
 
 
         return connected_devices
