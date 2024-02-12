@@ -16,7 +16,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
             try:
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info) 
-                signalstr_devices = [(hostnm, ip, mac, signal) for (hostnm, ip, mac), (_, signal) in zip(devices, signal_info)]
+                signalstr_devices = [(hostnm, ip, mac, signal) for (hostnm, ip, mac), (_, signal) in zip(connected_devices, signal_info)]
                 print(signalstr_devices)
                 print(connected_devices)
                 print(signal_info)
