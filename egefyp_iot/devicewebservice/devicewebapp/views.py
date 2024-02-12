@@ -31,17 +31,22 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 #from django.contrib import messages
 # import nmap
-import subprocess
 import re
 
 from django.contrib import messages
 
 from devicewebapp.models import Device
+from devicewebapp.consumers import * 
+import asyncio
 
-
-def command_view(request):
-    # device_c = Device.objects.create(hostnm='192', ipaddr='ipaddr', macaddr='macaddr')
-    # device_c.save()
+async def command_view(request):
+    try:
+        # for hostname, ip, mac in connected_devices:
+        #adding device to Django ORD
+        await Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac)
+        
+    except Exception as error:
+        print("An error occurred:", type(error).__name__, "–", error)
     return render(request,'devicewebapp/macaddresses.html',context={})
 
 # Create your views here.
