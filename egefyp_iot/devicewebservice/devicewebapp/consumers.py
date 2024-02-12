@@ -13,10 +13,9 @@ class GraphConsumer(AsyncWebsocketConsumer):
         await self.accept()
 
         while True:
-            
             try:
                 signal_info = await self.get_signal_info()
-                connected_devices = await self.get_connected_devices(signal_info)
+                connected_devices = await self.get_connected_devices(signal_info) 
                 print(connected_devices)
                 print(signal_info)
                 message_data = {
@@ -45,7 +44,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
         signal_lines = output_signal_cmd.stdout.splitlines()
         signal_list = []
-
+        
         for line in signal_lines:
             line_strip = line.strip()
             if "Station" in line_strip:
@@ -53,7 +52,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
             elif "signal" in line_strip:
                 signal_strength = line_strip.split("signal:")[-1].strip().split(" ")[0]
                 signal_list.append((mac_address, signal_strength))
-
+                
         return signal_list
 
     async def get_connected_devices(self, signal_info):

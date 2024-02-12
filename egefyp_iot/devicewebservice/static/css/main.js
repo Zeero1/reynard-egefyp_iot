@@ -55,10 +55,10 @@ socket.onmessage = function(e){
     signalGraph(connectedDevices)
     console.log(connectedDevices.includes(signalList))
     function signalGraph(data){
-        if (data.includes(signalList)){
-            console.log("Duplicate")
-        }// if data has the same variables
+        document.querySelector('#app').innerText = signalList[0][1];
     }
+
+    
     function buildTable(data){
 		var table = document.getElementById('myTable')
 
@@ -73,6 +73,9 @@ socket.onmessage = function(e){
 							<td>${data[i][2]}</td>
 					  </tr>`
             table.innerHTML += row;
+            
+
+            
             // for (var x = 0; x < signalList.length; x++){
             //     if (signalList[x][0] == data[i][2]){
             //         // Signal Strength: 
