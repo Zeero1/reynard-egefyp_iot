@@ -43,7 +43,7 @@ socket.onmessage = function(e){
     
     var connectedDevices = data.connected_devices;
     var signalList = data.signal_list;
-    var signalstrList = data.signalstr_devices;
+    var signalstrDevices = data.signalstr_devices;
     
     // for (let i in connectedDevices) {
     //     if (!registeredDevices.includes(connectedDevices[i])){
@@ -56,7 +56,14 @@ socket.onmessage = function(e){
     buildTable(connectedDevices)
     signalGraph(connectedDevices)
     function signalGraph(data){
-        document.querySelector('#app').innerText = signalList[0][1];
+        // document.querySelector('#app').innerText = signalList[0][1];
+
+        //Displaying the signal strength onto the Chart
+        var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
+        newGraphData.shift(); // remove the first item from array
+        dBm = signalstrDevices[0][3];
+        newGraphData.push(dBm);
+        myLiveChart.update();
     }
 
     
@@ -82,9 +89,9 @@ socket.onmessage = function(e){
             //         // Signal Strength: 
             //         document.querySelector('#app').innerText = signalList[0][2];
                     
-            //         //Displaying the signal strength onto the Chart
-            //         var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
-            //         newGraphData.shift(); // remove the first item from array
+                    //Displaying the signal strength onto the Chart
+                    // var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
+                    // newGraphData.shift(); // remove the first item from array
 
             //         dBm = signalList[x][2];
             //         let quality = 2 * (dBm + 100);
@@ -156,7 +163,7 @@ var myLiveChart = new Chart(ctx, {type: 'line', data: startingData, options: {
             }
         }],
         yAxes: [{
-            ticks: {min:0, max:100},
+            ticks: {min:-100, max:0},
             scaleLabel: {
                 display: true,
                 labelString: 'Signal Strength (%)'
