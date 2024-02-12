@@ -61,7 +61,7 @@ socket.onmessage = function(e){
         //Displaying the signal strength onto the Chart
         var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
         newGraphData.shift(); // remove the first item from array
-        dBm = signalstrDevices[0][3];
+        dBm = -signalstrDevices[0][3];
         newGraphData.push(dBm);
         myLiveChart.update();
     }
@@ -163,10 +163,10 @@ var myLiveChart = new Chart(ctx, {type: 'line', data: startingData, options: {
             }
         }],
         yAxes: [{
-            ticks: {min:-100, max:0},
+            ticks: {min:-0, max:100},
             scaleLabel: {
                 display: true,
-                labelString: 'Signal Strength (%)'
+                labelString: 'Signal Strength (-dBm)'
             }
         }],
     }
