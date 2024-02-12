@@ -55,15 +55,24 @@ socket.onmessage = function(e){
     //[('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d')]
     buildTable(connectedDevices)
     signalGraph(connectedDevices)
+    console.log(numbers.map(element => element * 2))
     function signalGraph(data){
-        // document.querySelector('#app').innerText = signalList[0][1];
-
+        for (let x of signalstrDevices){
+            i = 0;
+            newGraphData = myLiveChart.data.datasets[i].data;
+            newGraphData.shift();
+            dBm = -x[3];
+            newGraphData.push(dBm);
+            myLiveChart.update();
+            i++;
+        }
+        
         //Displaying the signal strength onto the Chart
-        var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
-        newGraphData.shift(); // remove the first item from array
-        dBm = -signalstrDevices[0][3];
-        newGraphData.push(dBm);
-        myLiveChart.update();
+        // var newGraphData = myLiveChart.data.datasets[0].data; // make the dataset[0] become newGraphData
+        // newGraphData.shift(); // remove the first item from array
+        // dBm = -signalstrDevices[0][3];
+        // newGraphData.push(dBm);
+        // myLiveChart.update();
     }
 
     
