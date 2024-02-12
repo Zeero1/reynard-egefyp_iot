@@ -25,8 +25,8 @@ class GraphConsumer(AsyncWebsocketConsumer):
                     mac = x[2]
                     for y in signal_info:
                         if mac == y[0]:
-                            # This will add all the elements in the sublist and the last element of signal_list
-                            signalstr_devices.append(dev + sig[1:]) 
+                            # This will add all the elements in the sublist and the last element of signal_info
+                            signalstr_devices.append(x + y[1:]) 
                 print(signalstr_devices)
                 print(connected_devices)
                 print(signal_info)
