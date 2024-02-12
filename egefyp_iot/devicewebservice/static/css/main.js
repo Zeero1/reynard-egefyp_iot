@@ -37,6 +37,7 @@ const socket = new WebSocket(
 
 socket.onmessage = function(e){
     var data = JSON.parse(e.data);
+    console.log("Received data from WebSocket:", data);
 
     // Access the data properties (connected_devices and signal_list)
     
