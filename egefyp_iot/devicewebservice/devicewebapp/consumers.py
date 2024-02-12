@@ -16,7 +16,17 @@ class GraphConsumer(AsyncWebsocketConsumer):
             try:
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info) 
-                signalstr_devices = [(hostnm, ip, mac, signal) for (hostnm, ip, mac), (_, signal) in zip(connected_devices, signal_info)]
+
+                # Merge both lists by 
+                
+                signalstr_devices = []
+
+                for x in connected_devices: # looping over all elements in a list and check if the mac is the same
+                    mac = x[2]
+                    for y in signal_list:
+                        if mac == y[0]:
+                            # This will add all the elements in the sublist and the last element of signal_list
+                            signalstr_devices.append(dev + sig[1:]) 
                 print(signalstr_devices)
                 print(connected_devices)
                 print(signal_info)
