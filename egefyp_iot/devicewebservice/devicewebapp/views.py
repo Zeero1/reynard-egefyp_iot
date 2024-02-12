@@ -35,7 +35,7 @@ import re
 
 from django.contrib import messages
 
-from devicewebapp.models import Token
+# from devicewebapp.models import Token
 # from devicewebapp import devices1
 # import asyncio
 # from asgiref.sync import sync_to_async
