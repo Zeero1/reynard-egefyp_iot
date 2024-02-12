@@ -16,6 +16,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
         while True:
             try:
+                devices1 = ['LAP','IP','mac']
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info)
                 # try:
