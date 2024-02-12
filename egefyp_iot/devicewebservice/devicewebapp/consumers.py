@@ -95,7 +95,11 @@ class GraphConsumer(AsyncWebsocketConsumer):
             matches = pattern.findall(line)
 
             if matches:
-                connected_devices.append(matches)                    
+                connected_devices.append({
+                    "hostname": matches.group(1),
+                    "ip_address": matches.group(2),
+                    "mac_address": matches.group(3)
+                })                 
 
 
         return connected_devices
