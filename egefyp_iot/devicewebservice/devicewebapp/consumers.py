@@ -13,7 +13,7 @@ from asgiref.sync import sync_to_async
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
-
+        devices1 = []
         while True:
             try:
                 devices1 = ['LAP','IP','mac']

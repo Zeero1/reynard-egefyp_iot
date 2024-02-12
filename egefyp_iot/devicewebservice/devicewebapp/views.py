@@ -36,16 +36,18 @@ import re
 from django.contrib import messages
 
 from devicewebapp.models import Device
-from devicewebapp.consumers import devices1
+from consumers import devices1
 import asyncio
 from asgiref.sync import sync_to_async
 
 
 def command_view(request):
     try:
-        for hostname, ip, mac in connected_devices:
+        for hostname, ip, mac in devices1:
             #adding device to Django ORD
-            sync_to_async(Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac))
+            device = Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac)
+            device.save()
+            # sync_to_async(Device.objects.create(hostnm = hostname, ipaddr = ip, macaddr = mac))
             
     except Exception as error:
         print("An error occurred:", type(error).__name__, "–", error)
