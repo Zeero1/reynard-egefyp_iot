@@ -81,6 +81,7 @@ def viewdevices(request):
 @api_view()
 @permission_classes([IsAuthenticated])
 def devices(request,param1):
+    dev_name = param1
     dtnow = dt.now()
 
     iotdev = { "name": dev_name, "datetime": dtnow }
