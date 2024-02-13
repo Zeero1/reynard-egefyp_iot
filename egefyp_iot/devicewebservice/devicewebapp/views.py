@@ -81,7 +81,11 @@ def viewdevices(request):
 @api_view()
 @permission_classes([IsAuthenticated])
 def devices(request,param1):
-
+    # Check if user is authenticated
+    if not request.user.is_authenticated:
+        # Print or do something if the user is not authenticated
+        print("User is not authenticated")
+        return HttpResponseForbidden("You are not authenticated")
     dev_name = param1
     dtnow = dt.now()
 
