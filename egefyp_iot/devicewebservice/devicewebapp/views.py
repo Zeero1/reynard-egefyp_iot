@@ -81,12 +81,6 @@ def viewdevices(request):
 @api_view()
 @permission_classes([IsAuthenticated])
 def devices(request,param1):
-    # Check if user is authenticated
-    if not request.user.is_authenticated:
-        # Print or do something if the user is not authenticated
-        print("User is not authenticated")
-        return HttpResponseForbidden("You are not authenticated")
-    dev_name = param1
     dtnow = dt.now()
 
     iotdev = { "name": dev_name, "datetime": dtnow }
@@ -218,8 +212,8 @@ def hello(request):
         'user': str(request.user),  # `django.contrib.auth.User` instance.
         'auth': str(request.auth),  # None
     }
-    return Response(content,template_name='devicewebapp/hello.html')
-    #return HttpResponse(request,'devicewebapp/hello.html',{content})
+    # return Response(content,template_name='devicewebapp/hello.html')
+    return HttpResponse(request,'devicewebapp/hello.html',{content})
 # 
 
 #uncomment user_loggedin function
