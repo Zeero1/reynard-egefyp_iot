@@ -107,8 +107,8 @@ def devices(request,param1):
     # 'user': str(request.user)
     # 'auth': str(request.auth)
     print('\'user\':{}\n\'auth\':{}\n'.format(str(request.user), str(request.auth)))
-    # return render(request, 'devicewebapp/devices.html', context={'data': dev_name})
-    return render(request, 'devicewebapp/devices.html', context={'data': iotdev, 'datalog': iotdevlog, 'msg_display': res_dev_name})
+    return render(request, 'devicewebapp/devices.html', context={'data': dev_name})
+    # return render(request, 'devicewebapp/devices.html', context={'data': iotdev, 'datalog': iotdevlog, 'msg_display': res_dev_name})
 
 #Postview function Not used for EG284S
 @csrf_exempt
