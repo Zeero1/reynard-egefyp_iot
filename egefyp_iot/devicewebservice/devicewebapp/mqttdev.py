@@ -21,10 +21,10 @@ def on_message(client, userdata, msg):
     global gdata2
 
     #print( msg.topic, msg.payload)
-    # print("Message Received: {},{}\n".format(msg.topic, msg.payload.decode("utf-8")))
+    print("Message Received: {},{}\n".format(msg.topic, msg.payload.decode("utf-8")))
     if msg.topic == "test/temp1":
         gdata1=str(msg.payload.decode("utf-8"))
-        # print("message temp1: {}".format(gdata1))
+        print("message temp1: {}".format(gdata1))
 
 def clientconn():
     global client
