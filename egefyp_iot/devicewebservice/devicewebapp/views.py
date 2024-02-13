@@ -97,12 +97,15 @@ def devices(request,param1):
 
     if (len(viewdevices) >= 1):
         iotdevlog={ "name": dev_name, "datetime": dtnow, "status":"updated" }
-        y = devconncol.insert_one(iotdevlog)
+        y = devconncol.insert(iotdevlog)
+        # y = devconncol.insert_one(iotdevlog)
         dev_name = "{} updated in DB".format(dev_name)
     else:
-        x = mycol.insert_one(iotdev)
+        x = mycol.insert(iotdev)
+        # x = mycol.insert_one(iotdev)
         iotdevlog={ "name": dev_name, "datetime": dtnow, "status":"new" }
-        y = devconncol.insert_one(iotdevlog)
+        y = devconncol.insert(iotdevlog)
+        # y = devconncol.insert_one(iotdevlog)
         dev_name = "{} device has been recorded!!".format(dev_name)
 
     # 'user': str(request.user)
