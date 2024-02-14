@@ -47,7 +47,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 error_message = f"Error executing command: {str(e)}\n{traceback.format_exc()}"
                 await self.send_error(error_message)
 
-            await asyncio.sleep(1)
+            # await asyncio.sleep(1)
 
     async def get_signal_info(self):
         output_signal_cmd = subprocess.run(
