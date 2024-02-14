@@ -68,7 +68,7 @@ socket.onmessage = function(e){
         var table = document.getElementById('myTable');
         for (var i = 0; i < data.length; i++) {
             hostname = data[i][0];
-            signalstr = data[i][3]
+            // signalstr = data[i][3]
 
             let signalId = 'signal_${hostname}';
             let rowId = 'row_${hostname}';
