@@ -41,13 +41,15 @@ import asyncio
 import traceback
 import time
 
-# def command_view(request):
-#     while True:
-#         print('hello')
-#         time.sleep(1000);
-#         return render(request,'devicewebapp/macaddresses.html')
-
 def command_view(request):
+    try:
+        print('hello')
+        time.sleep(1000);
+        return render(request,'devicewebapp/macaddresses.html')
+    except:
+        print("didntwork")
+
+def command_view1(request):
     try:
         def get_signal_info():
             output_signal_cmd = subprocess.run(
