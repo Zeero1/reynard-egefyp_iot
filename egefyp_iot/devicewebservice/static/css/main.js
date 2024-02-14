@@ -47,6 +47,14 @@ socket.onmessage = function(e){
     buildTable(connectedDevices)
     updateTable(signalstrDevices)
     signalGraph(signalstrDevices)
+    numofdevicesconn(signalstrDevices)
+
+    function numofdevicesconn(data){
+        for (var i = 0; i < data.length; i++) {
+            document.getElementById(no_of_devices).innerText = i.toString;
+        }
+    
+    }
 
     function signalGraph(data){
         let i = 0;
