@@ -50,6 +50,8 @@ import time
 def command_view(request):
     try:
         # signal_info = await get_signal_info()
+        get_signal_info
+        get_connected_devices(signal_info)
         signal_info = get_signal_info()
         # connected_devices = await get_connected_devices(signal_info)
         connected_devices = get_connected_devices(signal_info)
