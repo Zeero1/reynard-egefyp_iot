@@ -43,7 +43,7 @@ import traceback
 
 def command_view(request):
     print('hello')
-    return render(request,'devicewebapp/index.html')
+    return render(request,'devicewebapp/macaddresses.html')
 
 async def command_view1(request):
     while True:
