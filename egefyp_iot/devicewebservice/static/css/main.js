@@ -71,9 +71,10 @@ socket.onmessage = function(e){
             hostname = data[i][0];
             signalstr = data[i][3]
 
-            let rowId = `row_${hostname}`;
+            let signalId = 'signal_${hostname}';
+            let rowId = 'row_${hostname}';
             if (document.getElementById(rowId)){
-                document.getElementById(mac).innerText = 'hello';
+                document.getElementById(signalId).innerText = 'hello';
             }
         }
     }
@@ -94,10 +95,10 @@ socket.onmessage = function(e){
             if (!document.getElementById(rowId)) {
                 // If the row doesn't exist, create and append it
                 var row = `<tr id="${rowId}">
-                                <td id="hostname">${data[i][0]}</td>
-                                <td id="ip">${data[i][1]}</td>
-                                <td id="mac">${data[i][2]}</td>
-                                <td id="signal"></td>
+                                <td id="hostname_${hostname}">${data[i][0]}</td>
+                                <td id="ip_${hostname}">${data[i][1]}</td>
+                                <td id="mac_${hostname}">${data[i][2]}</td>
+                                <td id="signal_${hostname}"></td>
                         </tr>`;
                 table.innerHTML += row;
             }
