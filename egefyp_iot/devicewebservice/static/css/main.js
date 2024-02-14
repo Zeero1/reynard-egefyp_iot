@@ -74,7 +74,10 @@ socket.onmessage = function(e){
             let signalId = 'signal_${hostname}';
             let rowId = 'row_${hostname}';
             if (document.getElementById(rowId)){
-                document.getElementById(signalId).innerText = 'hello';
+                var row = `<tr id="${rowId}">
+                                <td id="signal_${hostname}"></td>
+                        </tr>`;
+                table.innerHTML += row;
             }
         }
     }
