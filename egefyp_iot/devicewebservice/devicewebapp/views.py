@@ -47,11 +47,12 @@ import time
 #         time.sleep(1000);
 #         return render(request,'devicewebapp/macaddresses.html')
 
-async def command_view(request):
-
+def command_view(request):
     try:
-        signal_info = await get_signal_info()
-        connected_devices = await get_connected_devices(signal_info)
+        # signal_info = await get_signal_info()
+        signal_info = get_signal_info()
+        # connected_devices = await get_connected_devices(signal_info)
+        connected_devices = get_connected_devices(signal_info)
         myclient = pymongo.MongoClient("mongodb://localhost:27017/")
         mydb = myclient["UIOT"]
         mycol = mydb["connectedDevices"]
@@ -95,9 +96,10 @@ async def command_view(request):
         error_message = f"Error executing command: {str(e)}\n{traceback.format_exc()}"
         # await send_error(error_message)
 
-    await asyncio.sleep(1)
+    time.sleep(1)
+    # await asyncio.sleep(1)
 
-    async def get_signal_info():
+    def get_signal_info():
         output_signal_cmd = subprocess.run(
             ["iw", "dev", "wlan1", "station", "dump"],
             capture_output=True,
@@ -121,7 +123,7 @@ async def command_view(request):
 
         return signal_list
 
-    async def get_connected_devices(signal_info):
+    def get_connected_devices(signal_info):
         arp_scan_output = subprocess.run(
             ["arp", "-a"],
             capture_output=True,
