@@ -49,7 +49,47 @@ import time
 
 def command_view(request):
     try:
-        print('hello')
+        def get_signal_info():
+            output_signal_cmd = subprocess.run(
+                ["iw", "dev", "wlan1", "station", "dump"],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            # Station 3c:9c:0f:61:3b:1d (on wlan1)
+            # signal:         -24 dBm
+
+
+            signal_lines = output_signal_cmd.stdout.splitlines()
+            signal_list = []
+            
+            for line in signal_lines:
+                line_strip = line.strip()
+                if "Station" in line_strip:
+                    mac_address = line_strip.split("Station ")[-1].split(" (")[0]
+                elif "signal" in line_strip:
+                    signal_strength = line_strip.split("signal:")[-1].strip().split(" ")[0]
+                    signal_list.append((mac_address, signal_strength))
+
+            return signal_list
+        def get_connected_devices():
+            arp_scan_output = subprocess.run(
+                ["arp", "-a"],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            # LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1
+
+            connected_devices = []
+            pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
+
+            for line in arp_scan_output.stdout.splitlines():
+                matches = pattern.findall(line)
+                if matches:
+                    connected_devices.append(matches[0])                    
+            return connected_devices
+
         # signal_info = await get_signal_info()
         signal_info = get_signal_info()
         # connected_devices = await get_connected_devices(signal_info)
@@ -100,47 +140,9 @@ def command_view(request):
     time.sleep(1)
     # await asyncio.sleep(1)
 
-    def get_signal_info():
-        output_signal_cmd = subprocess.run(
-            ["iw", "dev", "wlan1", "station", "dump"],
-            capture_output=True,
-            text=True,
-            check=True
-        )
-        # Station 3c:9c:0f:61:3b:1d (on wlan1)
-        # signal:         -24 dBm
 
 
-        signal_lines = output_signal_cmd.stdout.splitlines()
-        signal_list = []
-        
-        for line in signal_lines:
-            line_strip = line.strip()
-            if "Station" in line_strip:
-                mac_address = line_strip.split("Station ")[-1].split(" (")[0]
-            elif "signal" in line_strip:
-                signal_strength = line_strip.split("signal:")[-1].strip().split(" ")[0]
-                signal_list.append((mac_address, signal_strength))
 
-        return signal_list
-
-    def get_connected_devices():
-        arp_scan_output = subprocess.run(
-            ["arp", "-a"],
-            capture_output=True,
-            text=True,
-            check=True
-        )
-        # LAPTOP-1KKIANDS.byteacs.com (192.168.23.162) at 3c:9c:0f:61:3b:1d [ether] on wlan1
-
-        connected_devices = []
-        pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
-
-        for line in arp_scan_output.stdout.splitlines():
-            matches = pattern.findall(line)
-            if matches:
-                connected_devices.append(matches[0])                    
-        return connected_devices
     # try:
     #     for hostname, ip, mac in devices1:
     #         #adding device to Django ORD
