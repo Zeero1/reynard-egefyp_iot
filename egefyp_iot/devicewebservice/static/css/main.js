@@ -45,8 +45,9 @@ socket.onmessage = function(e){
     var signalstrDevices = data.signalstr_devices;
     
     buildTable(connectedDevices)
-    // updateTable(signalstrDevices)
+    updateTable(signalstrDevices)
     signalGraph(signalstrDevices)
+
     function signalGraph(data){
         let i = 0;
         for (let x of data){
@@ -64,6 +65,23 @@ socket.onmessage = function(e){
         }
     }
     
+    function updateTable(data){
+        for (var i = 0; i < data.length; i++) {
+            hostname = data[i][0];
+            signalstrength = data[i][3];
+            let rowId = `row_${hostname}`;
+
+            // Check if a row with the same ID already exists
+            if (document.getElementById(rowId)) {
+                var trElement = document.getElementById(rowId);
+                var tdElements = trElement.getElementsByTagName("td");
+                // Access the fourth td element (index 3)
+                var fourthTdElement = tdElements[3];
+                fourthTdElement.innerText = signalstrength;
+            }
+        }
+
+    }
 
     function buildTable(data) {
         var table = document.getElementById('myTable');
@@ -90,7 +108,6 @@ socket.onmessage = function(e){
                 table.innerHTML += row;
             }
             else{
-                console.log("Hello")
                 var trElement = document.getElementById(rowId);
                 var tdElements = trElement.getElementsByTagName("td");
                 // Access the fourth td element (index 3)
