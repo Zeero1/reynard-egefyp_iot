@@ -6,17 +6,25 @@ import traceback
 from channels.generic.websocket import AsyncWebsocketConsumer  
 from .views import *
 
-# from devicewebapp.models import Device
 
-# from asgiref.sync import sync_to_async
-
+import pymongo 
 class GraphConsumer(AsyncWebsocketConsumer):
     async def connect(self):
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mydb = myclient["UIOT"]
+        mycol = mydb["connectedDevices"]
         await self.accept()
         while True:
             try:
                 signal_info = await self.get_signal_info()
                 connected_devices = await self.get_connected_devices(signal_info)
+
+                for device in mycol.find():
+                    if device == connected_devices:
+                        pass
+                    else:
+                        mycol.insert(device)
+                        print("{} has been recorded!".format(device[0]))
                 # try:
                 #     for hostname, ip, mac in connected_devices:
                 #         #adding device to Django ORD
