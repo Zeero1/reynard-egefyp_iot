@@ -40,7 +40,7 @@ from django.contrib import messages
 # import asyncio
 # from asgiref.sync import sync_to_async
 
-def testview(request):
+def command_view(request):
     channel_layer = get_channel_layer()
 
     async_to_sync(channel_layer.group_send)(
