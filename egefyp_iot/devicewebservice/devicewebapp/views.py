@@ -43,7 +43,7 @@ import time
 
 def command_view(request):
     while True:
-        print('hello')
+        print('hello1223')
         return render(request,'devicewebapp/macaddresses.html')
 
 
