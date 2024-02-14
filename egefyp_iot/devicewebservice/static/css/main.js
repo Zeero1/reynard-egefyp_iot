@@ -8,7 +8,7 @@ console.log("Starting Webservice");
 var canvas = document.getElementById('myChart'),
     ctx = canvas.getContext('2d'),
     startingData = {
-        labels: [10,9,8,7,6,5,4,3,2,1,0],
+        labels: [],
         datasets: [
         {   
             label: 'Device #1',
