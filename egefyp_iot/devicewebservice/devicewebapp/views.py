@@ -49,21 +49,20 @@ import time
 
 def command_view(request):
     try:
+        print('hello')
         # signal_info = await get_signal_info()
-        get_signal_info
-        get_connected_devices(signal_info)
         signal_info = get_signal_info()
         # connected_devices = await get_connected_devices(signal_info)
-        connected_devices = get_connected_devices(signal_info)
-        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-        mydb = myclient["UIOT"]
-        mycol = mydb["connectedDevices"]
-        # for device in mycol.find():
-        #     if device == connected_devices:
-        #         pass
-        #     else:
-        mycol.insert(device)
-        print("{} has been recorded!".format(device[0]))
+        connected_devices = get_connected_devices()
+        # myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        # mydb = myclient["UIOT"]
+        # mycol = mydb["connectedDevices"]
+        # # for device in mycol.find():
+        # #     if device == connected_devices:
+        # #         pass
+        # #     else:
+        # mycol.insert(device)
+        # print("{} has been recorded!".format(device[0]))
         # try:
         #     for hostname, ip, mac in connected_devices:
         #         #adding device to Django ORD
@@ -125,7 +124,7 @@ def command_view(request):
 
         return signal_list
 
-    def get_connected_devices(signal_info):
+    def get_connected_devices():
         arp_scan_output = subprocess.run(
             ["arp", "-a"],
             capture_output=True,
@@ -137,7 +136,6 @@ def command_view(request):
         connected_devices = []
         pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
 
-        # for signal in signal_info:
         for line in arp_scan_output.stdout.splitlines():
             matches = pattern.findall(line)
             if matches:
