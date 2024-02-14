@@ -39,6 +39,11 @@ from django.contrib import messages
 # from devicewebapp import devices1
 # import asyncio
 # from asgiref.sync import sync_to_async
+from django.views.generic import TemplateView
+from django.http import HttpResponse
+
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 def command_view(request):
     channel_layer = get_channel_layer()
