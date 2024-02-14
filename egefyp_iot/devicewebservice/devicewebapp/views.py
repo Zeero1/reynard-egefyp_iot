@@ -40,7 +40,12 @@ import subprocess
 import asyncio
 import traceback
 
-async def command_view(request):
+
+def command_view(request):
+    print('hello')
+    return render(request,'devicewebapp/index.html')
+
+async def command_view1(request):
     while True:
         try:
             signal_info = await get_signal_info()
