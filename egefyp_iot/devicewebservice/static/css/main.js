@@ -73,6 +73,8 @@ socket.onmessage = function(e){
             ip_address = data[i][1];
             mac_address = data[i][2];
             
+
+            
             // Generate a unique ID for the row
             let rowId = `row_${hostname}`;
 
@@ -80,18 +82,21 @@ socket.onmessage = function(e){
             if (!document.getElementById(rowId)) {
                 // If the row doesn't exist, create and append it
                 var row = `<tr id="${rowId}">
-                                <td id="hostname">${data[i][0]}</td>
-                                <td id="ip">${data[i][1]}</td>
-                                <td id="mac">${data[i][2]}</td>
+                                <td id="hostname">${hostname}</td>
+                                <td id="ip">${ip_address}</td>
+                                <td id="mac">${mac_address}</td>
                                 <td id="signal"></td>
                         </tr>`;
                 table.innerHTML += row;
             }
-            // else{
-            //     console.log("Hello")
-            //     let signalId = 'signal_${hostname}';
-            //     document.getElementById(signalId).innerText = 'hello';
-            // }
+            else{
+                console.log("Hello")
+                var trElement = document.getElementById(rowId);
+                var tdElements = trElement.getElementsByTagName("td");
+                // Access the fourth td element (index 3)
+                var fourthTdElement = tdElements[3];
+                fourthTdElement.innerText = 'hello';
+            }
         }
     }
 
