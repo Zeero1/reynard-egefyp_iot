@@ -40,18 +40,17 @@ from django.contrib import messages
 # import asyncio
 # from asgiref.sync import sync_to_async
 
-def command_view(request):
+def testview(request):
     channel_layer = get_channel_layer()
 
-    async_to_sync(channel_layer.group_send(
+    async_to_sync(channel_layer.group_send)(
         'kafka',
         {
             'type': 'kafka.message',
             'message': 'Test message'
         }
-    ))
+    )
     return HttpResponse('<p>Done</p>')
-
 def command_views(request):
     myclient = pymongo.MongoClient("mongodb://localhost:27017/")
     mydb = myclient["UIOT"]
