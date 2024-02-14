@@ -75,7 +75,7 @@ socket.onmessage = function(e){
             let rowId = 'row_${hostname}';
             if (document.getElementById(rowId)){
                 var row = `<tr id="${rowId}">
-                                <td id="signal_${hostname}"></td>
+                                <td id="signal_${hostname}">hello</td>
                         </tr>`;
                 table.innerHTML += row;
             }
@@ -101,7 +101,6 @@ socket.onmessage = function(e){
                                 <td id="hostname_${hostname}">${data[i][0]}</td>
                                 <td id="ip_${hostname}">${data[i][1]}</td>
                                 <td id="mac_${hostname}">${data[i][2]}</td>
-                                <td id="signal_${hostname}"></td>
                         </tr>`;
                 table.innerHTML += row;
             }
