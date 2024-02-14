@@ -2,7 +2,6 @@
 
 //Initialize all variables at the top
 registeredDevices = [];
-let ipExists = false;
 console.log("Starting Webservice");
 let rowIdCounter = 0;
 var canvas = document.getElementById('myChart'),
@@ -86,9 +85,7 @@ socket.onmessage = function(e){
             mac_address = data[i][2];
             
             // Generate a unique ID for the row
-            let rowId = `row_${rowIdCounter}`;
-            // Increment the counter for the next ID
-            rowIdCounter++;
+            let rowId = `row_${hostname}`;
 
             // Check if a row with the same ID already exists
             if (!document.getElementById(rowId)) {
