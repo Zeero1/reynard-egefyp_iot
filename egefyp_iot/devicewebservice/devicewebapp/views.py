@@ -51,7 +51,7 @@ def command_view(request):
         #         pass
         #     else:
         mycol.insert('hello')
-        print("{} has been recorded!".format('hello'))
+        # print("{} has been recorded!".format('hello'))
         return render(request,'devicewebapp/macaddresses.html')
 
 
