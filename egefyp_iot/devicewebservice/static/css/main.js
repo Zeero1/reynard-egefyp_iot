@@ -46,8 +46,7 @@ socket.onmessage = function(e){
     
     buildTable(connectedDevices)
     updateTable(signalstrDevices)
-
-    signalGraph(signalstrDevices)
+    signalGraph(connectedDevices)
     function signalGraph(data){
         let i = 0;
         for (let x of data){
