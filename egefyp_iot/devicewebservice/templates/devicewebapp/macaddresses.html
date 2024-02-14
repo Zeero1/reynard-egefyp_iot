@@ -7,7 +7,7 @@
             display: grid;
             grid-template-columns: auto auto auto;
             gap: 10px;
-            background-color: #c5cacf;
+            background-color: #dbe1e7;
             padding: 10px;
           }
           .grid-container > div {
@@ -52,12 +52,12 @@
         <div class="item2" style="overflow-y: auto; height: 420x;">
             <!-- for hostname, ip_address, mac in connected_devices -->
             <!-- name of variable must be in order of the index of data in the list,eg. hostname = connected_devices[0] -->
-            <table class="table table-striped" >
-                <tr  class="bg-info">
+            <table class="table table-striped" style="align-items: center;">
+                <tr  class="thead-dark"">
                     <th>Host</th>
                     <th>IP Address</th>
                     <th>MAC Address</th>
-                    <th>Signal Strength</th>
+                    <th>Signal (dBm)</th>
                 </tr>
             
                 <tbody id="myTable">
