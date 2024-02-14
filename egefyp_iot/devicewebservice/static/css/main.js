@@ -4,7 +4,7 @@
 registeredDevices = [];
 let ipExists = false;
 console.log("Starting Webservice");
-
+let rowIdCounter = 0;
 var canvas = document.getElementById('myChart'),
     ctx = canvas.getContext('2d'),
     startingData = {
@@ -75,7 +75,7 @@ socket.onmessage = function(e){
     }
 
 // Initialize a counter for generating unique IDs
-    let rowIdCounter = 0;
+    
 
     function buildTable(data) {
         var table = document.getElementById('myTable');
