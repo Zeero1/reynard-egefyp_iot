@@ -42,8 +42,16 @@ import traceback
 import time
 
 def command_view(request):
-    while True:
         print('hello1223')
+        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        mydb = myclient["UIOT"]
+        mycol = mydb["connectedDevices"]
+        # for device in mycol.find():
+        #     if device == connected_devices:
+        #         pass
+        #     else:
+        mycol.insert(device)
+        print("{} has been recorded!".format(device[0]))
         return render(request,'devicewebapp/macaddresses.html')
 
 
