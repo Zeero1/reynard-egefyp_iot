@@ -8,7 +8,7 @@ console.log("Starting Webservice");
 var canvas = document.getElementById('myChart'),
     ctx = canvas.getContext('2d'),
     startingData = {
-        labels: [],
+        labels: [10,9,8,7,6,5,4,3,2,1,0],
         datasets: [
         {   
             label: 'Device #1',
@@ -53,7 +53,9 @@ socket.onmessage = function(e){
     // }
 
     //[('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d')]
+    
     buildTable(connectedDevices)
+
     signalGraph(signalstrDevices)
     function signalGraph(data){
         let i = 0;
@@ -68,30 +70,57 @@ socket.onmessage = function(e){
             newGraphxLabel.shift(); // Remove the oldest entry in the x-axis (time)
             newGraphxLabel.push(timeString);
             myLiveChart.update();
-            
             i++;
         }
     }
 
-    
-    function buildTable(data){
-		var table = document.getElementById('myTable')
+// Initialize a counter for generating unique IDs
+    let rowIdCounter = 0;
 
-		for (var i = 0; i < data.length; i++){
-			hostname = data[i][0];
+    function buildTable(data) {
+        var table = document.getElementById('myTable');
+
+        for (var i = 0; i < data.length; i++) {
+            hostname = data[i][0];
             ip_address = data[i][1];
             mac_address = data[i][2];
             
-            var row = `<tr>
-							<td>${data[i][0]}</td>
-							<td>${data[i][1]}</td>
-							<td>${data[i][2]}</td>
-					  </tr>`
-            table.innerHTML += row;
+            // Generate a unique ID for the row
+            let rowId = `row_${rowIdCounter}`;
+            // Increment the counter for the next ID
+            rowIdCounter++;
+
+            // Check if a row with the same ID already exists
+            if (!document.getElementById(rowId)) {
+                // If the row doesn't exist, create and append it
+                var row = `<tr id="${rowId}">
+                                <td>${data[i][0]}</td>
+                                <td>${data[i][1]}</td>
+                                <td>${data[i][2]}</td>
+                        </tr>`;
+                table.innerHTML += row;
+            }
+        }
+    }
+
+    // function buildTable(data){
+	// 	var table = document.getElementById('myTable')
+
+	// 	for (var i = 0; i < data.length; i++){
+	// 		hostname = data[i][0];
+    //         ip_address = data[i][1];
+    //         mac_address = data[i][2];
             
-		}
+    //         var row = `<tr>
+	// 						<td>${data[i][0]}</td>
+	// 						<td>${data[i][1]}</td>
+	// 						<td>${data[i][2]}</td>
+	// 				  </tr>`
+    //         table.innerHTML += row;
+            
+	// 	}
         
-	}
+	// }
 
 socket.onclose = function(event) {
     console.error("WebSocket closed with code: " + event.code);
