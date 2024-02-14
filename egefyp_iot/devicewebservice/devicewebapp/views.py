@@ -44,7 +44,6 @@ import time
 def command_view(request):
     while True:
         print('hello')
-        time.sleep(1)
         return render(request,'devicewebapp/macaddresses.html')
 
 
