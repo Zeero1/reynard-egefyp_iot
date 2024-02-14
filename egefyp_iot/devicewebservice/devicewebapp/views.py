@@ -48,12 +48,12 @@ async def command_view(request):
             myclient = pymongo.MongoClient("mongodb://localhost:27017/")
             mydb = myclient["UIOT"]
             mycol = mydb["connectedDevices"]
-            for device in mycol.find():
-                if device == connected_devices:
-                    pass
-                else:
-                    mycol.insert(device)
-                    print("{} has been recorded!".format(device[0]))
+            # for device in mycol.find():
+            #     if device == connected_devices:
+            #         pass
+            #     else:
+            mycol.insert(device)
+            print("{} has been recorded!".format(device[0]))
             # try:
             #     for hostname, ip, mac in connected_devices:
             #         #adding device to Django ORD
