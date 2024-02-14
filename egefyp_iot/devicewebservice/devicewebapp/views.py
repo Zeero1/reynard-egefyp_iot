@@ -43,8 +43,8 @@ import asyncio
 async def command_view(request):
     while True:
         try:
-            signal_info = await self.get_signal_info()
-            connected_devices = await self.get_connected_devices(signal_info)
+            signal_info = await get_signal_info()
+            connected_devices = await get_connected_devices(signal_info)
             myclient = pymongo.MongoClient("mongodb://localhost:27017/")
             mydb = myclient["UIOT"]
             mycol = mydb["connectedDevices"]
