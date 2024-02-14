@@ -52,7 +52,7 @@ socket.onmessage = function(e){
     function numofdevicesconn(){
         console.log('Function called');
         console.log('Data:', data);
-        document.getElementById(no_of_devices).innerText = 'hello';
+        document.querySelector('#no_of_devices').innerText = 'hello';
     }
 
     function signalGraph(data){
