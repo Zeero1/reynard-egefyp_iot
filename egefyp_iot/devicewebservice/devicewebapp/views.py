@@ -59,7 +59,7 @@ def index(request):
 
 @login_required
 def viewdevices(request):
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    myclient = pymongo.MongoClient("mongodb://192.168.23.1:27017/")
     mydb = myclient["UIOT"]
     mycol = mydb["Devices"]
     devconncol = mydb["DeviceConns"]
@@ -86,7 +86,7 @@ def devices(request,param1):
 
     iotdev = { "name": dev_name, "datetime": dtnow }
 
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    myclient = pymongo.MongoClient("mongodb://192.168.23.1:27017/")
     mydb = myclient["UIOT"]
     mycol = mydb["Devices"]
     devconncol = mydb["DeviceConns"]
