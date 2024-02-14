@@ -62,7 +62,13 @@ socket.onmessage = function(e){
             newGraphData.shift();
             dBm = -x[3];
             newGraphData.push(dBm);
+            var currentTime = new Date(); // Get the current time
+            var timeString = currentTime.toLocaleTimeString(); // Format the time as a string
+            newGraphxLabel = myLiveChart.data.labels;
+            newGraphxLabel.shift(); // Remove the oldest entry in the x-axis (time)
+            newGraphxLabel.push(timeString);
             myLiveChart.update();
+            
             i++;
         }
     }
@@ -127,11 +133,11 @@ socket.onclose = function(event) {
     
     
 
-    /*var currentTime = new Date(); // Get the current time
-    var timeString = currentTime.toLocaleTimeString(); // Format the time as a string
-    newGraphxLabel = myLiveChart.data.labels;
-    newGraphxLabel.shift(); // Remove the oldest entry in the x-axis (time)
-    newGraphxLabel.push(timeString);*/
+    // var currentTime = new Date(); // Get the current time
+    // var timeString = currentTime.toLocaleTimeString(); // Format the time as a string
+    // newGraphxLabel = myLiveChart.data.labels;
+    // newGraphxLabel.shift(); // Remove the oldest entry in the x-axis (time)
+    // newGraphxLabel.push(timeString);
     
     // Change the value of the text to randint
     //document.querySelector('#app').innerText = signal_list;
