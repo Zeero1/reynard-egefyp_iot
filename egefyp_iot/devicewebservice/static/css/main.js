@@ -94,10 +94,10 @@ socket.onmessage = function(e){
             if (!document.getElementById(rowId)) {
                 // If the row doesn't exist, create and append it
                 var row = `<tr id="${rowId}">
-                                <td id='hostname'>${data[i][0]}</td>
-                                <td id='ip'>${data[i][1]}</td>
-                                <td id='mac'>${data[i][2]}</td>
-                                <td id='signal'></td>
+                                <td id="hostname">${data[i][0]}</td>
+                                <td id="ip">${data[i][1]}</td>
+                                <td id="mac">${data[i][2]}</td>
+                                <td id="signal"></td>
                         </tr>`;
                 table.innerHTML += row;
             }
