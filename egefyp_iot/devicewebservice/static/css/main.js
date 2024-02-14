@@ -80,39 +80,21 @@ socket.onmessage = function(e){
             if (!document.getElementById(rowId)) {
                 // If the row doesn't exist, create and append it
                 var row = `<tr id="${rowId}">
-                                <td id="hostname_${hostname}">${data[i][0]}</td>
-                                <td id="ip_${hostname}">${data[i][1]}</td>
-                                <td id="mac_${hostname}">${data[i][2]}</td>
-                                <td id="signal_${hostname}"></td>
+                                <td id="hostname">${data[i][0]}</td>
+                                <td id="ip">${data[i][1]}</td>
+                                <td id="mac">${data[i][2]}</td>
+                                <td id="signal"></td>
                         </tr>`;
                 table.innerHTML += row;
             }
-            else{
-                console.log("Hello")
-                let signalId = 'signal_${hostname}';
-                document.getElementById(signalId).innerText = 'hello';
-            }
+            // else{
+            //     console.log("Hello")
+            //     let signalId = 'signal_${hostname}';
+            //     document.getElementById(signalId).innerText = 'hello';
+            // }
         }
     }
 
-    // function buildTable(data){
-	// 	var table = document.getElementById('myTable')
-
-	// 	for (var i = 0; i < data.length; i++){
-	// 		hostname = data[i][0];
-    //         ip_address = data[i][1];
-    //         mac_address = data[i][2];
-            
-    //         var row = `<tr>
-	// 						<td>${data[i][0]}</td>
-	// 						<td>${data[i][1]}</td>
-	// 						<td>${data[i][2]}</td>
-	// 				  </tr>`
-    //         table.innerHTML += row;
-            
-	// 	}
-        
-	// }
 
 socket.onclose = function(event) {
     console.error("WebSocket closed with code: " + event.code);
