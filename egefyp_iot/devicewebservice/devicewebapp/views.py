@@ -43,12 +43,8 @@ import time
 
 def command_view(request):
     while True:
-        try:
-            print('hello')
-            time.sleep(1)
-            
-        except:
-            print('error')
+        print('hello')
+        time.sleep(1)
         return render(request,'devicewebapp/macaddresses.html')
 
 
