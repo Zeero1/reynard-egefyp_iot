@@ -44,16 +44,8 @@ socket.onmessage = function(e){
     var signalList = data.signal_list;
     var signalstrDevices = data.signalstr_devices;
     
-    // for (let i in connectedDevices) {
-    //     if (!registeredDevices.includes(connectedDevices[i])){
-    //         registeredDevices.push(connectedDevices[i]);
-    //         console.log(registeredDevices)
-    //     }
-    // }
-
-    //[('LAPTOP-1KKIANDS', '192.168.23.162', '3c:9c:0f:61:3b:1d')]
-    
     buildTable(connectedDevices)
+    updateTable(signalstrDevices)
 
     signalGraph(signalstrDevices)
     function signalGraph(data){
@@ -73,7 +65,17 @@ socket.onmessage = function(e){
         }
     }
 
-// Initialize a counter for generating unique IDs
+    function updateTable(data){
+        var table = document.getElementById('myTable');
+        for (var i = 0; i < data.length; i++) {
+            hostname = data[i][0];
+            signalstr = data[i][3]
+
+            let rowId = `row_${hostname}`;
+            if (document.getElementById(rowId)){
+                document.getElementById(signal).innerText = data[i][3];
+            }
+    }
     
 
     function buildTable(data) {
@@ -91,9 +93,10 @@ socket.onmessage = function(e){
             if (!document.getElementById(rowId)) {
                 // If the row doesn't exist, create and append it
                 var row = `<tr id="${rowId}">
-                                <td>${data[i][0]}</td>
-                                <td>${data[i][1]}</td>
-                                <td>${data[i][2]}</td>
+                                <td id='hostname'>${data[i][0]}</td>
+                                <td id='ip'>${data[i][1]}</td>
+                                <td id='mac'>${data[i][2]}</td>
+                                <td id='signal'></td>
                         </tr>`;
                 table.innerHTML += row;
             }
