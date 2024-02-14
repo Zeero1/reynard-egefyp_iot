@@ -75,6 +75,7 @@ socket.onmessage = function(e){
             if (document.getElementById(rowId)){
                 document.getElementById(signal).innerText = data[i][3];
             }
+        }
     }
     
 
