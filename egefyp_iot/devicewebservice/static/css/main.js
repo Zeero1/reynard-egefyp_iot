@@ -108,16 +108,9 @@ socket.onmessage = function(e){
                                 <td id="hostname">${hostname}</td>
                                 <td id="ip">${ip_address}</td>
                                 <td id="mac">${mac_address}</td>
-                                <td id="signal"></td>
+                                <td id="signal">0</td>
                         </tr>`;
                 table.innerHTML += row;
-            }
-            else{
-                var trElement = document.getElementById(rowId);
-                var tdElements = trElement.getElementsByTagName("td");
-                // Access the fourth td element (index 3)
-                var fourthTdElement = tdElements[3];
-                fourthTdElement.innerText = 'hello';
             }
         }
     }
