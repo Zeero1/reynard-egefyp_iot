@@ -38,7 +38,7 @@ from django.contrib import messages
 # from devicewebapp.models import Token
 import subprocess
 import asyncio
-
+import traceback
 
 async def command_view(request):
     while True:
