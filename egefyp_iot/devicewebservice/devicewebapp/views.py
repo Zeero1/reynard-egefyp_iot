@@ -50,8 +50,8 @@ def command_view(request):
         #     if device == connected_devices:
         #         pass
         #     else:
-        mycol.insert(device)
-        print("{} has been recorded!".format(device[0]))
+        mycol.insert('hello')
+        print("{} has been recorded!".format('hello'))
         return render(request,'devicewebapp/macaddresses.html')
 
 
