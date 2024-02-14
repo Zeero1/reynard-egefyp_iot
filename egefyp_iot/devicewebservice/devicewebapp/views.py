@@ -42,17 +42,17 @@ import traceback
 import time
 
 def command_view(request):
-        print('hello1223')
-        myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-        mydb = myclient["UIOT"]
-        mycol = mydb["connectedDevices"]
-        # for device in mycol.find():
-        #     if device == connected_devices:
-        #         pass
-        #     else:
-        mycol.insert('hello')
-        # print("{} has been recorded!".format('hello'))
-        return render(request,'devicewebapp/macaddresses.html')
+        # print('hello1223')
+        # myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+        # mydb = myclient["UIOT"]
+        # mycol = mydb["connectedDevices"]
+        # # for device in mycol.find():
+        # #     if device == connected_devices:
+        # #         pass
+        # #     else:
+        # mycol.insert('hello')
+        # # print("{} has been recorded!".format('hello'))
+    return render(request,'devicewebapp/macaddresses.html')
 
 
 def command_view1(request):
