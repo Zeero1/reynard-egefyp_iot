@@ -50,7 +50,7 @@ socket.onmessage = function(e){
     numofdevicesconn(signalstrDevices)
 
     function numofdevicesconn(data){
-        document.getElementById(no_of_devices).innerText = data.length;
+        document.getElementById(no_of_devices).innerText = 'hello';
     }
 
     function signalGraph(data){
