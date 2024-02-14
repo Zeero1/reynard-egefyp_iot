@@ -42,7 +42,8 @@ import traceback
 
 
 def command_view(request):
-    print('hello')
+    while True:
+        print('hello')
     return render(request,'devicewebapp/macaddresses.html')
 
 async def command_view1(request):
