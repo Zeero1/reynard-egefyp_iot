@@ -73,7 +73,7 @@ socket.onmessage = function(e){
 
             let rowId = `row_${hostname}`;
             if (document.getElementById(rowId)){
-                document.getElementById(signal).innerText = data[i][3];
+                document.getElementById(mac).innerText = 'hello';
             }
         }
     }
