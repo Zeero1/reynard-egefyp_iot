@@ -82,15 +82,15 @@ async def command_view(request):
                 'signalstr_devices': signalstr_devices
             }
 
-            await self.send_message(message_data)
+            # await send_message(message_data)
 
         except Exception as e:
             error_message = f"Error executing command: {str(e)}\n{traceback.format_exc()}"
-            await self.send_error(error_message)
+            # await send_error(error_message)
 
         await asyncio.sleep(1)
 
-        async def get_signal_info(self):
+        async def get_signal_info():
             output_signal_cmd = subprocess.run(
                 ["iw", "dev", "wlan1", "station", "dump"],
                 capture_output=True,
@@ -114,7 +114,7 @@ async def command_view(request):
 
             return signal_list
 
-        async def get_connected_devices(self, signal_info):
+        async def get_connected_devices(signal_info):
             arp_scan_output = subprocess.run(
                 ["arp", "-a"],
                 capture_output=True,
