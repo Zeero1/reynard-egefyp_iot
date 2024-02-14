@@ -49,10 +49,8 @@ socket.onmessage = function(e){
     signalGraph(signalstrDevices)
     numofdevicesconn(signalstrDevices)
 
-    function numofdevicesconn(){
-        console.log('Function called');
-        console.log('Data:', data);
-        document.querySelector('#no_of_devices').innerText = 'hello';
+    function numofdevicesconn(data){
+        document.querySelector('#no_of_devices').innerText = data.length;
     }
 
     function signalGraph(data){
