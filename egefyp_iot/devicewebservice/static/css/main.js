@@ -47,11 +47,11 @@ socket.onmessage = function(e){
     buildTable(connectedDevices)
     updateTable(signalstrDevices)
     signalGraph(signalstrDevices)
-    // numofdevicesconn(signalstrDevices)
-    document.getElementById(no_of_devices).innerText = 'hello';
-    // function numofdevicesconn(data){
-    //     document.getElementById(no_of_devices).innerText = 'hello';
-    // }
+    numofdevicesconn(signalstrDevices)
+
+    function numofdevicesconn(data){
+        document.getElementById('no_of_devices').innerText = 'hello';
+    }
 
     function signalGraph(data){
         let i = 0;
