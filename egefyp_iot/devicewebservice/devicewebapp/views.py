@@ -141,7 +141,7 @@ async def command_view(request):
                 
         # except Exception as error:
         #     print("An error occurred:", type(error).__name__, "–", error)
-        return render(request,'devicewebapp/macaddresses.html',context={})
+    return render(request,'devicewebapp/macaddresses.html',context={})
 
 # Create your views here.
 def index(request):
