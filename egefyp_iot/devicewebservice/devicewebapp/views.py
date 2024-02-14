@@ -40,8 +40,29 @@ from django.contrib import messages
 # import asyncio
 # from asgiref.sync import sync_to_async
 
-
 def command_view(request):
+    channel_layer = get_channel_layer()
+
+    async_to_sync(channel_layer.group_send(
+        'kafka',
+        {
+            'type': 'kafka.message',
+            'message': 'Test message'
+        }
+    ))
+    return HttpResponse('<p>Done</p>')
+
+def command_views(request):
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["UIOT"]
+    mycol = mydb["connectedDevices"]
+    for device in mycol.find():
+        if device == connected_devices:
+            pass
+        else:
+            mycol.insert(device)
+            print("{} has been recorded!".format(device[0]))
+    
     # try:
     #     for hostname, ip, mac in devices1:
     #         #adding device to Django ORD
