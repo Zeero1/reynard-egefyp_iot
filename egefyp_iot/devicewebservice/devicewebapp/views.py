@@ -39,12 +39,13 @@ from django.contrib import messages
 import subprocess
 import asyncio
 import traceback
-
+import time
 
 def command_view(request):
     while True:
         print('hello')
-    return render(request,'devicewebapp/macaddresses.html')
+        time.sleep(1000);
+        return render(request,'devicewebapp/macaddresses.html')
 
 async def command_view1(request):
     while True:
