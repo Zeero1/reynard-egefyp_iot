@@ -45,8 +45,8 @@ socket.onmessage = function(e){
     var signalstrDevices = data.signalstr_devices;
     
     buildTable(connectedDevices)
-    updateTable(signalstrDevices)
-    signalGraph(connectedDevices)
+    // updateTable(signalstrDevices)
+    signalGraph(signalstrDevices)
     function signalGraph(data){
         let i = 0;
         for (let x of data){
@@ -61,23 +61,6 @@ socket.onmessage = function(e){
             newGraphxLabel.push(timeString);
             myLiveChart.update();
             i++;
-        }
-    }
-
-    function updateTable(data){
-        var table = document.getElementById('myTable');
-        for (var i = 0; i < data.length; i++) {
-            hostname = data[i][0];
-            // signalstr = data[i][3]
-
-            let signalId = 'signal_${hostname}';
-            let rowId = 'row_${hostname}';
-            if (document.getElementById(rowId)){
-                var row = `<tr id="${rowId}">
-                                <td id="signal_${hostname}">hello</td>
-                        </tr>`;
-                table.innerHTML += row;
-            }
         }
     }
     
@@ -100,8 +83,14 @@ socket.onmessage = function(e){
                                 <td id="hostname_${hostname}">${data[i][0]}</td>
                                 <td id="ip_${hostname}">${data[i][1]}</td>
                                 <td id="mac_${hostname}">${data[i][2]}</td>
+                                <td id="signal_${hostname}"></td>
                         </tr>`;
                 table.innerHTML += row;
+            }
+            else{
+                console.log("Hello")
+                let signalId = 'signal_${hostname}';
+                document.getElementById(signalId).innerText = 'hello';
             }
         }
     }
