@@ -73,7 +73,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
         return signal_list
 
-    async def get_connected_devices(self, signal_info):
+    async def get_connected_devices(self):
         arp_scan_output = subprocess.run(
             ["arp", "-a"],
             capture_output=True,

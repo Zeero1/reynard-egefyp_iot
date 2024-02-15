@@ -80,9 +80,25 @@ socket.onmessage = function(e){
             if (document.getElementById(rowId)) {
                 var trElement = document.getElementById(rowId);
                 var tdElements = trElement.getElementsByTagName("td");
+
+                // Access the first td element (index 0)
+                var firstTdElement = tdElements[0];
+            
+                // Set inner HTML of the first td element to the desired image tag
+                firstTdElement.innerHTML = '<img src="/static/green-dot-icon.png" alt="Online">';
+
                 // Access the fourth td element (index 3)
-                var fourthTdElement = tdElements[3];
-                fourthTdElement.innerText = signalstrength;
+                var fifthTdElement = tdElements[4];
+                fifthTdElement.innerText = signalstrength;
+            }
+            else{
+                var tdElements = trElement.getElementsByTagName("td");
+
+                // Access the first td element (index 0)
+                var firstTdElement = tdElements[0];
+            
+                // Set inner HTML of the first td element to the desired image tag
+                firstTdElement.innerHTML = '<img src="/static/red-dot-icon.png" alt="Offline">';
             }
         }
 
@@ -105,6 +121,7 @@ socket.onmessage = function(e){
             if (!document.getElementById(rowId)) {
                 // If the row doesn't exist, create and append it
                 var row = `<tr id="${rowId}">
+                                <td id="status"><img src="/static/green-dot-icon.png" alt="Online"></td>
                                 <td id="hostname">${hostname}</td>
                                 <td id="ip">${ip_address}</td>
                                 <td id="mac">${mac_address}</td>
@@ -120,50 +137,10 @@ socket.onclose = function(event) {
     console.error("WebSocket closed with code: " + event.code);
 };
     
-
-
-    /*for (let i in registeredDevices) {
-        if (!registeredDevices.includes(connectedDevices[i])){
-            console.log(connectedDevices[i]);
-            registeredDevices.push(connectedDevices[i]);
-            console.log(registeredDevices.length);
-            console.log(registeredDevices);
-        }
-        else{
-            // Set the flag to true if IP exists
-            ipExists = true;       
-        }
-    }
-
-    if (ipExists) {
-        console.log("All IPs are unique, create table");
-        if (tableContainer.childNodes.length === 0) { 
-//ensures that the table is created only once, even if multiple messages are received with the same connected devices.
-            tableContainer.appendChild(createTable());
-            ipExists = false;
-        }
-    }*/
-    
-    
-
-    
-
-
     // Use the data as needed
     //console.log('Connected Devices:', connectedDevices);
     //console.log('Signal List:', signalList);
 
-    
-    
-
-    // var currentTime = new Date(); // Get the current time
-    // var timeString = currentTime.toLocaleTimeString(); // Format the time as a string
-    // newGraphxLabel = myLiveChart.data.labels;
-    // newGraphxLabel.shift(); // Remove the oldest entry in the x-axis (time)
-    // newGraphxLabel.push(timeString);
-    
-    // Change the value of the text to randint
-    //document.querySelector('#app').innerText = signal_list;
 }
 var myLiveChart = new Chart(ctx, {type: 'line', data: startingData, options: {
     animation: {duration: 15},
