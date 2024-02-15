@@ -87,7 +87,7 @@ socket.onmessage = function(e){
                 var firstTdElement = tdElements[0];
             
                 // Set inner HTML of the first td element to the desired image tag
-                firstTdElement.innerHTML = '<img src="/static/green-dot-icon.png" alt="Online" width="100%" height="100%">';
+                firstTdElement.innerHTML = '<img src="/static/green-dot-icon.png" alt="Online" width="20px" height="20px">';
 
                 // Access the fourth td element (index 3)
                 var fifthTdElement = tdElements[4];
@@ -100,7 +100,7 @@ socket.onmessage = function(e){
                 var firstTdElement = tdElements[0];
             
                 // Set inner HTML of the first td element to the desired image tag
-                firstTdElement.innerHTML = '<img src="/static/red-dot-icon.png" alt="Offline" width="100%" height="100%">';
+                firstTdElement.innerHTML = '<img src="/static/red-dot-icon.png" alt="Offline" width="20px" height="20px">';
             }
         }
 
@@ -123,7 +123,7 @@ socket.onmessage = function(e){
             if (!document.getElementById(rowId)) {
                 // If the row doesn't exist, create and append it
                 var row = `<tr id="${rowId}">
-                                <td id="status"><img src="/static/green-dot-icon.png" alt="Online" width="100%" height="100%"></td>
+                                <td id="status"><img src="/static/green-dot-icon.png" alt="Online" width="20px" height="20px"></td>
                                 <td id="hostname">${hostname}</td>
                                 <td id="ip">${ip_address}</td>
                                 <td id="mac">${mac_address}</td>
