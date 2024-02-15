@@ -119,12 +119,26 @@ socket.onmessage = function(e){
                 // Access the first td element (index 0)
                 var firstTdElement = tdElements[0];
             
-                // Set inner HTML of the first td element to the desired image tag
+                // Set inner HTML of the first td element to the online image 
                 firstTdElement.innerHTML = '<img src="/static/green-dot-icon.png" alt="Online" width="20px" height="20px">';
 
                 // Access the fourth td element (index 3)
                 var fifthTdElement = tdElements[4];
                 fifthTdElement.innerText = signalstrength;
+            }
+            else{
+                for (let x of registeredDevices){
+                    if (x[1] == "Offline"){
+                        let rowId = `row_${x[0]}`;
+                        var trElement = document.getElementById(rowId);
+                        var tdElements = trElement.getElementsByTagName("td");
+                        // Access the first td element (index 0)
+                        var firstTdElement = tdElements[0];
+            
+                        // Set inner HTML of the first td element to the offline image 
+                        firstTdElement.innerHTML = '<img src="/static/red-dot-icon.png" alt="Offline" width="20px" height="20px">';
+                    }
+                }
             }
         }
 
