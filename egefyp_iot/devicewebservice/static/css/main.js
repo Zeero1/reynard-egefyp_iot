@@ -43,11 +43,17 @@ socket.onmessage = function(e){
     var connectedDevices = data.connected_devices;
     var signalList = data.signal_list;
     var signalstrDevices = data.signalstr_devices;
+    try {
+        buildTable(connectedDevices)
+        updateTable(signalstrDevices)
+        signalGraph(signalstrDevices)
+        numofdevicesconn(signalstrDevices)
+    }   
+    catch (error) {
+        // Catching the error and printing its message
+        console.log("An error occurred:", error.message);
+    }
     
-    buildTable(connectedDevices)
-    updateTable(signalstrDevices)
-    signalGraph(signalstrDevices)
-    numofdevicesconn(signalstrDevices)
 
     function numofdevicesconn(data){
         document.querySelector('#no_of_devices').innerText = data.length;
