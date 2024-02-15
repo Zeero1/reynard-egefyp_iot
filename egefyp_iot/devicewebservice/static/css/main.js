@@ -127,8 +127,7 @@ socket.onmessage = function(e){
                 var fifthTdElement = tdElements[4];
                 fifthTdElement.innerText = signalstrength;
             }
-            else{
-                for (let x of registeredDevices){
+            for (let x of registeredDevices){
                     if (x[1] == "Offline"){
                         let rowId = `row_${x[0]}`;
                         var trElement = document.getElementById(rowId);
