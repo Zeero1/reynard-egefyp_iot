@@ -38,18 +38,49 @@ socket.onmessage = function(e){
     var data = JSON.parse(e.data);
     console.log("Received data from WebSocket:", data);
 
-    // Access the data properties (connected_devices and signal_list)
+    // Access the data properties (connected_devices and sign   booll_list)
     
     var connectedDevices = data.connected_devices;
     var signalList = data.signal_list;
     var signalstrDevices = data.signalstr_devices;
+    var isOnline = true;
     
+    add_registeredDevices(connectedDevices)
     buildTable(connectedDevices)
     updateTable(signalstrDevices)
     signalGraph(signalstrDevices)
-    numofdevicesconn(signalstrDevices)  
-
+    numofdevicesconn(signalstrDevices)
     
+
+    function add_registeredDevices(data) {
+        for (let device of data) {
+            let isAlreadyRegistered = false;
+            for (let x of registeredDevices) {
+                if (x[0] === device[0]) { // If the device matches any element in registeredDevices 
+                    isAlreadyRegistered = true;
+                    x[1] = "Online"; // Mark the device as online
+                }
+            }
+            if (!isAlreadyRegistered) {
+                registeredDevices.push([device[0], "Online"]); // Add the device along with its status
+            }
+        }
+        // Mark devices as offline if they are not connected
+        for (let device of registeredDevices) {
+            let found = false;
+            for (let connectedDevice of data) {
+                if (device[0] === connectedDevice[0]) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                device[1] = "Offline"; // Mark the device as offline if not found in connected devices
+            }
+        }
+    }
+    
+
 
     function numofdevicesconn(data){
         document.querySelector('#no_of_devices').innerText = data.length;
@@ -62,20 +93,22 @@ socket.onmessage = function(e){
             newGraphData.shift();
             dBm = -x[3];
             newGraphData.push(dBm);
+
             var currentTime = new Date(); // Get the current time
             var timeString = currentTime.toLocaleTimeString(); // Format the time as a string
             newGraphxLabel = myLiveChart.data.labels;
             newGraphxLabel.shift(); // Remove the oldest entry in the x-axis (time)
             newGraphxLabel.push(timeString);
+
             myLiveChart.update();
             i++;
         }
     }
     
     function updateTable(data){
-        for (var i = 0; i < data.length; i++) {
-            hostname = data[i][0];
-            signalstrength = data[i][3];
+        for (let device of data) {
+            hostname = device[0];
+            signalstrength = device[3];
             let rowId = `row_${hostname}`;
 
             // Check if a row with the same ID already exists
@@ -92,15 +125,6 @@ socket.onmessage = function(e){
                 // Access the fourth td element (index 3)
                 var fifthTdElement = tdElements[4];
                 fifthTdElement.innerText = signalstrength;
-            }
-            else{
-                var tdElements = trElement.getElementsByTagName("td");
-
-                // Access the first td element (index 0)
-                var firstTdElement = tdElements[0];
-            
-                // Set inner HTML of the first td element to the desired image tag
-                firstTdElement.innerHTML = '<img src="/static/red-dot-icon.png" alt="Offline" width="20px" height="20px">';
             }
         }
 
