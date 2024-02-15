@@ -128,16 +128,15 @@ socket.onmessage = function(e){
                 fifthTdElement.innerText = signalstrength;
             }
             for (let x of registeredDevices){
-                    if (x[1] == "Offline"){
-                        let rowId = `row_${x[0]}`;
-                        var trElement = document.getElementById(rowId);
-                        var tdElements = trElement.getElementsByTagName("td");
-                        // Access the first td element (index 0)
-                        var firstTdElement = tdElements[0];
-            
-                        // Set inner HTML of the first td element to the offline image 
-                        firstTdElement.innerHTML = '<img src="/static/red-dot-icon.png" alt="Offline" width="20px" height="20px">';
-                    }
+                if (x[1] == "Offline"){
+                    let rowId = `row_${x[0]}`;
+                    var trElement = document.getElementById(rowId);
+                    var tdElements = trElement.getElementsByTagName("td");
+                    // Access the first td element (index 0)
+                    var firstTdElement = tdElements[0];
+        
+                    // Set inner HTML of the first td element to the offline image 
+                    firstTdElement.innerHTML = '<img src="/static/red-dot-icon.png" alt="Offline" width="20px" height="20px">';
                 }
             }
         }
