@@ -12,7 +12,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
         while True:
             try:
                 signal_info = await self.get_signal_info()
-                connected_devices = await self.get_connected_devices(signal_info)
+                connected_devices = await self.get_connected_devices()
                 # try:
                 #     for hostname, ip, mac in connected_devices:
                 #         #adding device to Django ORD
