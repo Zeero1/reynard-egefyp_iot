@@ -43,13 +43,14 @@ socket.onmessage = function(e){
     var connectedDevices = data.connected_devices;
     var signalList = data.signal_list;
     var signalstrDevices = data.signalstr_devices;
-    var isOnline = true;
     
     add_registeredDevices(connectedDevices)
     buildTable(connectedDevices)
     updateTable(signalstrDevices)
     signalGraph(signalstrDevices)
     numofdevicesconn(signalstrDevices)
+
+    console.log(registeredDevices)
     
 
     function add_registeredDevices(data) {
