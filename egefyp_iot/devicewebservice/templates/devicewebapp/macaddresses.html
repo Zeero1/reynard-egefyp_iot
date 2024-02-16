@@ -33,7 +33,6 @@
   <meta charset="utf-8">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   
-  
   <title></title>
 </head>
 
@@ -47,7 +46,6 @@
             </div>
         </div>
     </div>
-<!-- for host, status in hosts_list  -->
 
     <div class="grid-container">
         <div class="item1">
@@ -56,8 +54,6 @@
     
 
         <div class="item2" style="overflow-y: auto; height: 420x;">
-            <!-- for hostname, ip_address, mac in connected_devices -->
-            <!-- name of variable must be in order of the index of data in the list,eg. hostname = connected_devices[0] -->
             <table class="table table-striped">
                 <tr  class="thead-dark"">
                     <th>Status</th>
@@ -71,39 +67,6 @@
                     
                 </tbody>
             </table>
-
-        {% comment %} <table style="border: 3px black solid; padding: 10px; border-radius: 20px; width: 300px;">
-        <tr>
-            <td><strong>Host: </strong><span id="hostname"></span></td>
-        </tr>
-        <tr>
-            <td><strong>IP Address: </strong><span id="ip_address"></span></td>
-        </tr>
-        <tr>
-            <td><strong>MAC Address: </strong><span id="mac_address"></span></td>
-        </tr>
-        <tr>    
-            <td><strong>Signal Strength: </strong><span id="signalstrength"></span> {% endcomment %}
-                
-                {% comment %} {% for signal in signal_list %}
-                    {% if signal.0 == mac %}
-                        {{ signal.1 }}
-                        {% if signal.2 > -30 %}
-                            <img src="{% static 'wifi_4bar.png' %}" alt="image not found" class="center" width="20px">
-                        {% elif signal.2 > -67 %}
-                            <img src="{% static 'wifi_3bar.png' %}" alt="image not found" class="center" width="20px">
-                        {% elif signal.2 > -70 %}
-                            <img src="{% static 'wifi_2bar.png' %}" alt="image not found" class="center" width="20px">
-                        {% elif signal.2 > -80 %}
-                            <img src="{% static 'wifi_1bar.png' %}" alt="image not found" class="center" width="20px">
-                        {% elif signal.2 > -90 %}
-                            <img src="{% static 'wifi_nobar.png' %}" alt="image not found" class="center" width="20px">
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}     {% endcomment %}
-            {% comment %} </td>
-        </tr>
-        </table> {% endcomment %}
         </div>
         <div class="item3">
             <h4><b>Devices Connected</b></h4>
@@ -111,9 +74,6 @@
         </div>
     </div>
 
-<!-- endfor -->
-{{ signal_list }}
-{{ connected_devices }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="{% static 'css/main.js' %}"></script>
     </body>
