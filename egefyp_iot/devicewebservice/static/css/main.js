@@ -91,7 +91,7 @@ socket.onmessage = function(e){
         let i = 0;
         for (let x of data){
             graphname = myLiveChart.data.datasets[i].label;
-            graphname = x;
+            graphname = x[0];
             newGraphData = myLiveChart.data.datasets[i].data;
             newGraphData.shift();
             dBm = -x[3];
