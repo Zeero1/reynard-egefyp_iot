@@ -90,8 +90,8 @@ socket.onmessage = function(e){
     function signalGraph(data){
         let i = 0;
         for (let x of data){
-            graphname = myLiveChart.data.datasets[i].label;
-            graphname = x[0];
+            myLiveChart.data.datasets[i].label = x[0];
+ 
             newGraphData = myLiveChart.data.datasets[i].data;
             newGraphData.shift();
             dBm = -x[3];
