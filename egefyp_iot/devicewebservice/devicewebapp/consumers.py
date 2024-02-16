@@ -36,7 +36,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 print(signal_info)
 
                 message_data = {
-                    'signal_list': signal_info,
+                    'signal_info': signal_info,
                     'connected_devices': connected_devices,
                     'signalstr_devices': signalstr_devices
                 }
@@ -61,7 +61,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
 
 
         signal_lines = output_signal_cmd.stdout.splitlines()
-        signal_list = []
+        signal_info = []
         
         for line in signal_lines:
             line_strip = line.strip()
@@ -69,9 +69,9 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 mac_address = line_strip.split("Station ")[-1].split(" (")[0]
             elif "signal" in line_strip:
                 signal_strength = line_strip.split("signal:")[-1].strip().split(" ")[0]
-                signal_list.append((mac_address, signal_strength))
+                signal_info.append((mac_address, signal_strength))
 
-        return signal_list
+        return signal_info
 
     async def get_connected_devices(self):
         arp_scan_output = subprocess.run(
@@ -85,7 +85,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
         connected_devices = []
         pattern = re.compile(r'(\S+)\.byteacs\.com \((\d+\.\d+\.\d+\.\d+)\) at (\S+) \[ether\]')
 
-        # for signal in signal_info:
+
         for line in arp_scan_output.stdout.splitlines():
             matches = pattern.findall(line)
             if matches:
