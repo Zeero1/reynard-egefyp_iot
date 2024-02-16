@@ -21,7 +21,7 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 # except Exception as error:
                 #     print("An error occurred:", type(error).__name__, "–", error)
 
-                # Merge both lists by 
+                
                 
                 signalstr_devices = []
 
