@@ -36,7 +36,6 @@ class GraphConsumer(AsyncWebsocketConsumer):
                 print(signal_info)
 
                 message_data = {
-                    'signal_info': signal_info,
                     'connected_devices': connected_devices,
                     'signalstr_devices': signalstr_devices
                 }

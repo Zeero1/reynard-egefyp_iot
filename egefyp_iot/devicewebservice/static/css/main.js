@@ -41,7 +41,6 @@ socket.onmessage = function(e){
     // Access the data properties (connected_devices and sign   booll_list)
     
     var connectedDevices = data.connected_devices;
-    var signal_info = data.signal_info;
     var signalstrDevices = data.signalstr_devices;
     
     add_registeredDevices(connectedDevices)
