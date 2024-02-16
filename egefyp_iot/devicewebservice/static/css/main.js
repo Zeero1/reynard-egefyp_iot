@@ -90,6 +90,8 @@ socket.onmessage = function(e){
     function signalGraph(data){
         let i = 0;
         for (let x of data){
+            graphname = myLiveChart.data.datasets[i].label;
+            graphname = x;
             newGraphData = myLiveChart.data.datasets[i].data;
             newGraphData.shift();
             dBm = -x[3];
@@ -150,8 +152,6 @@ socket.onmessage = function(e){
             hostname = data[i][0];
             ip_address = data[i][1];
             mac_address = data[i][2];
-            
-
             
             // Generate a unique ID for the row
             let rowId = `row_${hostname}`;
